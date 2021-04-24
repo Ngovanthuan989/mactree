@@ -28,5 +28,7 @@ class ViewServiceProvider extends ServiceProvider
         view()->composer('dashboard.layout.nav', 'App\Http\View\Composers\UserInfoComposer');
         view()->composer('dashboard.layout.master', 'App\Http\View\Composers\UserInfoComposer');
         view()->composer('dashboard.layout.profileHeader', 'App\Http\View\Composers\UserInfoComposer');
+        view()->composer('dashboard.home.changePassword', 'App\Http\View\Composers\UserInfoComposer');
+        view()->composer('dashboard.home.profile', 'App\Http\View\Composers\UserInfoComposer');
     }
 }

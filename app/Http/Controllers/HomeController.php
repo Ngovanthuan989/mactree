@@ -113,16 +113,21 @@ class HomeController extends Controller
         $login = DB::table('customer')->where([
             'email'     =>  $request     -> get('email'),
             'password'  =>  md5($request -> get('password'))
-        ])->get();
+        ])->first();
 
-        if ($login[0] -> permission == null) {
+        if (!$login) {
+            return response('Tài khoản hoặc mật khẩu sai!',400);
+        }
+
+
+        if ($login -> permission == null) {
             return response('Tài khoản chưa được xác thực!',400);
         }
 
         $verification_codes = mt_rand(100000,999999);
 
-        if ($login[0] -> id) {
-            Session::put('user_id', $login[0] -> id);
+        if ($login -> id) {
+            Session::put('user_id', $login -> id);
             $subject ="Mã xác thực được gửi từ MacTree";
             $email_to = $request->get('email');
             $content = '<p><b>Công cty cổ phần MacTree</b></p>
@@ -130,7 +135,7 @@ class HomeController extends Controller
             ';
             MailHelper::sendEmail($subject,$email_to,$content);
 
-            $update = Customers::where('id',$login[0] -> id)->update(array(
+            $update = Customers::where('id',$login -> id)->update(array(
                 'code_accuracy' => $verification_codes,
             ));
 
@@ -141,7 +146,7 @@ class HomeController extends Controller
             }
         }
 
-        return response('Tài khoản hoặc mật khẩu sai!',400);
+
 
     }
 
@@ -168,16 +173,12 @@ class HomeController extends Controller
         return redirect()->route('home.index');
     }
 
-    public function profile(Request $request)
+    public function profile()
     {
-        $id = Session::get('user_id');
-
-        $user = DB::table('customer')->where([
-            'id'     =>  $id
-        ])->get();
+        $get_permission=DB::table('permission')->get();
 
         return view('dashboard.home.profile',[
-            'user' => $user[0]
+            'get_permission' => $get_permission
         ]);
     }
 
@@ -233,7 +234,7 @@ class HomeController extends Controller
 
             if ($validate -> fails()) {
 
-                return redirect()->route('dashboard.profile.edit',['id' =>  $request->get('id')])->withErrors($validate)->with('user',$user);
+                return redirect()->route('dashboard.profile.show')->withErrors($validate)->with('user',$user);
 
             }
 
@@ -241,27 +242,129 @@ class HomeController extends Controller
                 'full_name' => $request -> get('full_name'),
                 'email'     => $request -> get('email'),
                 'phone'     => $request ->  get('phone'),
+                'permission'=> $request ->  get('permission'),
                 'avatar'    => $filename
             ));
 
             if ($update==1) {
+                $login = DB::table('customer')->where([
+                    'id'     =>  $request->get('id')
+                ])->get();
+
+                Cookie::queue('logged_user', json_encode($login[0]), 100);
+                return redirect()->route('dashboard.profile.show')->with('success', 'Cập nhập thành công');
+
+            }else{
+
+                return redirect()->route('dashboard.profile.show')->with(['user'=>$user,'error'=>'Có lỗi xảy ra']);
+
+            }
+
+        }else{
+            $validate = Validator::make(
+
+                $request->all(),
+                [
+                    'phone'     => 'required',
+                    'full_name' => 'required',
+                    'email'     => 'required|email'
+
+                ], [
+
+                    'phone.required'     => 'Phone không được bỏ trống',
+                    'email.email'        => 'Email không đúng định dạng',
+                    'email.required'        => 'Email không được để trống',
+                    'full_name.required' => 'Tên không được để trống'
+                ]
+
+            );
+
+
+
+            if ($validate -> fails()) {
+
+                return redirect()->route('dashboard.profile.show')->withErrors($validate)->with('user',$user);
+
+            }
+
+            $update = Customers::where('id',$request->get('id'))->update(array(
+                'full_name' => $request -> get('full_name'),
+                'email'     => $request -> get('email'),
+                'phone'     => $request ->  get('phone'),
+                'permission'=> $request ->  get('permission'),
+            ));
+
+            if ($update==1) {
+                $login = DB::table('customer')->where([
+                    'id'     =>  $request->get('id')
+                ])->get();
+
+                Cookie::queue('logged_user', json_encode($login[0]), 100);
 
                 return redirect()->route('dashboard.profile.show')->with('success', 'Cập nhập thành công');
 
             }else{
 
-                return redirect()->route('dashboard.profile.edit',['id' =>  $request->get('id')])->with(['user'=>$user,'error'=>'Có lỗi xảy ra']);
+                return redirect()->route('dashboard.profile.show')->with(['user'=>$user,'error'=>'Có lỗi xảy ra']);
 
             }
-
-        }else{
-
-            return redirect()->route('dashboard.profile.edit',['id' =>  $request->get('id')])->with(['user'=>$user,'error'=>'Xin vui lòng chọn ảnh']);
-
         }
 
 
+    }
 
+    public function changePassword()
+    {
+        $get_permission=DB::table('permission')->get();
+        return view('dashboard.home.changePassword',[
+            'get_permission' => $get_permission
+        ]);
+    }
+    public function postResetPassword(Request $request)
+    {
+        if (!$request->get('password')) {
+            return response('Mật khẩu hiện tại không được để trống',400);
+        }
+        if (!$request->get('password_new')) {
+            return response('Mật khẩu mới không được để trống',400);
+        }
+        if (!$request->get('password_new2')) {
+            return response('Bạn cần xác nhận lại mật khẩu',400);
+        }
+        if ($request->get('password_new2') != $request->get('password_new')) {
+            return response('Mật khẩu xác nhận không khớp',400);
+        }
+        if ($request->get('password_new') == $request->get('password')) {
+            return response('Mật khẩu mới không được trùng với mật khẩu hiện tại',400);
+        }
+
+        $user = Customers::where([
+            'id'       => $request->get('id')
+        ])
+        ->first();
+        if($user){
+            if (md5($request->get('password')) == $user->password) {
+                $update = Customers::where('id',$request->get('id'))->update(array(
+                    'password' => md5($request -> get('password_new')),
+                ));
+
+                if ($update==1) {
+
+                    return response('Đổi mật khẩu thành công');
+
+                }else{
+
+                    return response('Có lỗi xảy ra',400);
+
+                }
+            }
+            else{
+                return response('Mật khẩu hiện tại không đúng',400);
+            }
+        }
+        else{
+            return response('Tài khoản không tồn tại',400);
+        }
     }
 
 }

@@ -10,7 +10,7 @@
             <!--begin::Info-->
             <div class="d-flex align-items-center flex-wrap mr-2">
                 <!--begin::Page Title-->
-                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Danh sách quyền truy cập</h5>
+                <h5 class="text-dark font-weight-bold mt-2 mb-2 mr-5">Danh sách phương thức thanh toán</h5>
                 <!--end::Page Title-->
                 <!--begin::Actions-->
                 <div class="subheader-separator subheader-separator-ver mt-2 mb-2 mr-4 bg-gray-200"></div>
@@ -31,7 +31,7 @@
         <div class="card card-custom">
             <div class="card-header flex-wrap py-5">
                 <div class="card-title">
-                    <h3 class="card-label">Quyền truy cập
+                    <h3 class="card-label">Phương thức thanh toán
                     <div class="text-muted pt-2 font-size-sm">Số lượng: </div></h3>
                 </div>
                 <div class="card-toolbar">
@@ -116,31 +116,30 @@
                 <table class="table table-separate table-head-custom table-checkable dataTable no-footer dtr-inline" id="kt_datatable" role="grid" aria-describedby="kt_datatable_info">
                     <thead>
                         <tr role="row">
-                            <th >Tên quyền truy cập</th>
-                            <th >Mã quyền truy cập</th>
-                            <th >Trạng thái</th>
-                            <th >Ngày áp dụng</th>
-
+                            <th>Tên phương thức</th>
+                            <th>Mã phương thức</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày áp dụng</th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 105px;" aria-label="Actions">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($get_permission as $get_permissions)
+                        @foreach ($get_pay as $get_pays)
                         <tr class="odd">
                             <td class="dtr-control sorting_1" tabindex="0">
                                 <div class="d-flex align-items-center">
                                     <div class="ml-3">
-                                        <a href="{{ route('dashboard.permission.edit', ['id' => $get_permissions->permission_code]) }}" class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">{{$get_permissions->permission_name}}</a>
+                                        <a href="{{ route('dashboard.pay.edit', ['id' => $get_pays->pay_code]) }}" class="text-dark-75 font-weight-bold line-height-sm d-block pb-2">{{$get_pays->pay_name}}</a>
                                     </div>
                                 </div>
                             </td>
-                                <td class="">{{$get_permissions->permission_code}}</td>
-                                @if ($get_permissions->status == 1)
+                                <td class="">{{$get_pays->pay_code}}</td>
+                                @if ($get_pays->status == 1)
                                     <td><span class="label label-lg font-weight-bold label-light-success label-inline">Hoạt động</span></td>
                                 @else
                                 <td><span class="label label-lg font-weight-bold label-light-danger label-inline">Dừng hoạt động</span></td>
                                 @endif
-                                <td>{{ date('d/m/Y H:i', strtotime($get_permissions->updated_at)) }}</td>
+                                <td>{{ date('d/m/Y H:i', strtotime($get_pays->updated_at)) }}</td>
                                 <td nowrap="nowrap">
                                     {{-- <div class="dropdown dropdown-inline">
                                         <a href="javascript:;" class="btn btn-sm btn-clean btn-icon" data-toggle="dropdown">
@@ -168,10 +167,10 @@
                                         </ul>
                                         </div>
                                     </div> --}}
-                                    <a href="{{ route('dashboard.permission.edit', ['id' => $get_permissions->permission_code]) }}" class="btn btn-sm btn-clean btn-icon" title="Edit details">
+                                    <a href="{{ route('dashboard.pay.edit', ['id' => $get_pays->pay_code]) }}" class="btn btn-sm btn-clean btn-icon" title="Edit details">
                                         <i class="la la-edit"></i>
                                     </a>
-                                    <a href="javascript:;" class="btn btn-sm btn-clean btn-icon delete_permission" data-id="{{$get_permissions->id}}" title="Delete">
+                                    <a href="javascript:;" class="btn btn-sm btn-clean btn-icon delete_pay" data-id="{{$get_pays->id}}" title="Delete">
                                         <i class="la la-trash"></i>
                                     </a>
                                 </td>
@@ -197,7 +196,7 @@
 
 
 <script>
-    $(document).on("click",".delete_permission",function() {
+    $(document).on("click",".delete_pay",function() {
         let id = $(this).attr('data-id');
         $.confirm({
             content: '<p style="color:red;">Bạn có chắc chắn muốn xoá không?</p>',
@@ -207,7 +206,7 @@
                         Loading.show();
                         axios({
                             method: 'post',
-                            url: '/permission/delete',
+                            url: '/pay/delete',
                             data: {
                                 id:id,
                             }
@@ -232,7 +231,6 @@
 
     });
 </script>
-
 
 @endsection
 

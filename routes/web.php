@@ -30,6 +30,8 @@ Route::group(['middleware' => ['check.logout']], function () {
 
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', 'HomeController@profile')->name('dashboard.profile.show');
+        Route::get('/change-password', 'HomeController@changePassword')->name('dashboard.profile.changePassword');
+        Route::post('/reset-password', 'HomeController@postResetPassword')->name('dashboard.profile.resetPassword');
         Route::get('/edit/{id}', 'HomeController@editProfile')->name('dashboard.profile.edit');
         Route::post('/update', 'HomeController@updateProfile')->name('dashboard.profile.update');
     });

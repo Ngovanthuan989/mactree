@@ -202,13 +202,13 @@
 
 <script>
     $(document).on("click",".delete_product",function() {
+        let id = $(this).attr('data-id');
         $.confirm({
             content: '<p style="color:red;">Bạn có chắc chắn muốn xoá không?</p>',
             buttons: {
                 'Yes': {
                     action: function () {
                         Loading.show();
-                        var id = $('.delete_product').attr('data-id');
                         axios({
                             method: 'post',
                             url: '/product/delete',
