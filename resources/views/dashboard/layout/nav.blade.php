@@ -193,20 +193,20 @@
                             </span>
                         </li>
                         <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="/product" class="menu-link menu-toggle">
+                            <a href="/category" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Danh sách sản phẩm</span>
+                                <span class="menu-text">Danh sách danh mục</span>
                             </a>
                         </li>
 
                         <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                            <a href="/product/add" class="menu-link menu-toggle">
+                            <a href="/category/add" class="menu-link menu-toggle">
                                 <i class="menu-bullet menu-bullet-line">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">Tạo mới sản phẩm</span>
+                                <span class="menu-text">Tạo mới danh mục</span>
                             </a>
                         </li>
 
