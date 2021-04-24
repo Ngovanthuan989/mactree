@@ -41,16 +41,16 @@
 					<div class="login-form text-center text-white p-7 position-relative overflow-hidden">
 						<!--begin::Login Header-->
 						<div class="d-flex flex-center mb-15">
-							<a href="#">
-								<img src="assets/media/logos/logo-letter-13.png" class="max-h-75px" alt="" />
+							<a href="/">
+								<img src="{{asset('/uploads/images/logo_mactree_thaihoang.png')}}" class="max-h-75px" alt="" />
 							</a>
 						</div>
 						<!--end::Login Header-->
 						<!--begin::Login Sign in form-->
 						<div class="login-signin cards">
 							<div class="mb-20">
-								<h3 class="opacity-40 font-weight-normal">Sign In To Admin</h3>
-								<p class="opacity-40">Enter your details to login to your account:</p>
+								<h3 class="opacity-40 font-weight-normal">Đăng nhập vào Admin</h3>
+								<p class="opacity-40">Nhập thông tin chi tiết của bạn để đăng nhập vào tài khoản của bạn:</p>
 							</div>
 							<div id="kt_login_signin_form">
 								<div class="form-group">
@@ -70,7 +70,7 @@
 								</div>
 							</div>
 							<div class="mt-10">
-								<span class="opacity-40 mr-4">Don't have an account yet?</span>
+								{{-- <span class="opacity-40 mr-4">Don't have an account yet?</span> --}}
 								<a href="javascript:;" id="kt_login_signup" class="text-white opacity-30 font-weight-normal">Sign Up</a>
 							</div>
 						</div>
