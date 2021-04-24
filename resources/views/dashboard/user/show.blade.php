@@ -1,4 +1,9 @@
 @extends('dashboard.layout.master')
+<style>
+    .form-control {
+        width: 50% !important;
+    }
+</style>
 @section('main')
 
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -160,7 +165,15 @@
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="text-dark-75 font-weight-bolder mr-2">Quyền truy cập:</span>
-                                            <span class="text-muted font-weight-bold">Barcelona</span>
+                                            <select name="permission" class="form-control form-control-solid permission" disabled>
+                                                @foreach($get_permission as $permission)
+                                                    <option value="{{$permission->id}}"
+                                                        @if($get_users->permission == $permission->id)
+                                                        selected
+                                                        @endif>{{$permission->permission_name}}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center my-1">
                                             <span class="text-dark-75 font-weight-bolder mr-2">Ngày đăng kí:</span>

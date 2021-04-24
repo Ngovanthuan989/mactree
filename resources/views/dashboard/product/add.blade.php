@@ -5,6 +5,10 @@
     .error{
         color:red !important;
     }
+    .image-input .image-input-wrapper {
+        width: 250px;
+        height: 200px;
+    }
 </style>
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
         <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
@@ -80,7 +84,7 @@
                     <label>Ảnh đại diện sản phẩm</label>
                         <div class="col-lg-9 col-xl-9">
                             <div class="image-input" id="kt_image_2">
-                                <div class="image-input-wrapper" style="background-image: url(assets/media/users/100_2.jpg)"></div>
+                                <div class="image-input-wrapper" style="background-image: url({{asset('/uploads/images/DSC06686.jpeg')}})"></div>
 
                                 <label class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow" data-action="change" data-toggle="tooltip" title="" data-original-title="Ảnh đại diện sản phẩm">
                                  <i class="fa fa-pen icon-sm text-muted"></i>

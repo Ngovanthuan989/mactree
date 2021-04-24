@@ -16,9 +16,11 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
+        $get_permission=DB::table('permission')->get();
         $get_user=DB::table('customer')->get();
         return view('dashboard.user.show',[
-            'get_user' => $get_user
+            'get_user' => $get_user,
+            'get_permission' => $get_permission
         ]);
 
     }
