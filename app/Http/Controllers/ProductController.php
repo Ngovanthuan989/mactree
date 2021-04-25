@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Product;
+use App\Models\ProductImg;
 
 class ProductController extends Controller
 {
@@ -28,8 +29,10 @@ class ProductController extends Controller
         ]);
     }
 
+
     public function addPost(Request $request)
     {
+        dd($request->all());
         if ($request->file('product_img') != '') {
             $path = public_path().'/uploads/images/';
 
@@ -395,4 +398,49 @@ class ProductController extends Controller
             return response('Xoá sản phẩm không thành công!',400);
         }
     }
+
+    public function addProductImg()
+    {
+        $get_product = DB::table('product')->get();
+
+        return view('dashboard.productImg.add',[
+            'get_product' => $get_product
+        ]);
+    }
+
+    public function addPostImg(Request $request)
+    {
+        $img = $request -> get('img');
+
+        foreach ($img as $value) {
+            $data =[
+               'product_id'   => $request -> get('product_id'),
+               'image'        => $value
+            ];
+            $productImg = ProductImg::create($data);
+        }
+
+        if ($productImg->wasRecentlyCreated == true) {
+
+            return response('Thêm ảnh cho sản phẩm thành công!');
+
+        }else{
+
+            return response('Có lỗi xảy ra!');
+
+        }
+
+    }
+
+    public function productImg()
+    {
+        $get_product = ProductImg::with('product')->get();
+
+        foreach ($get_product as $product)
+            {
+                dd( $product->product );
+            }
+    }
+
+
 }

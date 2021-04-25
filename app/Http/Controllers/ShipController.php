@@ -169,4 +169,21 @@ class ShipController extends Controller
             return response($callApiGhn->message,400);
         }
     }
+
+    public function deleteConnect(Request $request)
+    {
+        $update = Ships::where('id',$request->get('id'))->update(array(
+            'ship_key' => '',
+            'active'   => 2,
+            'ship_img' => ''
+        ));
+
+        if ($update == 1) {
+            return response('Đã huỷ kết nối đến đơn vị vận chuyển GHN!');
+
+        }else{
+
+            return response('Có lỗi xảy ra!',400);
+        }
+    }
 }

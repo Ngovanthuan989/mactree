@@ -75,6 +75,9 @@ Route::group(['middleware' => ['check.logout']], function () {
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('/add', 'ProductController@add')->name('dashboard.product.add');
+        Route::get('/addProductImg', 'ProductController@addProductImg')->name('dashboard.product.addProductImg');
+        Route::get('/img', 'ProductController@productImg')->name('dashboard.product.productImg');
+        Route::post('/addPostImg', 'ProductController@addPostImg')->name('dashboard.product.addPostImg');
         Route::get('/', 'ProductController@index')->name('dashboard.product.show');
         Route::get('/edit/{id}', 'ProductController@edit')->name('dashboard.product.edit');
         Route::post('/update', 'ProductController@update')->name('dashboard.product.update');
@@ -91,6 +94,7 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/delete', 'ShipController@delete')->name('dashboard.ship.delete');
         Route::post('/addPost', 'ShipController@addPost')->name('dashboard.ship.addPost');
         Route::post('/addPostConnect', 'ShipController@addPostConnect')->name('dashboard.ship.addPostConnect');
+        Route::post('/delete-connect', 'ShipController@deleteConnect')->name('dashboard.ship.deleteConnect');
         Route::get('/connect', 'ShipController@shipConnect')->name('dashboard.ship.connect');
         Route::get('/add-connect/{id}', 'ShipController@addConnect')->name('dashboard.ship.addConnect');
     });

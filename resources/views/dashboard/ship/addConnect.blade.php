@@ -167,7 +167,7 @@
                                         </li>
                                         <li class="navi-separator mb-3 opacity-70"></li>
                                         <li class="navi-item">
-                                            <a href="#" class="navi-link">
+                                            <a type="button" class="navi-link delete_connect" data-id="{{$ship->id}}">
                                                 <span class="navi-text">
                                                     <span class="label label-xl label-inline label-light-danger">Xoá kết nối</span>
                                                 </span>
@@ -250,6 +250,9 @@
                                 <label class="col-xl-3 col-lg-3 col-form-label">Key kết nối</label>
                                 <div class="col-lg-9 col-xl-6">
                                     <input type="password" class="form-control form-control-lg form-control-solid ship_key" name="ship_key" value="">
+                                    @if ($ship->name == 'GHN')
+                                        <a href="https://khachhang.ghn.vn/account" target="_blank">Lấy key kết nối</a>
+                                    @endif
                                 </div>
                             </div>
 
@@ -269,9 +272,10 @@
         </div>
         <!--end::Profile Change Password-->
     </div>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 @endsection
 @section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 <script>
@@ -299,6 +303,45 @@
             Toastr.error(error.response.data);
         }).finally(function() {
             Loading.hide();
+        });
+
+    });
+</script>
+
+
+
+<script>
+    $(document).on("click",".delete_connect",function() {
+        let id = $(this).attr('data-id');
+        $.confirm({
+            content: '<p style="color:red;">Bạn có chắc chắn muốn xoá kết nối không?</p>',
+            buttons: {
+                'Yes': {
+                    action: function () {
+                        Loading.show();
+                        axios({
+                            method: 'post',
+                            url: '/ship/delete-connect',
+                            data: {
+                                id:id,
+                            }
+                        }).then(function (response) {
+                            Toastr.success(response.data);
+                            location.reload();
+                        }).catch(function(error) {
+                            Toastr.error(error.response.data);
+                        }).finally(function() {
+                            Loading.hide();
+                        });
+                    }
+                },
+                'No':{
+                    action: function () {
+
+                    }
+                }
+
+            }
         });
 
     });
