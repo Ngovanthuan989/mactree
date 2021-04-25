@@ -83,4 +83,16 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/editPost', 'ProductController@editPost')->name('dashboard.product.editPost');
     });
 
+    Route::group(['prefix' => 'ship'], function () {
+        Route::get('/add', 'ShipController@add')->name('dashboard.ship.add');
+        Route::get('/', 'ShipController@index')->name('dashboard.ship.show');
+        Route::get('/edit/{id}', 'ShipController@edit')->name('dashboard.ship.edit');
+        Route::post('/update', 'ShipController@update')->name('dashboard.ship.update');
+        Route::post('/delete', 'ShipController@delete')->name('dashboard.ship.delete');
+        Route::post('/addPost', 'ShipController@addPost')->name('dashboard.ship.addPost');
+        Route::post('/addPostConnect', 'ShipController@addPostConnect')->name('dashboard.ship.addPostConnect');
+        Route::get('/connect', 'ShipController@shipConnect')->name('dashboard.ship.connect');
+        Route::get('/add-connect/{id}', 'ShipController@addConnect')->name('dashboard.ship.addConnect');
+    });
+
 });
