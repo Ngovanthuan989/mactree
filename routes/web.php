@@ -78,9 +78,12 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::get('/addProductImg', 'ProductController@addProductImg')->name('dashboard.product.addProductImg');
         Route::get('/img', 'ProductController@productImg')->name('dashboard.product.productImg');
         Route::post('/addPostImg', 'ProductController@addPostImg')->name('dashboard.product.addPostImg');
+        Route::post('/deleteImg', 'ProductController@deleteImg')->name('dashboard.product.deleteImg');
         Route::get('/', 'ProductController@index')->name('dashboard.product.show');
         Route::get('/edit/{id}', 'ProductController@edit')->name('dashboard.product.edit');
+        Route::get('/editImg/{id}', 'ProductController@editImg')->name('dashboard.product.editImg');
         Route::post('/update', 'ProductController@update')->name('dashboard.product.update');
+        Route::post('/editPostImg', 'ProductController@editPostImg')->name('dashboard.product.editPostImg');
         Route::post('/delete', 'ProductController@delete')->name('dashboard.product.delete');
         Route::post('/addPost', 'ProductController@addPost')->name('dashboard.product.addPost');
         Route::post('/editPost', 'ProductController@editPost')->name('dashboard.product.editPost');

@@ -9,4 +9,7 @@ class Product extends Model
     //
     protected $table = "product";
 
+    public function productImg() {
+        return $this->hasMany('App\Models\ProductImg','product_id','id');
+    }
 }
