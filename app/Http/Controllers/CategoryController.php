@@ -57,7 +57,7 @@ class CategoryController extends Controller
         $update = Categorys::where('id',$request->get('id'))->update(array(
             'category_name' => $request->get('category_name'),
             'category_code' => $request->get('category_code'),
-            'status' => $request->get('status'),
+            'status'        => $request->get('status'),
         ));
 
         if ($update==1) {
