@@ -102,4 +102,13 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::get('/add-connect/{id}', 'ShipController@addConnect')->name('dashboard.ship.addConnect');
     });
 
+    Route::group(['prefix' => 'order'], function () {
+        // Route::get('/add', 'UserController@add')->name('dashboard.user.add');
+        Route::get('/', 'OrderController@index')->name('dashboard.order.show');
+        Route::get('/edit/{id}', 'OrderController@edit')->name('dashboard.order.edit');
+        Route::post('/update', 'OrderController@update')->name('dashboard.order.update');
+        Route::post('/delete', 'OrderController@delete')->name('dashboard.order.delete');
+        Route::post('/addPost', 'OrderController@addPost')->name('dashboard.order.addPost');
+    });
+
 });
