@@ -15,6 +15,7 @@
 
 
 Route::group(['middleware' => ['check.login']], function () {
+
     Route::get('/login', 'HomeController@login')->name('home.login');
     Route::get('/register', 'HomeController@register')->name('home.register');
     Route::post('/postRegister', 'HomeController@postRegister')->name('home.postRegister');
@@ -112,3 +113,7 @@ Route::group(['middleware' => ['check.logout']], function () {
     });
 
 });
+
+Route::get('/home', 'HomePageController@index')->name('homePage.home.show');
+
+
