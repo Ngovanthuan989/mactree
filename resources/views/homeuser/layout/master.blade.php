@@ -28,24 +28,22 @@
 
     <!-- YOUR CUSTOM CSS -->
     <link href="{{asset('/PageUser/css/custom.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
 
 <body>
-
+    @include('elements.loading')
 	<div id="page">
 
         @include('homeuser.layout.header')
 	<!-- /header -->
 
 	<main>
-		<div id="carousel-home">
-            @include('homeuser.layout.slide')
-			<div id="icon_drag_mobile"></div>
-		</div>
-		<!--/carousel-->
 
-        @include('homeuser.layout.banner')
+
+
+
 		<!--/banners_grid -->
         @yield('home')
 
@@ -86,7 +84,7 @@
 				<div class="col-lg-6">
 					<a class="box_news" href="blog.html">
 						<figure>
-							<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog/thumb/1.png" alt="" width="400" height="266" class="lazy">
+							<img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/PageUser/img/blog/thumb/1.png')}}" alt="" width="400" height="266" class="lazy">
 							<figcaption><strong>28</strong>Dec</figcaption>
 						</figure>
 						<ul>
@@ -101,7 +99,7 @@
 				<div class="col-lg-6">
 					<a class="box_news" href="blog.html">
 						<figure>
-							<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog/thumb/2.png" alt="" width="400" height="266" class="lazy">
+							<img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/PageUser/img/blog/thumb/2.png')}}" alt="" width="400" height="266" class="lazy">
 							<figcaption><strong>28</strong>Dec</figcaption>
 						</figure>
 						<ul>
@@ -116,7 +114,7 @@
 				<div class="col-lg-6">
 					<a class="box_news" href="blog.html">
 						<figure>
-							<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog/thumb/2.png" alt="" width="400" height="266" class="lazy">
+							<img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/PageUser/img/blog/thumb/2.png')}}" alt="" width="400" height="266" class="lazy">
 							<figcaption><strong>28</strong>Dec</figcaption>
 						</figure>
 						<ul>
@@ -131,7 +129,7 @@
 				<div class="col-lg-6">
 					<a class="box_news" href="blog.html">
 						<figure>
-							<img src="img/blog-thumb-placeholder.jpg" data-src="img/blog/thumb/3.png" alt="" width="400" height="266" class="lazy">
+							<img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/PageUser/img/blog/thumb/3.png')}}" alt="" width="400" height="266" class="lazy">
 							<figcaption><strong>28</strong>Dec</figcaption>
 						</figure>
 						<ul>
@@ -163,6 +161,10 @@
 
 	<!-- SPECIFIC SCRIPTS -->
 	<script src="{{asset('/PageUser/js/carousel-home.min.js')}}"></script>
-    @yield('js')
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    @include('elements.toastr')
+
+    @yield('javascript')
+
 </body>
 </html>

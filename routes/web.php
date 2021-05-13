@@ -113,7 +113,12 @@ Route::group(['middleware' => ['check.logout']], function () {
     });
 
 });
-
-Route::get('/home', 'HomePageController@index')->name('homePage.home.show');
+Route::group(['prefix' => 'home'], function () {
+    Route::get('/', 'HomePageController@index')->name('homePage.home.show');
+    Route::get('/account', 'HomePageController@account')->name('homePage.home.account');
+    Route::post('/district', 'HomePageController@district')->name('homePage.home.district');
+    Route::post('/ward', 'HomePageController@ward')->name('homePage.home.ward');
+    Route::post('/register', 'HomePageController@register')->name('homePage.home.register');
+});
 
 
