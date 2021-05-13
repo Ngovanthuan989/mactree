@@ -35,10 +35,10 @@
                     </div>
                     <div class="divider"><span>Or</span></div>
                     <div class="form-group">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email*">
+                        <input type="email" class="form-control" name="email" id="email_login" placeholder="Email*">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="password_in" id="password_in" value="" placeholder="Mật khẩu*">
+                        <input type="password" class="form-control" name="password" id="password_login" placeholder="Mật khẩu*">
                     </div>
                     <div class="clearfix add_bottom_15">
                         {{-- <div class="checkboxes float-left">
@@ -49,7 +49,7 @@
                         </div> --}}
                         <div class="float-right"><a id="forgot" href="javascript:void(0);">Quên mật khẩu?</a></div>
                     </div>
-                    <div class="text-center"><input type="submit" value="Đăng nhập" class="btn_1 full-width"></div>
+                    <div class="text-center"><input type="submit" value="Đăng nhập" class="btn_1 full-width login"></div>
                     <div id="forgot_pw">
                         <div class="form-group">
                             <input type="email" class="form-control" name="email_forgot" id="email_forgot" placeholder="Type your email">
@@ -269,6 +269,7 @@
         var password  = $('#password_in_2').val();
         var full_name = $('.full_name').val();
         var address   = $('.address').val();
+        var phone     = $('.phone').val();
         var province  = $('.province ul .selected').attr('data-value');
         var district  = $('.district ul .selected').attr('data-value');
         var ward      = $('.ward ul .selected').attr('data-value');
@@ -281,9 +282,33 @@
                 password:password,
                 full_name:full_name,
                 address:address,
+                phone:phone,
                 province:province,
                 district:district,
                 ward:ward
+            }
+        }).then(function (response) {
+            Toastr.success(response.data);
+            location.reload();
+        }).catch(function(error) {
+            Toastr.error(error.response.data);
+        }).finally(function() {
+            Loading.hide();
+        });
+    });
+</script>
+
+<script>
+    $(document).on("click",".login",function() {
+        Loading.show();
+        var email     = $('#email_login').val();
+        var password  = $('#password_login').val();
+        axios({
+            method: 'post',
+            url: '/home/login',
+            data: {
+                email:email,
+                password:password
             }
         }).then(function (response) {
             Toastr.success(response.data);

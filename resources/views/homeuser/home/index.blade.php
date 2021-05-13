@@ -101,5 +101,6 @@
         <!-- /products_carousel -->
     </div>
     <!-- /container -->
+    @include('homeuser.layout.section')
 @endsection
 

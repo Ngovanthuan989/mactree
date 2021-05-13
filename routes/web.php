@@ -119,6 +119,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('/district', 'HomePageController@district')->name('homePage.home.district');
     Route::post('/ward', 'HomePageController@ward')->name('homePage.home.ward');
     Route::post('/register', 'HomePageController@register')->name('homePage.home.register');
+    Route::post('/login', 'HomePageController@login')->name('homePage.home.login');
 });
 
 
