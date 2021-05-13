@@ -138,54 +138,26 @@
                                 </span>
                                 <div id="menu">
                                     <ul>
-                                        <li><span><a href="#0">Bộ sưu tập</a></span>
+                                        <li><span><a>Bộ sưu tập</a></span>
                                             <ul>
-                                                <li><a href="listing-grid-1-full.html">Bán chạy nhất</a></li>
-                                                <li><a href="listing-grid-2-full.html">Giá tốt nhất</a></li>
-                                                <li><a href="listing-grid-3.html">Sản phẩm mới nhất</a></li>
+                                                <li><a href="/home/collection/2">Sản phẩm bán chạy</a></li>
+                                                <li><a href="/home/collection/2">Sản phẩm mới</a></li>
 
                                             </ul>
                                         </li>
-                                        <li><span><a href="#">MacBook Pro</a></span>
-                                            <ul>
-                                                <li><a href="listing-grid-6-sidebar-left.html">Macbook Pro 2021</a></li>
-                                                <li><a href="listing-grid-7-sidebar-right.html">Macbook Pro 2020</a></li>
-                                                <li><a href="listing-row-1-sidebar-left.html">Macbook Pro 2019</a></li>
-                                                <li><a href="listing-row-3-sidebar-left.html">Macbook Pro 2018</a></li>
-                                                <li><a href="listing-row-4-sidebar-extended.html">Macbook Pro 2017</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span><a href="#">MacBook Air</a></span>
-                                            <ul>
-                                                <li><a href="listing-grid-1-full.html">Macbook Air 2021</a></li>
-                                                <li><a href="listing-grid-2-full.html">Macbook Air 2020</a></li>
-                                                <li><a href="listing-grid-3.html">Macbook Air 2019</a></li>
-                                                <li><a href="listing-grid-4-sidebar-left.html">Macbook Air 2018</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span><a href="#">iPhone</a></span>
-                                            <ul>
-                                                <li><a href="listing-grid-6-sidebar-left.html">iPhone 12</a></li>
-                                                <li><a href="listing-grid-7-sidebar-right.html">iPhone 11</a></li>
-                                                <li><a href="listing-row-3-sidebar-left.html">iPhone X</a></li>
-                                                <li><a href="listing-row-4-sidebar-extended.html">iPhone trở xuống</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span><a href="#">iMac</a></span>
-                                            <ul>
-                                                <li><a href="listing-grid-1-full.html">iMac Pro > 40tr</a></li>
-                                                <li><a href="listing-grid-2-full.html">iMac Pro > 20tr</a></li>
-                                                <li><a href="listing-grid-3.html">iMac Pro > 15tr</a></li>
-                                                <li><a href="listing-grid-4-sidebar-left.html">iMac Pro cho người có nhu cầu cao</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><span><a href="#">Khác</a></span>
-                                            <ul>
-                                                <li><a href="listing-row-1-sidebar-left.html">AirPod</a></li>
-                                                <li><a href="listing-row-2-sidebar-right.html">Gift icloud</a></li>
+                                        @foreach ($get_category as $category)
+                                            <li><span><a href="/home/category/{{$category->category_code}}">{{$category->category_name}}</a></span>
+                                                {{-- <ul>
+                                                    <li><a href="listing-grid-6-sidebar-left.html">Macbook Pro 2021</a></li>
+                                                    <li><a href="listing-grid-7-sidebar-right.html">Macbook Pro 2020</a></li>
+                                                    <li><a href="listing-row-1-sidebar-left.html">Macbook Pro 2019</a></li>
+                                                    <li><a href="listing-row-3-sidebar-left.html">Macbook Pro 2018</a></li>
+                                                    <li><a href="listing-row-4-sidebar-extended.html">Macbook Pro 2017</a></li>
+                                                </ul> --}}
+                                            </li>
+                                        @endforeach
 
-                                            </ul>
-                                        </li>
+
                                     </ul>
                                 </div>
                             </li>
@@ -233,23 +205,26 @@
                         </li>
                         <li>
                             <div class="dropdown dropdown-access">
-                                <a href="account.html" class="access_link"><span>Account</span></a>
+                                <a href="/home/profile" class="access_link"><span>Account</span></a>
                                 <div class="dropdown-menu">
-                                    <a href="account.html" class="btn_1">Sign In or Sign Up</a>
-                                    <ul>
-                                        <li>
-                                            <a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
-                                        </li>
-                                        <li>
-                                            <a href="account.html"><i class="ti-package"></i>My Orders</a>
-                                        </li>
-                                        <li>
-                                            <a href="account.html"><i class="ti-user"></i>My Profile</a>
-                                        </li>
-                                        <li>
-                                            <a href="help.html"><i class="ti-help-alt"></i>Help and Faq</a>
-                                        </li>
-                                    </ul>
+                                    @if ($userHome)
+                                        <a href="/home/logout" class="btn_1">Đăng xuất</a>
+                                    @else
+                                        <a href="/home/account" class="btn_1">Đăng nhập hoặc đăng ký</a>
+                                    @endif
+                                    @if ($userHome)
+                                        <ul>
+                                            <li>
+                                                <a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
+                                            </li>
+                                            <li>
+                                                <a href="account.html"><i class="ti-package"></i>Đơn hàng của tôi</a>
+                                            </li>
+                                            <li>
+                                                <a href="/home/profile"><i class="ti-user"></i>Thông tin cá nhân</a>
+                                            </li>
+                                        </ul>
+                                    @endif
                                 </div>
                             </div>
                             <!-- /dropdown-access-->

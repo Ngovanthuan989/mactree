@@ -25,15 +25,15 @@
             <div class="box_account">
                 <h3 class="client" style="padding: 30px;">Đăng nhập</h3>
                 <div class="form_container">
-                    <div class="row no-gutters">
+                    {{-- <div class="row no-gutters">
                         <div class="col-lg-6 pr-lg-1">
                             <a href="#0" class="social_bt facebook">Login with Facebook</a>
                         </div>
                         <div class="col-lg-6 pl-lg-1">
                             <a href="#0" class="social_bt google">Login with Google</a>
                         </div>
-                    </div>
-                    <div class="divider"><span>Or</span></div>
+                    </div> --}}
+                    <div class="divider"></div>
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" id="email_login" placeholder="Email*">
                     </div>

@@ -81,6 +81,13 @@
                     </select>
                   </div>
                   <div class="form-group">
+                    <label>Bộ sưu tập</label>
+                    <select class="form-control select2bs4" name="collection"  style="width: 100%;">
+                        <option value="1">Sản phẩm mới</option>
+                        <option value="2">Sản phẩm bán chạy</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label>Ảnh đại diện sản phẩm</label>
                         <div class="col-lg-9 col-xl-9">
                             <div class="image-input" id="kt_image_2">

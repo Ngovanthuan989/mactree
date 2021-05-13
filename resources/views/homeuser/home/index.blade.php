@@ -1,4 +1,7 @@
 @extends('homeuser.layout.master')
+@section('link')
+    <link href="{{asset('/PageUser/css/home_1.css')}}" rel="stylesheet">
+@endsection
 @section('home')
 @include('homeuser.layout.slide')
 @include('homeuser.layout.banner')
@@ -8,24 +11,24 @@
             <p><sp>Tốt nhất, rẻ nhất và được nhiều người mua nhất</sp></p>
         </div>
         <div class="row small-gutters">
-            @foreach ($get_product as $product)
+            @foreach ($get_product_2 as $product_2)
                 <div class="col-6 col-md-4 col-xl-3">
                     <div class="grid_item">
                         <figure>
                             <span class="ribbon off">-0%</span>
-                            <a href="product-detail-1.html">
-                                <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product->product_img.'')}}" alt="">
-                                <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product->product_img.'')}}" alt="">
+                            <a href="/home/product-detail/{{$product_2->id}}">
+                                <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
+                                <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
                             </a>
                             <div data-countdown="2021/09/15" class="countdown"></div>
                         </figure>
                         <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                        <a href="">
-                            <h3>{{$product->product_name}}</h3>
+                        <a href="/home/product-detail/{{$product_2->id}}">
+                            <h3>{{$product_2->product_name}}</h3>
                         </a>
                         <div class="price_box">
-                            <span class="new_price">{{number_format($product->unit_price,0,'','.')}}đ</span>
-                            <span class="old_price">{{number_format($product->price_sale,0,'','.')}}đ</span>
+                            <span class="new_price">{{number_format($product_2->unit_price,0,'','.')}}đ</span>
+                            <span class="old_price">{{number_format($product_2->price_sale,0,'','.')}}đ</span>
                         </div>
                         <ul>
                             <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -72,21 +75,21 @@
             <p>Sản phẩm mới nhất</p>
         </div>
         <div class="owl-carousel owl-theme products_carousel">
-            @foreach ($get_product as $product)
+            @foreach ($get_product_1 as $product_1)
                 <div class="item">
                     <div class="grid_item">
                         <span class="ribbon new">New</span>
                         <figure>
-                            <a href="product-detail-1.html">
-                                <img class="owl-lazy" src="{{asset('/uploads/images/'.$product->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product->product_img.'')}}" alt="">
+                            <a href="/home/product-detail/{{$product_1->id}}">
+                                <img class="owl-lazy" src="{{asset('/uploads/images/'.$product_1->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_1->product_img.'')}}" alt="">
                             </a>
                         </figure>
                         <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                        <a href="product-detail-1.html">
-                            <h3>{{$product->product_name}}</h3>
+                        <a href="/home/product-detail/{{$product_1->id}}">
+                            <h3>{{$product_1->product_name}}</h3>
                         </a>
                         <div class="price_box">
-                            <span class="new_price">{{number_format($product->unit_price,0,'','.')}}đ</span>
+                            <span class="new_price">{{number_format($product_1->unit_price,0,'','.')}}đ</span>
                         </div>
                         <ul>
                             <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -102,5 +105,8 @@
     </div>
     <!-- /container -->
     @include('homeuser.layout.section')
+@endsection
+@section('javascript')
+    <script src="{{asset('/PageUser/js/carousel-home.min.js')}}"></script>
 @endsection
 

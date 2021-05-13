@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\DB;
 use App\Helpers\HttpRequestHelper;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Users;
+use App\Helpers\CommonHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
+use App\Models\Product;
 
 class HomePageController extends Controller
 {
@@ -15,10 +17,19 @@ class HomePageController extends Controller
     public function index()
     {
         //  Lấy danh sách sản phẩm
-        $get_product = DB::table('product')->get();
+        $get_product_1 = DB::table('product')->where([
+            'status'     => 1,
+            'collection' => 1
+        ])->get();
+
+        $get_product_2 = DB::table('product')->where([
+            'status'     => 1,
+            'collection' => 2
+        ])->get();
 
         return view('homeuser.home.index',[
-            'get_product' => $get_product
+            'get_product_1' => $get_product_1,
+            'get_product_2' => $get_product_2
         ]);
     }
 
@@ -201,6 +212,25 @@ class HomePageController extends Controller
             Cookie::queue('dn_user', json_encode($login), 100);
             return response('Đăng nhập thành công!');
         }
+    }
+
+    public function logout(Request $request) {
+        // Logout luon
+        CommonHelper::destroyCookieHome();
+        return redirect()->route('homePage.home.show');
+    }
+
+
+    public function productDetail($id)
+    {
+        $get_product = Product::with('productImg')->where([
+            'id' => $id
+        ])->first();
+
+
+        return view('homeuser.product.detail',[
+            'get_product' => $get_product
+        ]);
     }
 
 

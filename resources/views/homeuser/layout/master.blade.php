@@ -24,7 +24,7 @@
     <link href="{{asset('/PageUser/css/style.css')}}" rel="stylesheet">
 
 	<!-- SPECIFIC CSS -->
-    <link href="{{asset('/PageUser/css/home_1.css')}}" rel="stylesheet">
+    @yield('link')
 
     <!-- YOUR CUSTOM CSS -->
     <link href="{{asset('/PageUser/css/custom.css')}}" rel="stylesheet">
@@ -65,7 +65,6 @@
     <script src="{{asset('/PageUser/js/main.js')}}"></script>
 
 	<!-- SPECIFIC SCRIPTS -->
-	<script src="{{asset('/PageUser/js/carousel-home.min.js')}}"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @include('elements.toastr')
 

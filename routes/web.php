@@ -120,6 +120,9 @@ Route::group(['prefix' => 'home'], function () {
     Route::post('/ward', 'HomePageController@ward')->name('homePage.home.ward');
     Route::post('/register', 'HomePageController@register')->name('homePage.home.register');
     Route::post('/login', 'HomePageController@login')->name('homePage.home.login');
+    Route::get('/logout', 'HomePageController@logout')->name('homePage.home.logout');
+
+    Route::get('/product-detail/{id}', 'HomePageController@productDetail')->name('homePage.home.productDetail');
 });
 
 

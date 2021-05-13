@@ -133,6 +133,7 @@ class ProductController extends Controller
             $product->status              = $request->get('status');
             $product->category_id         = $request->get('category_id');
             $product->product_amount      = $request->get('product_amount');
+            $product->collection          = $request->get('collection');
 
             $product->save();
 
@@ -267,6 +268,7 @@ class ProductController extends Controller
                 'status'              => $request->get('status'),
                 'category_id'         => $request->get('category_id'),
                 'product_amount'      => $request->get('product_amount'),
+                'collection'          => $request->get('collection'),
             ));
 
 
@@ -369,6 +371,7 @@ class ProductController extends Controller
                 'status'              => $request->get('status'),
                 'category_id'         => $request->get('category_id'),
                 'product_amount'      => $request->get('product_amount'),
+                'collection'          => $request->get('collection'),
             ));
 
 
