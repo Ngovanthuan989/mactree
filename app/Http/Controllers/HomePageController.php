@@ -227,9 +227,14 @@ class HomePageController extends Controller
             'id' => $id
         ])->first();
 
+        $get_product_lq = DB::table('product')->where([
+            'category_id'     => $get_product->category_id,
+        ])->get();
+
 
         return view('homeuser.product.detail',[
-            'get_product' => $get_product
+            'get_product'    => $get_product,
+            'get_product_lq' => $get_product_lq
         ]);
     }
 

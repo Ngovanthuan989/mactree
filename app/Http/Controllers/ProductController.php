@@ -32,7 +32,6 @@ class ProductController extends Controller
 
     public function addPost(Request $request)
     {
-        dd($request->all());
         if ($request->file('product_img') != '') {
             $path = public_path() . '/uploads/images/';
 

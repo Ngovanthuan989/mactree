@@ -104,9 +104,7 @@
                             <li>
                                 <a href="blog.html">Blog</a>
                             </li>
-                            <li>
-                                <a href="#0">Buy Template</a>
-                            </li>
+
                         </ul>
                     </div>
                     <!--/main-menu -->
