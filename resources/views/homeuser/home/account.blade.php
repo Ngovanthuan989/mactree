@@ -13,7 +13,7 @@
         <div class="page_header">
             <div class="breadcrumbs">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/home">Trang chủ</a></li>
                     <li><a href="/home/account">Đăng nhập hoặc đăng ký</a></li>
                 </ul>
         </div>
@@ -214,8 +214,6 @@
 @endsection
 
 @section('javascript')
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
 
 <script>
     $(document).on("click",".province .option",function() {

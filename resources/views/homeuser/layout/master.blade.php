@@ -29,6 +29,7 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="{{asset('/PageUser/css/custom.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
 </head>
 
@@ -67,8 +68,47 @@
 	<!-- SPECIFIC SCRIPTS -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     @include('elements.toastr')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     @yield('javascript')
 
+    <script>
+        $(document).on("click",".deleteCart",function() {
+            let id = $(this).attr('data-id');
+            $.confirm({
+                title: 'Xác nhận xoá',
+                content: '<p style="color:red;">Bạn có chắc chắn muốn xoá không?</p>',
+                buttons: {
+                    'Có': {
+                        action: function () {
+                            Loading.show();
+                            axios({
+                                method: 'post',
+                                url: '/home/delete-cart',
+                                data: {
+                                    id:id,
+                                }
+                            }).then(function (response) {
+                                Toastr.success(response.data);
+                                location.reload();
+                            }).catch(function(error) {
+                                Toastr.error(error.response.data);
+                            }).finally(function() {
+                                Loading.hide();
+                            });
+                        }
+                    },
+                    'Không':{
+                        action: function () {
+
+                        }
+                    }
+
+                }
+            });
+
+        });
+    </script>
 </body>
 </html>

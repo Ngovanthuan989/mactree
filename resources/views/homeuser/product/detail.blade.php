@@ -6,99 +6,103 @@
     <div class="container margin_30">
         <div class="countdown_inner">-20% This offer ends in <div data-countdown="2019/05/15" class="countdown"></div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="all">
-                    <div class="slider">
-                        <div class="owl-carousel owl-theme main">
-                            @foreach ($get_product->productImg as $item)
-                                <div style="background-image: url({{$item->image}});" class="item-box"></div>
-                            @endforeach
+        <form action="{{ route('homePage.cart.save') }}" method="post">
+            @csrf
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="all">
+                        <input name="productId_hidden" type="hidden" value="{{$get_product->id}}" />
+                        <div class="slider">
+                            <div class="owl-carousel owl-theme main">
+                                @foreach ($get_product->productImg as $item)
+                                    <div style="background-image: url({{$item->image}});" class="item-box"></div>
+                                @endforeach
+                            </div>
+                            <div class="left nonl"><i class="ti-angle-left"></i></div>
+                            <div class="right"><i class="ti-angle-right"></i></div>
                         </div>
-                        <div class="left nonl"><i class="ti-angle-left"></i></div>
-                        <div class="right"><i class="ti-angle-right"></i></div>
-                    </div>
-                    <div class="slider-two">
-                        <div class="owl-carousel owl-theme thumbs">
-                            @foreach ($get_product->productImg as $item)
-                                <div style="background-image: url({{$item->image}});" class="item active"></div>
-                            @endforeach
+                        <div class="slider-two">
+                            <div class="owl-carousel owl-theme thumbs">
+                                @foreach ($get_product->productImg as $item)
+                                    <div style="background-image: url({{$item->image}});" class="item active"></div>
+                                @endforeach
+                            </div>
+                            <div class="left-t nonl-t"></div>
+                            <div class="right-t"></div>
                         </div>
-                        <div class="left-t nonl-t"></div>
-                        <div class="right-t"></div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="breadcrumbs">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Category</a></li>
-                        <li>Page active</li>
-                    </ul>
-                </div>
-                <!-- /page_header -->
-                <div class="prod_info">
-                    <h1>{{$get_product->product_name}}</h1>
-                    <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
-                    <p><small>Mã sản phẩm: {{$get_product->product_code}}</small><br>{{$get_product->product_description}}</p>
-                    <div class="prod_options">
-                        <div class="row">
-                            {{-- <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
-                                <ul>
-                                    <li><a href="#0" class="color color_1 active"></a></li>
-                                    <li><a href="#0" class="color color_2"></a></li>
-                                    <li><a href="#0" class="color color_3"></a></li>
-                                    <li><a href="#0" class="color color_4"></a></li>
-                                </ul>
+                <div class="col-md-6">
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Category</a></li>
+                            <li>Page active</li>
+                        </ul>
+                    </div>
+                    <!-- /page_header -->
+                    <div class="prod_info">
+                        <h1>{{$get_product->product_name}}</h1>
+                        <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
+                        <p><small>Mã sản phẩm: {{$get_product->product_code}}</small><br>{{$get_product->product_description}}</p>
+                        <div class="prod_options">
+                            <div class="row">
+                                {{-- <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
+                                    <ul>
+                                        <li><a href="#0" class="color color_1 active"></a></li>
+                                        <li><a href="#0" class="color color_2"></a></li>
+                                        <li><a href="#0" class="color color_3"></a></li>
+                                        <li><a href="#0" class="color color_4"></a></li>
+                                    </ul>
+                                </div> --}}
+                            </div>
+                            {{-- <div class="row">
+                                <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-toggle="modal" data-target="#size-modal"><i class="ti-help-alt"></i></a></label>
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                    <div class="custom-select-form">
+                                        <select class="wide">
+                                            <option value="" selected>Small (S)</option>
+                                            <option value="">M</option>
+                                            <option value=" ">L</option>
+                                            <option value=" ">XL</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div> --}}
-                        </div>
-                        {{-- <div class="row">
-                            <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-toggle="modal" data-target="#size-modal"><i class="ti-help-alt"></i></a></label>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-                                <div class="custom-select-form">
-                                    <select class="wide">
-                                        <option value="" selected>Small (S)</option>
-                                        <option value="">M</option>
-                                        <option value=" ">L</option>
-                                        <option value=" ">XL</option>
-                                    </select>
+                            <div class="row">
+                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số lượng</strong></label>
+                                <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                    <div class="numbers-row">
+                                        <input type="text" value="1" id="quantity_1" class="qty2" name="qty">
+                                    </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                         <div class="row">
-                            <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số lượng</strong></label>
-                            <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-                                <div class="numbers-row">
-                                    <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1">
-                                </div>
+                            <div class="col-lg-5 col-md-6">
+                                <div class="price_main"><span class="new_price">{{ number_format($get_product->price_sale) }}đ</span><span class="percentage">Giảm giá</span> <span class="old_price">{{ number_format($get_product->unit_price) }}đ</span></div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <div class=""><button type="submit" class="btn_1">Thêm giỏ hàng</button></div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-5 col-md-6">
-                            <div class="price_main"><span class="new_price">{{ number_format($get_product->price_sale) }}đ</span><span class="percentage">Giảm giá</span> <span class="old_price">{{ number_format($get_product->unit_price) }}đ</span></div>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class=""><a href="#0" class="btn_1">Thêm giỏ hàng</a></div>
-                        </div>
+                    <!-- /prod_info -->
+                    <div class="product_actions">
+                        <ul>
+                            <li>
+                                <a href="#"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="ti-control-shuffle"></i><span>Add to Compare</span></a>
+                            </li>
+                        </ul>
                     </div>
+                    <!-- /product_actions -->
                 </div>
-                <!-- /prod_info -->
-                <div class="product_actions">
-                    <ul>
-                        <li>
-                            <a href="#"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="ti-control-shuffle"></i><span>Add to Compare</span></a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /product_actions -->
             </div>
-        </div>
+        </form>
         <!-- /row -->
     </div>
     <!-- /container -->

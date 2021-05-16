@@ -168,6 +168,10 @@
                         <button type="submit"><i class="header-icon_search_custom"></i></button>
                     </div>
                 </div>
+                <?php
+                    $content = Cart::content();
+
+                ?>
                 <div class="col-xl-3 col-lg-2 col-md-3">
                     <ul class="top_tools">
                         <li>
@@ -175,24 +179,19 @@
                                 <a href="cart.html" class="cart_bt"><strong>2</strong></a>
                                 <div class="dropdown-menu">
                                     <ul>
-                                        <li>
-                                            <a href="product-detail-1.html">
-                                                <figure><img src="img/products/product_placeholder_square_small.jpg" data-src="img/products/mactree/thumb/2.png" alt="" width="50" height="50" class="lazy"></figure>
-                                                <strong><span>1x MACBOOK PRO M1</span>$90.00</strong>
-                                            </a>
-                                            <a href="#0" class="action"><i class="ti-trash"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="product-detail-1.html">
-                                                <figure><img src="img/products/product_placeholder_square_small.jpg" data-src="img/products/mactree/thumb/2.png" alt="" width="50" height="50" class="lazy"></figure>
-                                                <strong><span>1x MACBOOK PRO M1</span>$110.00</strong>
-                                            </a>
-                                            <a href="0" class="action"><i class="ti-trash"></i></a>
-                                        </li>
+                                        @foreach($content as $v_content)
+                                            <li>
+                                                <a href="/home/product-detail/{{$v_content->id}}">
+                                                    <figure><img src="{{asset('/uploads/images/'.$v_content->options->image.'')}}" data-src="{{asset('/uploads/images/'.$v_content->options->image.'')}}" alt="" width="50" height="50" class="lazy"></figure>
+                                                    <strong><span>{{$v_content->name}}</span>{{number_format($v_content->price).' vnd'}}</strong>
+                                                </a>
+                                                <a type="button" class="action deleteCart" data-id="{{$v_content->rowId}}"><i class="ti-trash"></i></a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                     <div class="total_drop">
-                                        <div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
-                                        <a href="cart.html" class="btn_1 outline">View Cart</a><a href="checkout.html" class="btn_1">Checkout</a>
+                                        <div class="clearfix"><strong>Tổng tiền</strong><span>{{Cart::subtotal().' '.'vnd'}}</span></div>
+                                        <a href="/home/show-cart" class="btn_1 outline">Xem giỏ hàng</a><a href="checkout.html" class="btn_1">Thanh Toán</a>
                                     </div>
                                 </div>
                             </div>
@@ -253,3 +252,5 @@
     </div>
     <!-- /main_nav -->
 </header>
+
+
