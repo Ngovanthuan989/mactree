@@ -273,7 +273,7 @@ class HomeController extends Controller
 
                     'phone.required'     => 'Phone không được bỏ trống',
                     'email.email'        => 'Email không đúng định dạng',
-                    'email.required'        => 'Email không được để trống',
+                    'email.required'     => 'Email không được để trống',
                     'full_name.required' => 'Tên không được để trống'
                 ]
 
