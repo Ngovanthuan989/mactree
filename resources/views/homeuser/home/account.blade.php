@@ -74,7 +74,6 @@
                     <div class="form-group">
                         <input type="password" class="form-control" name="password_in_2" id="password_in_2" value="" placeholder="Mật khẩu*">
                     </div>
-                    <hr>
                     <div class="form-group">
                         {{-- <label class="container_radio" style="display: inline-block; margin-right: 15px;">Private
                             <input type="radio" name="client_type" checked value="private">
@@ -93,14 +92,14 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            {{-- <div class="col-12">
                                 <div class="form-group">
                                     <input type="text" class="form-control address" placeholder="Địa chỉ*">
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- /row -->
-                        <div class="row no-gutters">
+                        {{-- <div class="row no-gutters">
                             <div class="col-6 pr-1">
                                 <div class="form-group">
                                     <div class="custom-select-form province">
@@ -140,7 +139,7 @@
                                     <input type="text" class="form-control phone" placeholder="Số điện thoại *">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- /row -->
 
                     </div>

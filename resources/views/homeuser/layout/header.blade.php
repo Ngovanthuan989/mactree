@@ -191,7 +191,7 @@
                                     </ul>
                                     <div class="total_drop">
                                         <div class="clearfix"><strong>Tổng tiền</strong><span>{{Cart::subtotal().' '.'vnd'}}</span></div>
-                                        <a href="/home/show-cart" class="btn_1 outline">Xem giỏ hàng</a><a href="checkout.html" class="btn_1">Thanh Toán</a>
+                                        <a href="/home/show-cart" class="btn_1 outline">Xem giỏ hàng</a><a href="/home/checkout" class="btn_1">Thanh Toán</a>
                                     </div>
                                 </div>
                             </div>

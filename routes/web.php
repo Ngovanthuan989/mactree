@@ -132,6 +132,7 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/show-cart', 'CartController@index')->name('homePage.cart.index');
     Route::post('/delete-cart', 'CartController@delete')->name('homePage.cart.delete');
     Route::post('/update-cart', 'CartController@update')->name('homePage.cart.update');
+    Route::get('/checkout', 'CartController@checkout')->name('homePage.cart.checkout');
 
 
 });

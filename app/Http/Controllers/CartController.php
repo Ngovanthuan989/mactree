@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Cart;
 use Illuminate\Http\Request;
+use App\Helpers\HttpRequestHelper;
 use Illuminate\Support\Facades\Redirect;
 session_start();
 
@@ -52,5 +53,31 @@ class CartController extends Controller
 
        Cart::update($rowId,$qty);
        return response('Cập nhập thành công!');
+    }
+
+    public function checkout()
+    {
+        $dataHeader = [];
+        $dataHeader[] = 'Content-type:application/json';
+        $dataHeader[] = 'Token: ffdccdf1-fcae-11ea-a4d7-f63a98a5d75d';
+
+        $apiUrl = 'https://online-gateway.ghn.vn/shiip/public-api/master-data/province';
+
+        $callApiGhn = HttpRequestHelper::callApi('', $apiUrl, $dataHeader);
+
+        $get_pay=DB::table('pay')->where([
+            'status'     =>  1
+        ])->get();
+
+        if ($callApiGhn->code == 200) {
+            $data_province = $callApiGhn->data;
+            return view('homeuser.cart.checkout',[
+                'data_province' => $data_province,
+                'get_pay'       => $get_pay
+            ]);
+
+        }else{
+            return redirect()->route('homePage.home.show')->with('error','Không lấy được địa chỉ!');
+        }
     }
 }
