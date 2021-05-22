@@ -6,7 +6,9 @@ use DB;
 use Cart;
 use Illuminate\Http\Request;
 use App\Helpers\HttpRequestHelper;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 session_start();
 
 
@@ -79,5 +81,40 @@ class CartController extends Controller
         }else{
             return redirect()->route('homePage.home.show')->with('error','Không lấy được địa chỉ!');
         }
+    }
+
+    public function addOrder(Request $request)
+    {
+        if (!$request->get('province')) {
+            return response('Xin vui lòng chọn thành phố nhận hàng',400);
+        }
+        if (!$request->get('district')) {
+            return response('Xin vui lòng chọn quận huyện nhận hàng',400);
+        }
+        if (!$request->get('ward')) {
+            return response('Xin vui lòng chọn phường xã nhận hàng',400);
+        }
+        if (!$request->get('address')) {
+            return response('Xin vui lòng nhập địa chỉ cụ thể để nhận hàng',400);
+        }
+        if (!$request->get('payment_methods')) {
+            return response('Xin vui lòng chọn phương thức thanh toán',400);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+        ], [
+            'phone.regex'    => 'Số điện thoại không đúng định dạng',
+            'phone.required' => 'Số điện thoại không được để trống',
+        ]);
+
+        if ($validator->fails()) {
+            return response($validator->errors()->first(), 400);
+        }
+
+        $user_id = Session::get('id_user');
+        $total = Cart::subtotal();
+        dd($total);
+        // dd($request->all());
     }
 }

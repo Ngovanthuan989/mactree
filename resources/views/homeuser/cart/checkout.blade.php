@@ -58,8 +58,17 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row no-gutters">
+                            <div class="col-md-12 form-group">
+                                <div class="form-group">
+                                    <input type="text" class="form-control address" placeholder="Địa chỉ*">
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="form-group">
-                            <input type="text" class="form-control address" placeholder="Địa chỉ*">
+                            <input type="text" class="form-control phone" placeholder="Số điện thoại">
                         </div>
 
 
@@ -82,7 +91,7 @@
                             @foreach ($get_pay as $pay)
                                 <li>
                                     <label class="container_radio">{{$pay->pay_name}}
-                                        <input type="radio" name="payment" value="{{$pay->id}}">
+                                        <input type="radio" name="payment_methods" id="payment_methods" value="{{$pay->id}}">
                                         <span class="checkmark"></span>
                                     </label>
                                 </li>
@@ -106,9 +115,9 @@
                     <ul>
                         <li class="clearfix"><em><strong>Subtotal</strong></em>  <span>{{Cart::subtotal().' '.'đ'}}</span></li>
                     </ul>
-                    <div class="total clearfix">Thanh toán <span>{{Cart::subtotal().' '.'đ'}}</span></div>
+                    <div class="total clearfix ">Thanh toán <span>{{Cart::subtotal().' '.'đ'}}</span></div>
 
-                    <a href="#" class="btn_1 full-width">Đặt hàng</a>
+                    <a href="#" class="btn_1 full-width addOrder">Đặt hàng</a>
                 </div>
                 <!-- /box_general -->
                 </div>
@@ -167,42 +176,6 @@
 </script>
 
 <script>
-    $(document).on("click",".register",function() {
-        Loading.show();
-        var email     = $('#email_2').val();
-        var password  = $('#password_in_2').val();
-        var full_name = $('.full_name').val();
-        var address   = $('.address').val();
-        var phone     = $('.phone').val();
-        var province  = $('.province ul .selected').attr('data-value');
-        var district  = $('.district ul .selected').attr('data-value');
-        var ward      = $('.ward ul .selected').attr('data-value');
-
-        axios({
-            method: 'post',
-            url: '/home/register',
-            data: {
-                email:email,
-                password:password,
-                full_name:full_name,
-                address:address,
-                phone:phone,
-                province:province,
-                district:district,
-                ward:ward
-            }
-        }).then(function (response) {
-            Toastr.success(response.data);
-            location.reload();
-        }).catch(function(error) {
-            Toastr.error(error.response.data);
-        }).finally(function() {
-            Loading.hide();
-        });
-    });
-</script>
-
-<script>
     $(document).on("click",".login",function() {
         Loading.show();
         var email     = $('#email_login').val();
@@ -224,4 +197,37 @@
         });
     });
 </script>
+
+<script>
+    $(document).on("click",".addOrder",function() {
+        Loading.show();
+        var address         = $('.address').val();
+        var province        = $('.province ul .selected').attr('data-value');
+        var district        = $('.district ul .selected').attr('data-value');
+        var ward            = $('.ward ul .selected').attr('data-value');
+        var payment_methods = $("input[name='payment_methods']:checked").val();
+        var phone           = $('.phone').val();
+
+        axios({
+            method: 'post',
+            url: '/home/addOrder',
+            data: {
+                province:province,
+                district:district,
+                ward:ward,
+                address:address,
+                payment_methods:payment_methods,
+                phone:phone
+            }
+        }).then(function (response) {
+            Toastr.success(response.data);
+            // location.reload();
+        }).catch(function(error) {
+            Toastr.error(error.response.data);
+        }).finally(function() {
+            Loading.hide();
+        });
+    });
+</script>
+
 @endsection
