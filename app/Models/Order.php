@@ -12,7 +12,7 @@ class Order extends Model
 
 
     public function customer() {
-        return $this->hasMany('App\Models\Customers','id','customer_id');
+        return $this->hasMany('App\Models\Users','id','customer_id');
     }
 
     public function ship() {

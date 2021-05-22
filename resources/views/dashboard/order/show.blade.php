@@ -150,7 +150,12 @@
                             @elseif($get_orders->status == 0)
                                 <td><span class="label label-lg font-weight-bold label-light-danger label-inline">Đơn huỷ</span></td>
                             @endif
-                            <td>{{$get_orders->ship[0]->ship_name}}</td>
+
+                            @if (isset($get_orders->ship[0]))
+                                <td>{{$get_orders->ship[0]->ship_name}}</td>
+                            @else
+                                <td></td>
+                            @endif
                             <td>{{ date('d/m/Y H:i', strtotime($get_orders->updated_at)) }}</td>
                             <td nowrap="nowrap">
                                 <a href="{{ route('dashboard.order.edit', ['id' => $get_orders->order_code]) }}" class="btn btn-sm btn-clean btn-icon" title="Edit details">
