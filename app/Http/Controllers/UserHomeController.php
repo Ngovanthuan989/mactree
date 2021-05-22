@@ -114,6 +114,7 @@ class UserHomeController extends Controller
 
         $customer -> full_name   = $request     -> get('full_name');
         $customer -> email       = $request     -> get('email');
+        $customer -> status      = 1;
         $customer -> password    = md5($password);
 
         $customer -> save();
