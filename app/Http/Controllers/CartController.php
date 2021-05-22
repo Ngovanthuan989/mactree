@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DB;
 use Cart;
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Helpers\HttpRequestHelper;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -112,9 +114,52 @@ class CartController extends Controller
             return response($validator->errors()->first(), 400);
         }
 
+
         $user_id = Session::get('id_user');
-        $total = Cart::subtotal();
-        dd($total);
-        // dd($request->all());
+
+        // insert order
+        $order_data =array();
+
+        $order_data['order_code']      = mt_rand(1000,9999);;
+        $order_data['customer_id']     = $user_id;
+        $order_data['province_id']     = $request->get('province');
+        $order_data['district_id']     = $request->get('district');
+        $order_data['ward_id']         = $request->get('ward');
+        $order_data['address']         = $request->get('address');
+        $order_data['phone']           = $request->get('phone');
+        $order_data['payment_methods'] = $request->get('payment_methods');
+        $order_data['status']          = 1;
+        $order_data['total_money']     = Cart::subtotal();
+        $order_data['created_at']      = date('Y-m-d 00:00:00', strtotime(' -0 days'));
+        $order_data['updated_at']      = date('Y-m-d 00:00:00', strtotime(' -0 days'));
+
+        $order_id =Order::insertGetId($order_data);
+
+        //insert order_details
+        $content =Cart::content();
+
+        foreach ($content as $v_content) {
+
+            $order_p_data =array();
+            $order_p_data['order_id']         = $order_id;
+            $order_p_data['product_id']       = $v_content->id;
+            $order_p_data['product_name']     = $v_content->name;
+            $order_p_data['product_price']    = $v_content->price;
+            $order_p_data['product_quantity'] = $v_content->qty;
+            $order_p_data['created_at']       = date('Y-m-d 00:00:00', strtotime(' -0 days'));
+            $order_p_data['updated_at']       = date('Y-m-d 00:00:00', strtotime(' -0 days'));
+
+            $order_product = OrderProduct::insertGetId($order_p_data);
+        }
+
+        if($order_id && $order_product){
+            // Thanh toán rồi sẽ hủy phiên mua
+            Cart::destroy();
+            return response('Đã đặt hàng thành công');
+        }else{
+            return response('Có lỗi xảy ra khi đặt hàng vui lòng liên hệ shop!');
+        }
+
+
     }
 }

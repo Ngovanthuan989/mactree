@@ -175,28 +175,6 @@
     });
 </script>
 
-<script>
-    $(document).on("click",".login",function() {
-        Loading.show();
-        var email     = $('#email_login').val();
-        var password  = $('#password_login').val();
-        axios({
-            method: 'post',
-            url: '/home/login',
-            data: {
-                email:email,
-                password:password
-            }
-        }).then(function (response) {
-            Toastr.success(response.data);
-            // location.reload();
-        }).catch(function(error) {
-            Toastr.error(error.response.data);
-        }).finally(function() {
-            Loading.hide();
-        });
-    });
-</script>
 
 <script>
     $(document).on("click",".addOrder",function() {
@@ -221,7 +199,7 @@
             }
         }).then(function (response) {
             Toastr.success(response.data);
-            // location.reload();
+            window.location='/home';
         }).catch(function(error) {
             Toastr.error(error.response.data);
         }).finally(function() {

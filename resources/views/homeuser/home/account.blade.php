@@ -309,7 +309,7 @@
             }
         }).then(function (response) {
             Toastr.success(response.data);
-            // location.reload();
+            window.location='/home';
         }).catch(function(error) {
             Toastr.error(error.response.data);
         }).finally(function() {

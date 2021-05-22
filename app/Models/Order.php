@@ -8,6 +8,8 @@ class Order extends Model
 {
     //
     protected $table = "orders";
+    public $timestamps = true;
+
 
     public function customer() {
         return $this->hasMany('App\Models\Customers','id','customer_id');
