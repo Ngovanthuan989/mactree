@@ -35,6 +35,7 @@
     </div>
     <?php
         $content = Cart::content();
+
     ?>
     <!-- /page_header -->
     <table class="table table-striped cart-list">
@@ -103,27 +104,32 @@
 
     </div>
     <!-- /container -->
+    @if (count($content)>0)
+        <div class="box_cart">
+            <div class="container">
+            <div class="row justify-content-end">
+                <div class="col-xl-4 col-lg-4 col-md-6">
+            <ul>
+                <li>
+                    <span>Tổng giá trị đơn hàng</span> {{Cart::subtotal().' '.'vnd'}}
+                </li>
+                {{-- <li>
+                    <span>Shipping</span> $7.00
+                </li> --}}
+                <li>
+                    <span>Thanh Toán</span> {{Cart::subtotal().' '.'vnd'}}
+                </li>
+            </ul>
 
-    <div class="box_cart">
-        <div class="container">
-        <div class="row justify-content-end">
-            <div class="col-xl-4 col-lg-4 col-md-6">
-        <ul>
-            <li>
-                <span>Tổng giá trị đơn hàng</span> {{Cart::subtotal().' '.'vnd'}}
-            </li>
-            {{-- <li>
-                <span>Shipping</span> $7.00
-            </li> --}}
-            <li>
-                <span>Thanh Toán</span> {{Cart::subtotal().' '.'vnd'}}
-            </li>
-        </ul>
-        <a href="cart-2.html" class="btn_1 full-width cart">Thanh Toán</a>
+                <a href="/home/checkout" class="btn_1 full-width cart">Thanh Toán</a>
+
+            {{-- <a href="/home/checkout" class="btn_1 full-width cart">Thanh Toán</a> --}}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    @endif
+
     <!-- /box_cart -->
 
 

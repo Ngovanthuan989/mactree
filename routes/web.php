@@ -74,6 +74,15 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/addPost', 'UserController@addPost')->name('dashboard.user.addPost');
     });
 
+    Route::group(['prefix' => 'userHome'], function () {
+        Route::get('/add', 'UserHomeController@add')->name('dashboard.userHome.add');
+        Route::get('/', 'UserHomeController@index')->name('dashboard.userHome.show');
+        Route::get('/edit/{id}', 'UserHomeController@edit')->name('dashboard.userHome.edit');
+        Route::post('/update', 'UserHomeController@update')->name('dashboard.userHome.update');
+        Route::post('/delete', 'UserHomeController@delete')->name('dashboard.userHome.delete');
+        Route::post('/addPost', 'UserHomeController@addPost')->name('dashboard.userHome.addPost');
+    });
+
     Route::group(['prefix' => 'product'], function () {
         Route::get('/add', 'ProductController@add')->name('dashboard.product.add');
         Route::get('/addProductImg', 'ProductController@addProductImg')->name('dashboard.product.addProductImg');

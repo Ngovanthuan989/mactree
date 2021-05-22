@@ -172,12 +172,7 @@ class HomePageController extends Controller
         $user = new Users;
         $user -> full_name = $request     -> get('full_name');
         $user -> email     = $request     -> get('email');
-        $user -> phone     = $request     -> get('phone');
         $user -> password  = md5($request -> get('password'));
-        $user -> province  = $request     -> get('province');
-        $user -> district  = $request     -> get('district');
-        $user -> ward      = $request     -> get('ward');
-        $user -> address   = $request     -> get('address');
         $user -> status    = 1;
         $user -> save();
 
@@ -205,6 +200,10 @@ class HomePageController extends Controller
 
         if (!$login) {
             return response('Tài khoản hoặc mật khẩu sai!',400);
+        }
+
+        if ($login -> status == 2) {
+            return response('Tài khoản của bạn đã ở trạng thái không hoạt động vui lòng liên hệ với MacTree',400);
         }
 
         if ($login -> id) {
