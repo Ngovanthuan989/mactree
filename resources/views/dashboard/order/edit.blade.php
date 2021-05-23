@@ -21,57 +21,242 @@
     </div>
     <div class="container">
         @include('elements.show_error')
-        <div class="card card-default update_order" data-id="">
-            <div class="card-header">
-              <h3 class="card-title">Thông tin chung</h3>
 
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body">
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label>Khách hàng</label>
-                    <input type="text" name="customer_id" class="form-control permission_name" placeholder="Tên quyền truy cập" value="">
-                  </div>
-                  <!-- /.form-group -->
-                  <div class="form-group">
-                    <label>Số điện thoại</label>
-                    <input type="text" name="phone" class="form-control phone" placeholder="Số điện thoại" value="{{$edit_permission->permission_code}}">
-                  </div>
-                  <!-- /.form-group -->
-                </div>
-                <!-- /.col -->
-                <div class="col-md-6">
-                  {{-- <div class="form-group">
-                    <label>Trạng thái</label>
-                    <select class="form-control select2bs4" id="status" style="width: 100%;">
-                        <option value="1" @if ($edit_permission->status==1)
-                        selected
-                                @endif>Hoạt động</option>
-                        <option value="2" @if ($edit_permission->status==2)
-                        selected
-                                @endif>Dừng hoạt động</option>
-                    </select>
-                  </div> --}}
+        <div class="flex-row-fluid ml-lg-8">
+            <!--begin::Card-->
+            <div class="card card-custom gutter-b">
+                <div class="card-body p-0">
+                    <!-- begin: Invoice-->
+                    <!-- begin: Invoice header-->
+                    <div class="row justify-content-center py-8 px-8 py-md-27 px-md-0">
+                        <div class="col-md-10">
+                            <div class="d-flex justify-content-between pb-10 pb-md-20 flex-column flex-md-row">
+                                <h1 class="display-4 font-weight-boldest mb-10">Chi tiết đơn hàng</h1>
+                                <div class="d-flex flex-column align-items-md-end px-0">
+                                    {{-- <!--begin::Logo-->
+                                    <a href="/" class="mb-5">
+                                        <img src="{{asset('/uploads/images/logo_mactree_thaihoang.png')}}" alt="" />
+                                    </a>
+                                    <!--end::Logo--> --}}
+                                    <span class="d-flex flex-column align-items-md-end opacity-70">
+                                        <span>Khách hàng: {{$get_order->customer[0]->full_name}}</span>
+                                        <span>Sđt: {{$get_order->phone}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="border-bottom w-100"></div>
+                            <div class="d-flex justify-content-between pt-6">
+                                <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">Ngày cập nhập</span>
+                                    <span class="opacity-70">{{ date('d/m/Y H:i', strtotime($get_order->updated_at)) }}</span>
+                                </div>
+                                <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">Mã đơn hàng</span>
+                                    <span class="opacity-70">{{$get_order->order_code}}</span>
+                                </div>
+                                <div class="d-flex flex-column flex-root">
+                                    <span class="font-weight-bolder mb-2">Địa chỉ</span>
+                                    <div class="province" style="margin-bottom: 10px">
+                                        <select class="form-control select2bs4" name="province" id="province">
+                                                <option value="" selected>Thành phố*</option>
+                                                @foreach ($data_province as $province)
+                                                    <option value="{{$province->ProvinceID}}" @if ($get_order->province_id == $province->ProvinceID)
+                                                        selected
+                                                    @endif>{{$province->ProvinceName}}</option>
+                                                @endforeach
+                                        </select>
+                                    </div>
 
-                  <!-- /.form-group -->
-                  <!-- /.form-group -->
+                                    <div class="district" style="margin-bottom: 10px">
+                                        <select class="form-control select2bs4" name="district" id="district">
+                                                <option value="" selected>Quận, huyện*</option>
+                                                @foreach ($data_district as $district)
+                                                    <option value="{{$district->DistrictID}}" @if ($get_order->district_id == $district->DistrictID)
+                                                        selected
+                                                    @endif>{{$district->DistrictName}}</option>
+                                                @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="ward" style="margin-bottom: 10px">
+                                        <select class="form-control select2bs4" name="ward" id="ward">
+                                                <option value="" selected>Phường, xã*</option>
+                                                @foreach ($data_ward as $ward)
+                                                    <option value="{{$ward->WardCode}}" @if ($get_order->ward_id == $ward->WardCode)
+                                                        selected
+                                                    @endif>{{$ward->WardName}}</option>
+                                                @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group" style="margin-bottom: 10px">
+                                        <input type="text" name="address" class="form-control address" placeholder="Địa chỉ chi tiết" value="{{$get_order->address}}">
+                                      </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: Invoice header-->
+                    <!-- begin: Invoice body-->
+                    <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                        <div class="col-md-10">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="pl-0 font-weight-bold text-muted text-uppercase">Sản phẩm</th>
+                                            <th class="text-right font-weight-bold text-muted text-uppercase">Số lượng</th>
+                                            <th class="text-right font-weight-bold text-muted text-uppercase">Giá sản phẩm</th>
+                                            <th class="text-right pr-0 font-weight-bold text-muted text-uppercase">Tổng tiền</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($get_order_product as $order_product)
+                                            <tr class="font-weight-boldest">
+                                                <td class="border-0 pl-0 pt-7 d-flex align-items-center">
+                                                <!--begin::Symbol-->
+                                                <div class="symbol symbol-40 flex-shrink-0 mr-4 bg-light">
+                                                    @foreach ($order_product->product as $pro_img)
+                                                        <div class="symbol-label" style="background-image: url({{asset('/uploads/images/'.$pro_img->product_img.'')}})"></div>
+                                                    @endforeach
+                                                </div>
+                                                <!--end::Symbol-->
+                                                {{$order_product->product_name}}</td>
+                                                <td class="text-right pt-7 align-middle">{{$order_product->product_quantity}}</td>
+                                                <td class="text-right pt-7 align-middle">{{number_format($order_product->product_price).' đ'}}</td>
+                                                <td class="text-primary pr-0 pt-7 text-right align-middle">{{number_format($order_product->product_price*$order_product->product_quantity).' đ'}}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: Invoice body-->
+                    <!-- begin: Invoice footer-->
+                    <div class="row justify-content-center bg-gray-100 py-8 px-8 py-md-10 px-md-0 mx-0">
+                        <div class="col-md-10">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="font-weight-bold text-muted text-uppercase">Phương thức thanh toán</th>
+                                            <th class="font-weight-bold text-muted text-uppercase">Trạng thái đơn hàng</th>
+                                            <th class="font-weight-bold text-muted text-uppercase">Đơn vị vận chuyển</th>
+                                            <th class="font-weight-bold text-muted text-uppercase">Phí ship</th>
+                                            <th class="font-weight-bold text-muted text-uppercase text-right">Giá trị đơn hàng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="font-weight-bolder">
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control select2bs4" id="payment_methods" style="width: 80%;">
+                                                        @foreach ($get_pay as $pay)
+                                                            <option value="{{$pay->id}}"@if ($get_order->payment_methods ==$pay->id)
+                                                                selected
+                                                            @endif>{{$pay->pay_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control select2bs4" id="status" style="width: 80%;">
+                                                        <option value="1">Chờ duyệt</option>
+                                                        <option value="2">Đã duyệt</option>
+                                                        <option value="3">Đang vận chuyển</option>
+                                                        <option value="4">Giao hàng thành công</option>
+                                                        <option value="5">Hoàn hàng</option>
+                                                        <option value="0">Đã huỷ</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control select2bs4" id="ship_id" style="width: 80%;">
+                                                        <option value="">Chọn</option>
+                                                        @foreach ($get_ship as $ship)
+                                                            <option value="{{$ship->id}}" @if ($get_order->ship_id == $ship->id)
+                                                                selected
+                                                            @endif>{{$ship->ship_name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td class="text-primary font-size-h3 font-weight-boldest text-right">{{$get_order->total_money}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: Invoice footer-->
+                    <!-- begin: Invoice action-->
+                    <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
+                        <div class="col-md-10">
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">In đơn hàng</button>
+                                <button type="button" class="btn btn-success font-weight-bold">Tạo vận đơn</button>
+                                <button type="button" class="btn btn-primary font-weight-bold">Cập nhập đơn hàng</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end: Invoice action-->
+                    <!-- end: Invoice-->
                 </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                <button type="button" class="btn btn-primary update-permission"><i class="fas fa-pen-alt"></i> Cập nhập</button>
-            </div>
-          </div>
+            <!--end::Card-->
+        </div>
     </div>
 @endsection
 @section('js')
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+<script>
+    $(document).on("change","#province",function() {
+        Loading.show();
+        var province_id = $(this).val();
 
+        axios({
+            method: 'post',
+            url: '/home/district2',
+            data: {
+                province_id:province_id,
+            }
+        }).then(function (response) {
+            $("#district").html('');
+            $("#district").append(response.data);
+        }).catch(function(error) {
+            Toastr.error(error.response.data);
+        }).finally(function() {
+            Loading.hide();
+        });
+    });
+</script>
+
+
+<script>
+    $(document).on("change","#district",function() {
+        Loading.show();
+        var district_id = $(this).val();
+
+        axios({
+            method: 'post',
+            url: '/home/ward2',
+            data: {
+                district_id:district_id,
+            }
+        }).then(function (response) {
+            $("#ward").html('');
+            $("#ward").append(response.data);
+        }).catch(function(error) {
+            Toastr.error(error.response.data);
+        }).finally(function() {
+            Loading.hide();
+        });
+    });
+</script>
 
 @endsection

@@ -8,6 +8,8 @@ class OrderProduct extends Model
 {
     //
     protected $table = "order_product";
-    public $timestamps = true;
 
+    public function product() {
+        return $this->hasMany('App\Models\Product','id','product_id');
+    }
 }
