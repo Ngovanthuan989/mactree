@@ -135,12 +135,9 @@ class OrderController extends Controller
         }
 
     }
+
     public function createShip(Request $request)
     {
-        $get_order_product=OrderProduct::where([
-            'order_id'=> $request->get('id')
-        ])->first();
-
         $product = DB::table('product')->where([
             'id'=> $request->get('id_product')
         ])->first();
@@ -151,10 +148,53 @@ class OrderController extends Controller
 
         $apiUrl = 'https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/create';
 
-        $data = '{"payment_type_id": 2,"note":"Giao hàng cho '.$request->get('customer_name').'","required_note":"KHONGCHOXEMHANG","to_name":"'.$request->get('customer_name').'","to_phone": "'.$request->get('customer_phone').'","to_address": "'.$request->get('address').'","to_ward_code": "'.$request->get('ward_id').'","to_district_id": '.$request->get('district_id').',"cod_amount":'.$get_order_product->product_price*$get_order_product->product_quantity.',"content": "Được kiểm tra hàng","weight": 200,"length": 15,"width": 15,"height": 15,"pick_station_id": 0,"deliver_station_id": 0,"insurance_value": '.$get_order_product->product_price*$get_order_product->product_quantity.',"service_id": 0,"service_type_id":2,"items":[{"name":"'.$product->product_name.'","code":"'.$product->product_code.'","quantity":'.$request->get('product_quantity').'}]}';
+        $data = '{"payment_type_id": 2,"note":"Giao hàng cho '.$request->get('customer_name').'","required_note":"KHONGCHOXEMHANG","to_name":"'.$request->get('customer_name').'","to_phone": "'.$request->get('customer_phone').'","to_address": "'.$request->get('address').'","to_ward_code": "'.$request->get('ward_id').'","to_district_id": '.$request->get('district_id').',"cod_amount":0,"content": "Được kiểm tra hàng","weight": 200,"length": 15,"width": 15,"height": 15,"pick_station_id": 0,"deliver_station_id": 0,"insurance_value": 0,"service_id": 0,"service_type_id":2,"items":[{"name":"'.$product->product_name.'","code":"'.$product->product_code.'","quantity":'.$request->get('product_quantity').'}]}';
 
         $callApiGhn = HttpRequestHelper::callApi($data, $apiUrl, $dataHeader);
-dd($callApiGhn);
 
+        if ($callApiGhn->code == 200) {
+            $update = Order::where('id',$request->get('id'))->update(array(
+                'district_id'     => $request->get('district_id'),
+                'province_id'     => $request->get('province_id'),
+                'ward_id'         => $request->get('ward_id'),
+                'address'         => $request->get('address'),
+                'payment_methods' => $request->get('payment_methods'),
+                'status'          => 3,
+                'ship_id'         => $request->get('ship_id'),
+                'ship_fee'        => $request->get('ship_fee'),
+                'ship_code'       => $callApiGhn->data->order_code,
+            ));
+            if($update==1){
+                return response('Tạo vận đơn thành công');
+            }
+        }else{
+            return response('Có lỗi xảy ra khi tạo vận đơn',400);
+        }
+    }
+
+    public function cancelShip(Request $request)
+    {
+        $dataHeader = [];
+        $dataHeader[] = 'Content-type:application/json';
+        $dataHeader[] = 'Token: ffdccdf1-fcae-11ea-a4d7-f63a98a5d75d';
+
+        $apiUrl = 'https://online-gateway.ghn.vn/shiip/public-api/v2/switch-status/cancel';
+
+        $data = '{"order_codes":["'.$request->get('order_codes').'"]}';
+
+        $callApiGhn = HttpRequestHelper::callApi($data, $apiUrl, $dataHeader);
+
+        if ($callApiGhn->code == 200) {
+            $update = Order::where('id',$request->get('id'))->update(array(
+                'status'          => 0,
+                'ship_fee'        => 0,
+                'ship_code'       => "",
+            ));
+            if($update==1){
+                return response('Huỷ vận đơn thành công');
+            }
+        }else{
+            return response('Có lỗi xảy ra khi tạo vận đơn',400);
+        }
     }
 }

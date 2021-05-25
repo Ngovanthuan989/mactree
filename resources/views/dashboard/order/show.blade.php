@@ -117,13 +117,14 @@
                     <thead>
                         <tr role="row">
                             <th>Mã đơn hàng</th>
+                            <th>Mã vận chuyển</th>
                             <th>Khách hàng</th>
                             <th>Số điện thoại</th>
                             <th>Doanh thu</th>
                             <th>Người xử lý</th>
                             <th>Trạng thái</th>
                             <th>Vận chuyển</th>
-                            <th>Ngày tạo</th>
+                            <th>Ngày cập nhập</th>
                             <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 105px;" aria-label="Actions">Thao tác</th>
                         </tr>
                     </thead>
@@ -137,16 +138,26 @@
                                     </div>
                                 </div>
                             </td>
+                            @if (isset($get_orders->ship_code))
+                                <td>{{$get_orders->ship_code}}</td>
+                            @else
+                                <td></td>
+                            @endif
                             <td>{{$get_orders->customer[0]->full_name}}</td>
                             <td>{{$get_orders->phone}}</td>
                             <td>{{$get_orders->total_money}}</td>
                             <td></td>
                             @if ($get_orders->status == 1)
-                                <td><span class="label label-lg font-weight-bold label-light-success label-inline">Đang chờ duyệt</span></td>
+                                <td><span class="label label-lg font-weight-bold label-light-primary label-inline">Đang chờ duyệt</span></td>
                             @elseif($get_orders->status == 2)
-                                <td><span class="label label-lg font-weight-bold label-light-danger label-inline">Đang giao hàng</span></td>
+                                <td><span class="label label-lg font-weight-bold label-inline" style="color: white;
+                                    background-color: orange;">Đã duyệt</span></td>
                             @elseif($get_orders->status == 3)
-                                <td><span class="label label-lg font-weight-bold label-light-danger label-inline">Giao thành công</span></td>
+                                <td><span class="label label-lg font-weight-bold label-light-info label-inline">Đang vận chuyển</span></td>
+                            @elseif($get_orders->status == 4)
+                                <td><span class="label label-lg font-weight-bold label-light-success label-inline">Giao hàng thành công</span></td>
+                            @elseif($get_orders->status == 5)
+                                <td><span class="label label-lg font-weight-bold label-light-warning label-inline">Hoàn hàng</span></td>
                             @elseif($get_orders->status == 0)
                                 <td><span class="label label-lg font-weight-bold label-light-danger label-inline">Đơn huỷ</span></td>
                             @endif

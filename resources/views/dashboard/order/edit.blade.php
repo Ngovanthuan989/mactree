@@ -166,12 +166,24 @@
                                             <td>
                                                 <div class="form-group">
                                                     <select class="form-control select2bs4" id="status" style="width: 80%;">
-                                                        <option value="1">Chờ duyệt</option>
-                                                        <option value="2">Đã duyệt</option>
-                                                        <option value="3">Đang vận chuyển</option>
-                                                        <option value="4">Giao hàng thành công</option>
-                                                        <option value="5">Hoàn hàng</option>
-                                                        <option value="0">Đã huỷ</option>
+                                                        <option value="1" @if ($get_order->status==1)
+                                                            selected
+                                                        @endif>Chờ duyệt</option>
+                                                        <option value="2"@if ($get_order->status==2)
+                                                            selected
+                                                        @endif>Đã duyệt</option>
+                                                        <option value="3"@if ($get_order->status==3)
+                                                            selected
+                                                        @endif>Đang vận chuyển</option>
+                                                        <option value="4"@if ($get_order->status==4)
+                                                            selected
+                                                        @endif>Giao hàng thành công</option>
+                                                        <option value="5"@if ($get_order->status==5)
+                                                            selected
+                                                        @endif>Hoàn hàng</option>
+                                                        <option value="0"@if ($get_order->status==0)
+                                                            selected
+                                                        @endif>Đã huỷ</option>
                                                     </select>
                                                 </div>
                                             </td>
@@ -187,8 +199,8 @@
                                                     </select>
                                                 </div>
                                             </td>
-                                            <td class="ship_fee">0</td>
-                                            <td class="text-primary font-size-h3 font-weight-boldest text-right">{{$get_order->total_money}}</td>
+                                            <td class="ship_fee font-weight-boldest text-right">{{number_format($get_order->ship_fee)}}</td>
+                                            <td class="text-primary font-size-h4 font-weight-boldest text-right">{{$get_order->total_money}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -200,9 +212,11 @@
                     <div class="row justify-content-center py-8 px-8 py-md-10 px-md-0">
                         <div class="col-md-10">
                             <div class="d-flex justify-content-between">
-                                <button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">In đơn hàng</button>
+                                @if ($get_order->status!=1)
+                                    <button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">In đơn hàng</button>
+                                @endif
                                 @if ($get_order->ship_code)
-                                    <button type="button" class="btn btn-danger font-weight-bold">Huỷ vận đơn</button>
+                                    <button type="button" class="btn btn-danger font-weight-bold cancel_ship" data-ship="{{$get_order->ship_code}}">Huỷ vận đơn:{{$get_order->ship_code}}</button>
                                 @else
                                     <button type="button" class="btn btn-success font-weight-bold create_ship">Tạo vận đơn</button>
                                 @endif
@@ -303,6 +317,28 @@
         });
     });
 </script>
+<script>
+    $(document).on("click",".cancel_ship",function() {
+        Loading.show();
+        var id = $('.id').val();
+        var order_codes = $(this).attr('data-ship');
+        axios({
+            method: 'post',
+            url: '/order/cancelShip',
+            data: {
+                id:id,
+                order_codes:order_codes
+            }
+        }).then(function (response) {
+            Toastr.success(response.data);
+            location.reload();
+        }).catch(function(error) {
+            Toastr.error(error.response.data);
+        }).finally(function() {
+            Loading.hide();
+        });
+    });
+</script>
 
 <script>
     $(document).on("change","#ship_id",function() {
@@ -310,20 +346,24 @@
         var ship_id     = $(this).val();
         var district_id = $('#district').val();
         var ward_id     = $('#ward').val();
-        axios({
-            method: 'post',
-            url: '/order/shipFee',
-            data: {
-                district_id:district_id,
-                ward_id:ward_id
-            }
-        }).then(function (response) {
-            $('.ship_fee').text(response.data)
-        }).catch(function(error) {
-            Toastr.error(error.response.data);
-        }).finally(function() {
-            Loading.hide();
-        });
+        if (ship_id==1) {
+            axios({
+                method: 'post',
+                url: '/order/shipFee',
+                data: {
+                    district_id:district_id,
+                    ward_id:ward_id
+                }
+            }).then(function (response) {
+                $('.ship_fee').text(response.data)
+            }).catch(function(error) {
+                Toastr.error(error.response.data);
+            }).finally(function() {
+                Loading.hide();
+            });
+        }else{
+            Toastr.error('Hiện tại có GHN đang hỗ trợ bạn hãy chọn GHN nhé!');
+        }
     });
 </script>
 
@@ -339,28 +379,42 @@
         var customer_phone = $('.customer_phone').text();
         var id_product = $('.id_product').val();
         var product_quantity = $('.product_quantity').text();
+        var payment_methods = $('#payment_methods').val();
+        var status = $('#status').val();
+        var ship_id = $('#ship_id').val();
+        var ship_fee = $('.ship_fee').text();
+        if (ship_id==1) {
+            axios({
+                method: 'post',
+                url: '/order/createShip',
+                data: {
+                    id:id,
+                    district_id:district_id,
+                    payment_methods:payment_methods,
+                    status:status,
+                    ship_id:ship_id,
+                    ship_fee:ship_fee,
+                    province_id:province_id,
+                    ward_id:ward_id,
+                    address:address,
+                    id_product:id_product,
+                    product_quantity:product_quantity,
+                    customer_name:customer_name,
+                    customer_phone:customer_phone
+                }
+            }).then(function (response) {
+                Toastr.success(response.data);
+                location.reload();
+            }).catch(function(error) {
+                Toastr.error(error.response.data);
+            }).finally(function() {
+                Loading.hide();
+            });
+        }else{
+            Toastr.error('Hiện tại có GHN đang hỗ trợ bạn hãy chọn GHN nhé!');
+        }
 
-        axios({
-            method: 'post',
-            url: '/order/createShip',
-            data: {
-                id:id,
-                district_id:district_id,
-                province_id:province_id,
-                ward_id:ward_id,
-                address:address,
-                id_product:id_product,
-                product_quantity:product_quantity,
-                customer_name:customer_name,
-                customer_phone:customer_phone
-            }
-        }).then(function (response) {
-            Toastr.success(response.data);
-        }).catch(function(error) {
-            Toastr.error(error.response.data);
-        }).finally(function() {
-            Loading.hide();
-        });
+
     });
 </script>
 

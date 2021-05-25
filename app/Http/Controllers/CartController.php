@@ -120,7 +120,7 @@ class CartController extends Controller
         // insert order
         $order_data =array();
 
-        $order_data['order_code']      = mt_rand(1000,9999);;
+        $order_data['order_code']      = mt_rand(1000,9999);
         $order_data['customer_id']     = $user_id;
         $order_data['province_id']     = $request->get('province');
         $order_data['district_id']     = $request->get('district');

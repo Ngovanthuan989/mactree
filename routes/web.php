@@ -121,6 +121,7 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/addPost', 'OrderController@addPost')->name('dashboard.order.addPost');
         Route::post('/shipFee', 'OrderController@shipFee')->name('dashboard.order.shipFee');
         Route::post('/createShip', 'OrderController@createShip')->name('dashboard.order.createShip');
+        Route::post('/cancelShip', 'OrderController@cancelShip')->name('dashboard.order.cancelShip');
     });
 
 });
