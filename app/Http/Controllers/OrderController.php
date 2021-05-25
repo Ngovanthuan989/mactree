@@ -14,7 +14,9 @@ class OrderController extends Controller
     //
     public function index()
     {
-        $get_order=Order::with(['ship','customer'])->get();
+        $get_order=Order::with(['ship','customer'])
+        ->orderBy('id', 'DESC')
+        ->get();
 
         return view('dashboard.order.show',
             ['get_order'=>$get_order]
@@ -77,11 +79,6 @@ class OrderController extends Controller
 
         if ($callApiGhnWard->code == 200) {
             $data_ward = $callApiGhnWard->data;
-            // $html='';
-            // foreach($data_ward as $index){
-            //   $html .= "<li data-value=".$index->WardCode." class='option'>$index->WardName</li>";
-            // }
-            // return $html;
 
         }else{
             return redirect()->route('dashboard.order.show')->with('error','Không lấy được địa chỉ!');
