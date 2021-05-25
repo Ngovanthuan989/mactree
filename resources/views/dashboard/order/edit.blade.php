@@ -39,8 +39,9 @@
                                     </a>
                                     <!--end::Logo--> --}}
                                     <span class="d-flex flex-column align-items-md-end opacity-70">
-                                        <span>Khách hàng: {{$get_order->customer[0]->full_name}}</span>
-                                        <span>Sđt: {{$get_order->phone}}</span>
+                                        <p>Khách hàng: <span class="customer_name">{{$get_order->customer[0]->full_name}}</span></p>
+                                        <input type="hidden"class="id_customer" value="{{$get_order->customer[0]->id}}">
+                                        <p>Sđt: <span class="customer_phone">{{$get_order->phone}}</span></p>
                                     </span>
                                 </div>
                             </div>
@@ -92,6 +93,7 @@
                                     <div class="form-group" style="margin-bottom: 10px">
                                         <input type="text" name="address" class="form-control address" placeholder="Địa chỉ chi tiết" value="{{$get_order->address}}">
                                       </div>
+                                      <input type="hidden" name="id" class="form-control id" value="{{$get_order->id}}">
                                 </div>
                             </div>
                         </div>
@@ -112,6 +114,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($get_order_product as $order_product)
+                                        <input type="hidden" class="id_product" value="{{$order_product->product_id}}">
                                             <tr class="font-weight-boldest">
                                                 <td class="border-0 pl-0 pt-7 d-flex align-items-center">
                                                 <!--begin::Symbol-->
@@ -122,7 +125,7 @@
                                                 </div>
                                                 <!--end::Symbol-->
                                                 {{$order_product->product_name}}</td>
-                                                <td class="text-right pt-7 align-middle">{{$order_product->product_quantity}}</td>
+                                                <td class="text-right pt-7 align-middle product_quantity">{{$order_product->product_quantity}}</td>
                                                 <td class="text-right pt-7 align-middle">{{number_format($order_product->product_price).' đ'}}</td>
                                                 <td class="text-primary pr-0 pt-7 text-right align-middle">{{number_format($order_product->product_price*$order_product->product_quantity).' đ'}}</td>
                                             </tr>
@@ -174,7 +177,7 @@
                                             </td>
                                             <td>
                                                 <div class="form-group">
-                                                    <select class="form-control select2bs4" id="ship_id" style="width: 80%;">
+                                                    <select class="form-control select2bs4" id="ship_id" style="width: 100%;">
                                                         <option value="">Chọn</option>
                                                         @foreach ($get_ship as $ship)
                                                             <option value="{{$ship->id}}" @if ($get_order->ship_id == $ship->id)
@@ -184,7 +187,7 @@
                                                     </select>
                                                 </div>
                                             </td>
-                                            <td></td>
+                                            <td class="ship_fee">0</td>
                                             <td class="text-primary font-size-h3 font-weight-boldest text-right">{{$get_order->total_money}}</td>
                                         </tr>
                                     </tbody>
@@ -198,8 +201,12 @@
                         <div class="col-md-10">
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-light-primary font-weight-bold" onclick="window.print();">In đơn hàng</button>
-                                <button type="button" class="btn btn-success font-weight-bold">Tạo vận đơn</button>
-                                <button type="button" class="btn btn-primary font-weight-bold">Cập nhập đơn hàng</button>
+                                @if ($get_order->ship_code)
+                                    <button type="button" class="btn btn-danger font-weight-bold">Huỷ vận đơn</button>
+                                @else
+                                    <button type="button" class="btn btn-success font-weight-bold create_ship">Tạo vận đơn</button>
+                                @endif
+                                <button type="button" class="btn btn-primary font-weight-bold edit-order">Cập nhập đơn hàng</button>
                             </div>
                         </div>
                     </div>
@@ -251,6 +258,104 @@
         }).then(function (response) {
             $("#ward").html('');
             $("#ward").append(response.data);
+        }).catch(function(error) {
+            Toastr.error(error.response.data);
+        }).finally(function() {
+            Loading.hide();
+        });
+    });
+</script>
+
+<script>
+    $(document).on("click",".edit-order",function() {
+        Loading.show();
+        var id = $('.id').val();
+        var district_id = $('#district').val();
+        var province_id = $('#province').val();
+        var ward_id = $('#ward').val();
+        var address = $('.address').val();
+        var payment_methods = $('#payment_methods').val();
+        var status = $('#status').val();
+        var ship_id = $('#ship_id').val();
+        var ship_fee = $('.ship_fee').text();
+
+        axios({
+            method: 'post',
+            url: '/order/update',
+            data: {
+                id:id,
+                district_id:district_id,
+                province_id:province_id,
+                ward_id:ward_id,
+                address:address,
+                payment_methods:payment_methods,
+                status:status,
+                ship_id:ship_id,
+                ship_fee:ship_fee
+            }
+        }).then(function (response) {
+            Toastr.success(response.data);
+            location.reload();
+        }).catch(function(error) {
+            Toastr.error(error.response.data);
+        }).finally(function() {
+            Loading.hide();
+        });
+    });
+</script>
+
+<script>
+    $(document).on("change","#ship_id",function() {
+        Loading.show();
+        var ship_id     = $(this).val();
+        var district_id = $('#district').val();
+        var ward_id     = $('#ward').val();
+        axios({
+            method: 'post',
+            url: '/order/shipFee',
+            data: {
+                district_id:district_id,
+                ward_id:ward_id
+            }
+        }).then(function (response) {
+            $('.ship_fee').text(response.data)
+        }).catch(function(error) {
+            Toastr.error(error.response.data);
+        }).finally(function() {
+            Loading.hide();
+        });
+    });
+</script>
+
+<script>
+    $(document).on("click",".create_ship",function() {
+        Loading.show();
+        var id = $('.id').val();
+        var district_id = $('#district').val();
+        var province_id = $('#province').val();
+        var ward_id = $('#ward').val();
+        var address = $('.address').val();
+        var customer_name = $('.customer_name').text();
+        var customer_phone = $('.customer_phone').text();
+        var id_product = $('.id_product').val();
+        var product_quantity = $('.product_quantity').text();
+
+        axios({
+            method: 'post',
+            url: '/order/createShip',
+            data: {
+                id:id,
+                district_id:district_id,
+                province_id:province_id,
+                ward_id:ward_id,
+                address:address,
+                id_product:id_product,
+                product_quantity:product_quantity,
+                customer_name:customer_name,
+                customer_phone:customer_phone
+            }
+        }).then(function (response) {
+            Toastr.success(response.data);
         }).catch(function(error) {
             Toastr.error(error.response.data);
         }).finally(function() {

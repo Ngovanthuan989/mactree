@@ -119,6 +119,8 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/update', 'OrderController@update')->name('dashboard.order.update');
         Route::post('/delete', 'OrderController@delete')->name('dashboard.order.delete');
         Route::post('/addPost', 'OrderController@addPost')->name('dashboard.order.addPost');
+        Route::post('/shipFee', 'OrderController@shipFee')->name('dashboard.order.shipFee');
+        Route::post('/createShip', 'OrderController@createShip')->name('dashboard.order.createShip');
     });
 
 });
