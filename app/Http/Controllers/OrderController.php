@@ -15,7 +15,7 @@ class OrderController extends Controller
 {
     //
     public function index(Request $request)
-    {;
+    {
         $dataSearch=[];
 
         if ($request->get('order_code')){

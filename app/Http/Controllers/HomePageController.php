@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Helpers\HttpRequestHelper;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Users;
 use App\Helpers\CommonHelper;
@@ -190,11 +191,8 @@ class HomePageController extends Controller
         //     return response('Mật khẩu không trùng khớp!',400);
         // }
         $validator = Validator::make($request->all(), [
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'email' => 'required|email',
         ], [
-            'phone.regex'    => 'Số điện thoại không đúng định dạng',
-            'phone.required' => 'Số điện thoại không được để trống',
             'email.email'    => 'Email không đúng định dạng',
         ]);
         if ($validator->fails()) {
@@ -215,18 +213,18 @@ class HomePageController extends Controller
             return response('Email này đã tồn tại trong hệ thống!',400);
         }
 
-        $get_phone=DB::table('user')->select('phone')->get();
+        // $get_phone=DB::table('user')->select('phone')->get();
 
-        $array_phone=[];
-        foreach ($get_phone as $key => $value) {
-            array_push ($array_phone, $value->phone);
-        }
+        // $array_phone=[];
+        // foreach ($get_phone as $key => $value) {
+        //     array_push ($array_phone, $value->phone);
+        // }
 
-        $check_phone = in_array($request->get('phone'),$array_phone);
+        // $check_phone = in_array($request->get('phone'),$array_phone);
 
-        if ($check_phone==true) {
-            return response('Số điện thoại này đã tồn tại trong hệ thống!',400);
-        }
+        // if ($check_phone==true) {
+        //     return response('Số điện thoại này đã tồn tại trong hệ thống!',400);
+        // }
 
         $user = new Users;
         $user -> full_name = $request     -> get('full_name');
@@ -234,6 +232,14 @@ class HomePageController extends Controller
         $user -> password  = md5($request -> get('password'));
         $user -> status    = 1;
         $user -> save();
+
+        $notification = new Notification;
+        $notification -> title    = "Khách hàng mới";
+        $notification -> content  = $user->full_name .' vừa đăng ký tài khoản ';
+        $notification -> code     = $user->id;
+        $notification -> type     = 2;
+        $notification -> status   = 1;
+        $notification -> save();
 
         if ($user->wasRecentlyCreated == true) {
             return response('Đăng kí thành công!');

@@ -190,6 +190,65 @@
         @yield('js')
 
          {{-- {{asset('/Admin/    ')}}--}}
+        <script>
+
+        $(document).ready(function () {
+            callNotify(1);
+
+        });
+
+        setInterval(function(){ callNotify(1) }, 1000*60);
+        function callNotify(status) {
+            $.ajax({
+                url: window.location.origin + '/notify',
+                type: 'GET',
+                async: true,
+                data: {status:status},
+                success: function (data) {
+                    $('.list-notify').html(data.htmlNotify);
+                    console.log(data);
+                    if (data.listNotify) {
+                        if(data.count==0){
+                            $('.total-notify').html('');
+                        }else{
+                            $('.total-notify').html(data.count);
+                            $("title").text("("+data.count+")"+"Thông báo mới - Quản lý hệ thống MacTree");
+                        }
+                    }
+                }, error: function (e) {
+                    console.log(e);
+                },
+            });
+        }
+        function timeSince(date) {
+
+            var seconds = Math.floor((new Date() - date) / 1000);
+
+            var interval = seconds / 31536000;
+
+            if (interval > 1) {
+                return Math.floor(interval) + " years";
+            }
+            interval = seconds / 2592000;
+            if (interval > 1) {
+                return Math.floor(interval) + " months";
+            }
+            interval = seconds / 86400;
+            if (interval > 1) {
+                return Math.floor(interval) + " days";
+            }
+            interval = seconds / 3600;
+            if (interval > 1) {
+                return Math.floor(interval) + " hours";
+            }
+            interval = seconds / 60;
+            if (interval > 1) {
+                return Math.floor(interval) + " minutes";
+            }
+            return Math.floor(seconds) + " seconds";
+        }
+        </script>
+
 	</body>
 	<!--end::Body-->
 </html>

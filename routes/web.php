@@ -26,6 +26,8 @@ Route::group(['middleware' => ['check.login']], function () {
 
 
 Route::group(['middleware' => ['check.logout']], function () {
+    Route::get('/notify', 'NotificationController@index')->name('home.notify');
+
     Route::get('/', 'HomeController@index')->name('home.index');
 
 

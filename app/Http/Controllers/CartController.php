@@ -6,6 +6,7 @@ use DB;
 use Cart;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Notification;
 use App\Models\OrderProduct;
 use App\Helpers\HttpRequestHelper;
 use Illuminate\Support\Facades\Validator;
@@ -117,6 +118,10 @@ class CartController extends Controller
 
         $user_id = Session::get('id_user');
 
+        $get_user = DB::table('user')->where([
+            'id' => $user_id
+        ])->first();
+
         // insert order
         $order_data =array();
 
@@ -153,6 +158,18 @@ class CartController extends Controller
         }
 
         if($order_id && $order_product){
+            // lưu vào thông báo
+            $get_order=Order::where([
+                'id'=> $order_id
+            ])->first();
+
+            $notification = new Notification;
+            $notification -> title    = "Đơn hàng mới";
+            $notification -> content  = $get_user->full_name .' vừa đặt hàng: '. $get_order->order_code;
+            $notification -> code     = $get_order->order_code;
+            $notification -> type     = 1;
+            $notification -> status   = 1;
+            $notification -> save();
             // Thanh toán rồi sẽ hủy phiên mua
             Cart::destroy();
             return response('Đã đặt hàng thành công');
