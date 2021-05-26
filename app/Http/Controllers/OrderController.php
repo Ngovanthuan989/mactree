@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exports\OrderExportFromView;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Helpers\HttpRequestHelper;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -12,15 +14,41 @@ use Illuminate\Support\Facades\DB;
 class OrderController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
+    {;
+        $dataSearch=[];
+
+        if ($request->get('order_code')){
+            $dataSearch['order_code'] = $request->get('order_code');
+        }
+
+        if ($request->get('ship_code')){
+            $dataSearch['ship_code'] = $request->get('ship_code');
+        }
+
+        if ($request->get('status')){
+            $dataSearch['status'] = $request->get('status');
+        }
+
+        $get_order=Order::with(['ship','customer'])
+        ->where($dataSearch)
+        ->orderBy('id', 'DESC')
+        ->paginate(10);
+
+        return view('dashboard.order.show',
+            ['get_order'=>$get_order]
+        );
+    }
+
+    public function export()
     {
         $get_order=Order::with(['ship','customer'])
         ->orderBy('id', 'DESC')
         ->get();
 
-        return view('dashboard.order.show',
-            ['get_order'=>$get_order]
-        );
+        $export = new OrderExportFromView($get_order);
+        $fileName = 'DANH_SACH_DON_HANG'. '.xlsx';
+        return Excel::download($export, $fileName);
     }
     public function edit($id)
     {

@@ -28,6 +28,65 @@
         <div class="col-xs-12" id="show_success_mss" style="display: none;"></div>
         @include('elements.show_error')
         <!--begin::Card-->
+        <div class="card card-default">
+            <div class="card-header">
+              <h3 class="card-title">Tìm kiếm đơn hàng</h3>
+            </div>
+            <!-- /.card-header -->
+            <form id="form" method="get">
+                <div class="card-body">
+                    <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Mã đơn hàng</label>
+                        <input type="text" name="order_code" class="form-control order_code" placeholder="Mã đơn hàng" value="">
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                        <label>Mã vận chuyển</label>
+                        <input type="text" name="ship_code" class="form-control ship_code" placeholder="Mã vận chuyển" value="">
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Trạng thái</label>
+                        <select class="form-control select2bs4" id="status" name="status" style="width: 80%;">
+                            <option value="1" @if (isset($status) && $status==1)
+                                selected
+                            @endif>Chờ duyệt</option>
+                            <option value="2"@if (isset($status) && $status==2)
+                                selected
+                            @endif>Đã duyệt</option>
+                            <option value="3"@if (isset($status) && $status==3)
+                                selected
+                            @endif>Đang vận chuyển</option>
+                            <option value="4"@if (isset($status) && $status==4)
+                                selected
+                            @endif>Giao hàng thành công</option>
+                            <option value="5"@if (isset($status) && $status==5)
+                                selected
+                            @endif>Hoàn hàng</option>
+                            <option value="0"@if (isset($status) && $status==0)
+                                selected
+                            @endif>Đã huỷ</option>
+                        </select>
+                        </div>
+                        <!-- /.form-group -->
+                        <!-- /.form-group -->
+                    </div>
+                    <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Tìm</button>
+                </div>
+            </form>
+        </div>
+        <br>
         <div class="card card-custom">
             <div class="card-header flex-wrap py-5">
                 <div class="card-title">
@@ -54,7 +113,7 @@
                             <!--begin::Navigation-->
                             <ul class="navi flex-column navi-hover py-2">
                                 <li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">Choose an option:</li>
-                                <li class="navi-item">
+                                {{-- <li class="navi-item">
                                     <a href="#" class="navi-link">
                                         <span class="navi-icon">
                                             <i class="la la-print"></i>
@@ -69,16 +128,16 @@
                                         </span>
                                         <span class="navi-text">Copy</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="navi-item">
-                                    <a href="#" class="navi-link">
+                                    <a href="/order/export" class="navi-link">
                                         <span class="navi-icon">
                                             <i class="la la-file-excel-o"></i>
                                         </span>
                                         <span class="navi-text">Excel</span>
                                     </a>
                                 </li>
-                                <li class="navi-item">
+                                {{-- <li class="navi-item">
                                     <a href="#" class="navi-link">
                                         <span class="navi-icon">
                                             <i class="la la-file-text-o"></i>
@@ -93,7 +152,7 @@
                                         </span>
                                         <span class="navi-text">PDF</span>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                             <!--end::Navigation-->
                         </div>
@@ -177,6 +236,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$get_order->links()}}
             </div>
         </div>
     </div>

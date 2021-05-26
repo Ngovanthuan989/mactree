@@ -115,6 +115,7 @@ Route::group(['middleware' => ['check.logout']], function () {
     Route::group(['prefix' => 'order'], function () {
         // Route::get('/add', 'UserController@add')->name('dashboard.user.add');
         Route::get('/', 'OrderController@index')->name('dashboard.order.show');
+        Route::get('/export', 'OrderController@export')->name('dashboard.order.export');
         Route::get('/edit/{id}', 'OrderController@edit')->name('dashboard.order.edit');
         Route::post('/update', 'OrderController@update')->name('dashboard.order.update');
         Route::post('/delete', 'OrderController@delete')->name('dashboard.order.delete');
