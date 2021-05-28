@@ -249,6 +249,25 @@
         }
         </script>
 
+        <script>
+            $(document).on("click",".update-notify",function() {
+                var id = $(this).attr('data-id');
+                $.ajax({
+                    url: window.location.origin + '/update-notify',
+                    type: 'POST',
+                    data: {
+                        _token : "{{ csrf_token() }}",
+                        id:id
+                    },
+                    success: function (data) {
+
+                    }, error: function (e) {
+                        console.log(e);
+                    },
+                });
+            });
+        </script>
+
 	</body>
 	<!--end::Body-->
 </html>

@@ -21,6 +21,7 @@ class CategoryController extends Controller
     {
         return view('dashboard.category.add');
     }
+
     public function edit($id)
     {
         $edit_category = DB::table('category')->where([

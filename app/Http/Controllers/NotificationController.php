@@ -15,7 +15,9 @@ class NotificationController extends Controller
 
         $count = 0;
         foreach ($get_notification as $key => $notification) {
-            $count ++;
+            if ($notification->status == 1) {
+                $count ++;
+            }
         }
         $data =[];
         $data['listNotify'] = $get_notification;
@@ -23,5 +25,19 @@ class NotificationController extends Controller
         $data['count'] = $count;
 
         return response()->json($data);
+    }
+
+    public function updateNotify(Request $request)
+    {
+        $update = Notification::where('id',$request->get('id'))->update(array(
+            'status' => 2,
+        ));
+        $data =[];
+        if ($update == 1) {
+            $data['message'] = "Cập nhập noti thành công";
+            return response()->json($data);
+        }else{
+            return response()->json($data);
+        }
     }
 }
