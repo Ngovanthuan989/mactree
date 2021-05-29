@@ -59,6 +59,15 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/addPost', 'PayController@addPost')->name('dashboard.pay.addPost');
     });
 
+    Route::group(['prefix' => 'slider'], function () {
+        Route::get('/add', 'SliderController@add')->name('dashboard.slider.add');
+        Route::get('/', 'SliderController@index')->name('dashboard.slider.show');
+        Route::get('/edit/{id}', 'SliderController@edit')->name('dashboard.slider.edit');
+        Route::post('/update', 'SliderController@update')->name('dashboard.slider.update');
+        Route::post('/delete', 'SliderController@delete')->name('dashboard.slider.delete');
+        Route::post('/addPost', 'SliderController@addPost')->name('dashboard.slider.addPost');
+    });
+
     Route::group(['prefix' => 'permission'], function () {
         Route::get('/add', 'PermissionController@add')->name('dashboard.permission.add');
         Route::get('/', 'PermissionController@index')->name('dashboard.permission.show');
