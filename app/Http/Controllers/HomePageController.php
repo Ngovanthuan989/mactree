@@ -23,6 +23,10 @@ class HomePageController extends Controller
             'collection' => 1
         ])->get();
 
+        $get_slider = DB::table('slider')->where([
+            'status'     => 1,
+        ])->get();
+
         $get_product_2 = DB::table('product')->where([
             'status'     => 1,
             'collection' => 2
@@ -30,7 +34,8 @@ class HomePageController extends Controller
 
         return view('homeuser.home.index',[
             'get_product_1' => $get_product_1,
-            'get_product_2' => $get_product_2
+            'get_product_2' => $get_product_2,
+            'get_slider'    => $get_slider
         ]);
     }
 

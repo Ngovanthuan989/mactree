@@ -1,24 +1,27 @@
 <div id="carousel-home">
     <div class="owl-carousel owl-theme">
-        <div class="owl-slide cover" style="background-image: url({{asset('/PageUser/img/slides/slideTH/1.png')}});">
-            <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-                <div class="container">
-                    <div class="row justify-content-center justify-content-md-end">
-                        <div class="col-lg-6 static">
-                            <div class="slide-text text-right white">
-                                <h2 class="owl-slide-animated owl-slide-title">Macbook pro<br></h2>
-                                <p class="owl-slide-animated owl-slide-subtitle">
-                                    Đỉnh cao của hiệu năng
-                                </p>
-                                <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
+        @foreach ($get_slider as $slider)
+            <div class="owl-slide cover" style="background-image: url({{asset('/uploads/images/'.$slider->slider_img.'')}});">
+                <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+                    <div class="container">
+                        <div class="row justify-content-center justify-content-md-end">
+                            <div class="col-lg-6 static">
+                                <div class="slide-text text-right white">
+                                    <h2 class="owl-slide-animated owl-slide-title">{{$slider->name}}<br></h2>
+                                    <p class="owl-slide-animated owl-slide-subtitle">
+                                        {{$slider->content}}
+                                    </p>
+                                    <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
+
         <!--/owl-slide-->
-        <div class="owl-slide cover" style="background-image: url({{asset('/PageUser/img/slides/slideTH/2.png')}});">
+        {{-- <div class="owl-slide cover" style="background-image: url({{asset('/PageUser/img/slides/slideTH/2.png')}});">
             <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
                 <div class="container">
                     <div class="row justify-content-center justify-content-md-start">
@@ -53,7 +56,7 @@
                 </div>
             </div>
             <!--/owl-slide-->
-        </div>
+        </div> --}}
     </div>
 	<div id="icon_drag_mobile"></div>
 </div>
