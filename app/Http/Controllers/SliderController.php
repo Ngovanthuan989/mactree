@@ -11,7 +11,11 @@ class SliderController extends Controller
 {
     public function index()
     {
+        $get_slider = DB::table('slider')->get();
 
+        return view("dashboard.slider.show", [
+            'get_slider' => $get_slider
+        ]);
     }
 
     public function add()
@@ -68,6 +72,119 @@ class SliderController extends Controller
         } else {
 
             return redirect()->route('dashboard.slider.add')->with('error', 'Xin vui lòng chọn ảnh cho slider');
+        }
+    }
+
+    public function edit($id)
+    {
+        $edit_slider = DB::table('slider')->where([
+            'code' => $id
+        ])->first();
+
+        return view(
+            'dashboard.slider.edit',
+            [
+                'edit_slider' => $edit_slider,
+            ]
+        );
+    }
+
+    public function update(Request $request)
+    {
+        if ($request->file('slider_img') != '') {
+            $path = public_path() . '/uploads/images/';
+
+
+            //upload new file
+            $file     =    $request->file('slider_img');
+            $filename =    $file->getClientOriginalName();
+            $file->move($path, $filename);
+
+
+            $validate = Validator::make(
+
+                $request->all(),
+                [
+                    'name'        => 'required',
+                    'content'     => 'required',
+                ],
+                [
+                    'name.required'          => 'Tên slider không được bỏ trống',
+                    'content.required'       => 'Nội dung không được để trống',
+                ]
+
+            );
+
+
+            if ($validate->fails()) {
+                return redirect()->route('dashboard.slider.add')->withErrors($validate);
+            }
+
+
+            $slider = Slider::where('code', $request->get('id'))->update(array(
+                'name'        => $request->get('name'),
+                'content'     => $request->get('content'),
+                'slider_img'  => $filename,
+                'status'      => $request->get('status'),
+            ));
+
+
+            if ($slider == 1) {
+
+                return redirect()->route('dashboard.slider.edit', ['id' => $request->get('id')])->with('success', 'Cập nhập slider thành công');
+            } else {
+
+                return redirect()->route('dashboard.slider.edit', ['id' => $request->get('id')])->with('error', 'Có lỗi xảy ra');
+            }
+        } else {
+
+            $validate = Validator::make(
+
+                $request->all(),
+                [
+                    'name'        => 'required',
+                    'content'     => 'required',
+                ],
+                [
+                    'name.required'          => 'Tên slider không được bỏ trống',
+                    'content.required'       => 'Nội dung không được để trống',
+                ]
+
+            );
+
+
+            if ($validate->fails()) {
+                return redirect()->route('dashboard.slider.add')->withErrors($validate);
+            }
+
+
+
+
+            $slider = Slider::where('code', $request->get('id'))->update(array(
+                'name'        => $request->get('name'),
+                'content'     => $request->get('content'),
+                'status'      => $request->get('status'),
+            ));
+
+
+            if ($slider == 1) {
+
+                return redirect()->route('dashboard.slider.edit', ['id' => $request->get('id')])->with('success', 'Cập nhập slider thành công');
+            } else {
+
+                return redirect()->route('dashboard.slider.edit', ['id' => $request->get('id')])->with('error', 'Có lỗi xảy ra');
+            }
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        $delete = DB::table('slider')->where('id', $request->get('id'))->delete();
+
+        if ($delete == 1) {
+            return response('Xoá slider thành công!');
+        } else {
+            return response('Xoá slider không thành công!', 400);
         }
     }
 }
