@@ -5,7 +5,7 @@
             <div class="row small-gutters">
                 <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                     <div id="logo">
-                        <a href="/home"><img src="{{asset('/uploads/images/logo_mactree_thaihoang.png')}}" alt="" width="120" height="35"></a>
+                        <a href="/home"><img src="{{asset('/uploads/images/logo_mactree_thaihoang.svg')}}" alt="" style="width: 50%;"></a>
                     </div>
                 </div>
                 <nav class="col-xl-6 col-lg-7">
