@@ -162,6 +162,9 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/checkout', 'CartController@checkout')->name('homePage.cart.checkout');
     Route::post('/addOrder', 'CartController@addOrder')->name('homePage.cart.addOrder');
 
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/show', 'ShowOrderHomeController@index')->name('homePage.order.show');
+    });
 
 });
 

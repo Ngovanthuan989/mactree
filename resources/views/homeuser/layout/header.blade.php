@@ -200,9 +200,6 @@
                             <!-- /dropdown-cart-->
                         </li>
                         <li>
-                            <a href="#0" class="wishlist"><span>Wishlist</span></a>
-                        </li>
-                        <li>
                             <div class="dropdown dropdown-access">
                                 <a href="/home/profile" class="access_link"><span>Account</span></a>
                                 <div class="dropdown-menu">
@@ -214,10 +211,7 @@
                                     @if ($userHome)
                                         <ul>
                                             <li>
-                                                <a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
-                                            </li>
-                                            <li>
-                                                <a href="account.html"><i class="ti-package"></i>Đơn hàng của tôi</a>
+                                                <a href="/home/order/show"><i class="ti-package"></i>Đơn hàng của tôi</a>
                                             </li>
                                             <li>
                                                 <a href="/home/profile"><i class="ti-user"></i>Thông tin cá nhân</a>
