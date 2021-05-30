@@ -68,6 +68,15 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/addPost', 'SliderController@addPost')->name('dashboard.slider.addPost');
     });
 
+    Route::group(['prefix' => 'contact'], function () {
+        Route::get('/add', 'ContactController@add')->name('dashboard.contact.add');
+        Route::get('/', 'ContactController@index')->name('dashboard.contact.show');
+        Route::get('/edit/{id}', 'ContactController@edit')->name('dashboard.contact.edit');
+        Route::post('/update', 'ContactController@update')->name('dashboard.contact.update');
+        Route::post('/delete', 'ContactController@delete')->name('dashboard.contact.delete');
+        Route::post('/addPost', 'ContactController@addPost')->name('dashboard.contact.addPost');
+    });
+
     Route::group(['prefix' => 'permission'], function () {
         Route::get('/add', 'PermissionController@add')->name('dashboard.permission.add');
         Route::get('/', 'PermissionController@index')->name('dashboard.permission.show');

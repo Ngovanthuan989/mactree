@@ -267,7 +267,6 @@
                 });
             });
         </script>
-
 	</body>
 	<!--end::Body-->
 </html>
