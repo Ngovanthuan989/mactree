@@ -32,6 +32,88 @@
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
         @yield('css')
+        <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+        <script>
+            window.OneSignal = window.OneSignal || [];
+            OneSignal.push(function() {
+                OneSignal.init({
+                    appId:"{{env('ONESIGNAL')}}",
+                    notifyButton: {
+                        enable: true,
+                    },
+                });
+            });
+            OneSignal.push(function() {
+                var isPushSupported = OneSignal.isPushNotificationsSupported();
+                if (isPushSupported) {
+                    console.log("support")
+                    OneSignal.isPushNotificationsEnabled().then(function(isEnabled) {
+                        if (isEnabled) {
+                            console.log("Push notifications are enabled!");
+                            OneSignal.getUserId(function(userId) {
+                                let isStoreUserId = getCookie("isStoreUserId")
+                                if (isStoreUserId) {
+                                    console.log("Da ton tai")
+                                } else {
+                                    // call api lưu userId
+                                    setCookie("isStoreUserId", true, 5);
+                                }
+                                // alert(userId)
+                                var user_id = userId
+                                $.ajax({
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    },
+                                    url: '/admin/device',
+                                    type: 'POST',
+                                    async: true,
+                                    data: {
+                                        user_id: user_id
+                                    },
+                                    success: function (data) {
+                                        // notify('success',data,icon='fa-info');
+                                    }, error: function (e) {
+                                        // notify('warning',e.responseText,icon='fa-info');
+                                    },
+                                });
+                                console.log("OneSignal User ID:", userId);
+                            });
+                        }
+                        else {
+                            console.log("Push notifications are not enabled!");
+                            OneSignal.push(function() {
+                                // OneSignal.showSlidedownPrompt();
+                                OneSignal.showHttpPrompt();
+                            });
+                        }
+                    });
+                } else {
+                    alert("not support")
+                }
+            });
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays*24*60*60*1000));
+                var expires = "expires="+ d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for(var i = 0; i <ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+        </script>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
