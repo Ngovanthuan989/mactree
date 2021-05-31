@@ -170,6 +170,24 @@ class CartController extends Controller
             $notification -> type     = 1;
             $notification -> status   = 1;
             $notification -> save();
+
+            $dataHeader = [];
+            $dataHeader[] = 'Content-type:application/json';
+            $dataHeader[] = 'Authorization: Basic MGEzNWI4YzYtYWU4MS00MTY3LWI2MTEtZjVkZmM2NWMzMTU2';
+
+            $data = '{
+                "app_id": "6ea4c522-3c23-481e-9f7a-1bfed48e6395",
+                "contents": {"en": "'.$get_user->full_name .' vừa đặt hàng: '. $get_order->order_code.'"},
+                "headings": {"en": "Đơn hàng mới"},
+                "included_segments": [
+                    "Subscribed Users"
+                ]
+            }';
+
+            $apiUrl = 'https://onesignal.com/api/v1/notifications';
+
+            $callApiNotification = HttpRequestHelper::callApi($data, $apiUrl,$dataHeader);
+
             // Thanh toán rồi sẽ hủy phiên mua
             Cart::destroy();
             return response('Đã đặt hàng thành công');

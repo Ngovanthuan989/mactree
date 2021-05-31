@@ -247,6 +247,23 @@ class HomePageController extends Controller
         $notification -> save();
 
         if ($user->wasRecentlyCreated == true) {
+            $dataHeader = [];
+            $dataHeader[] = 'Content-type:application/json';
+            $dataHeader[] = 'Authorization: Basic MGEzNWI4YzYtYWU4MS00MTY3LWI2MTEtZjVkZmM2NWMzMTU2';
+
+            $data = '{
+                "app_id": "6ea4c522-3c23-481e-9f7a-1bfed48e6395",
+                "contents": {"en": "'.$user->full_name .' vừa đăng ký tài khoản"},
+                "headings": {"en": "Khách hàng mới"},
+                "included_segments": [
+                    "Subscribed Users"
+                ]
+            }';
+
+            $apiUrl = 'https://onesignal.com/api/v1/notifications';
+
+            $callApiNotification = HttpRequestHelper::callApi($data, $apiUrl,$dataHeader);
+
             return response('Đăng kí thành công!');
         }else{
             return response('Đăng kí không thành công',400);

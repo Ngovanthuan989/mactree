@@ -58,25 +58,6 @@
                                     // call api lưu userId
                                     setCookie("isStoreUserId", true, 5);
                                 }
-                                // alert(userId)
-                                var user_id = userId
-                                $.ajax({
-                                    headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                    },
-                                    url: '/admin/device',
-                                    type: 'POST',
-                                    async: true,
-                                    data: {
-                                        user_id: user_id
-                                    },
-                                    success: function (data) {
-                                        // notify('success',data,icon='fa-info');
-                                    }, error: function (e) {
-                                        // notify('warning',e.responseText,icon='fa-info');
-                                    },
-                                });
-                                console.log("OneSignal User ID:", userId);
                             });
                         }
                         else {
