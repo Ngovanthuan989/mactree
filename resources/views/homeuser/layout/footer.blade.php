@@ -31,21 +31,21 @@
                     <h3 data-target="#collapse_3">Địa chỉ</h3>
                 <div class="collapse dont-collapse-sm contacts" id="collapse_3">
                     <ul>
-                        <li><i class="ti-home"></i>Ấu Triệu, Hàng Trống, Hoàn Kiếm<br>Hà Nội, Việt Nam</li>
-                        <li><i class="ti-headphone-alt"></i>0983868888</li>
-                        <li><i class="ti-email"></i><a href="#0">lienhe@mactree.vn</a></li>
+                        <li><i class="ti-home"></i>505 Minh khai ,Hai bà trưng<br>Hà Nội, Việt Nam</li>
+                        <li><i class="ti-headphone-alt"></i>0969690331</li>
+                        <li><i class="ti-email"></i><a href="#0">ngovanthuan989@gmail.com</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                    <h3 data-target="#collapse_4">LIÊN LẠC</h3>
+                    <!-- <h3 data-target="#collapse_4">LIÊN LẠC</h3> -->
                 <div class="collapse dont-collapse-sm" id="collapse_4">
-                    <div id="newsletter">
+                    <!-- <div id="newsletter">
                         <div class="form-group">
                             <input type="email" name="email_newsletter" id="email_newsletter" class="form-control" placeholder="Nhập email của bạn">
                             <button type="submit" id="submit-newsletter"><i class="ti-angle-double-right"></i></button>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="follow_us">
                         <h5>Theo dõi chúng tôi</h5>
                         <ul>
@@ -86,9 +86,9 @@
             </div>
             <div class="col-lg-6">
                 <ul class="additional_links">
-                    <li><a href="#0">Terms and conditions</a></li>
-                    <li><a href="#0">Privacy</a></li>
-                    <li><span>© 2020 Allaia</span></li>
+                    <li><a href="/home">MacTree</a></li>
+                    <!-- <li><a href="#0">Privacy</a></li> -->
+                    <li><span>© 2021 MacTree</span></li>
                 </ul>
             </div>
         </div>
