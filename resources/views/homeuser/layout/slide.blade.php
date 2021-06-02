@@ -11,7 +11,7 @@
                                     <p class="owl-slide-animated owl-slide-subtitle">
                                         {{$slider->content}}
                                     </p>
-                                    <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
+                                    <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Mua ngay</a></div>
                                 </div>
                             </div>
                         </div>
@@ -31,12 +31,12 @@
                                 <p class="owl-slide-animated owl-slide-subtitle">
                                     Thời thượng, đẳng cấp hiệu năng, pro vjp
                                 </p>
-                                <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
+                                <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Mua ngay</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>Mua ngay
         </div>
         <!--/owl-slide-->
         <div class="owl-slide cover" style="background-image: url({{asset('/PageUser/img/slides/slideTH/3.png')}});">
@@ -49,7 +49,7 @@
                                 <p class="owl-slide-animated owl-slide-subtitle">
                                     Mỏng nhẹ, thời thượng cho dân văn phòng
                                 </p>
-                                <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
+                                <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Mua ngay</a></div>
                             </div>
                         </div>
                     </div>
