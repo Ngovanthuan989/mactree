@@ -23,16 +23,16 @@
                             <a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
                         </div>
                         <ul>
-                            <li class="submenu">
-                                <a href="javascript:void(0);" class="show-submenu">Home</a>
-                                <ul>
+                            <li class="">
+                                <a href="javascript:void(0);" class="show-submenu">Trang chủ</a>
+                                <!-- <ul>
                                     <li><a href="index.html">Slider</a></li>
                                     <li><a href="index-2.html">Video Background</a></li>
                                     <li><a href="index-3.html">Vertical Slider</a></li>
                                     <li><a href="index-4.html">GDPR Cookie Bar</a></li>
-                                </ul>
+                                </ul> -->
                             </li>
-                            <li class="megamenu submenu">
+                            <!-- <li class="megamenu submenu">
                                 <a href="javascript:void(0);" class="show-submenu-mega">Pages</a>
                                 <div class="menu-wrapper">
                                     <div class="row small-gutters">
@@ -80,11 +80,11 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <!-- /row -->
-                                </div>
+                                <!-- </div> -->
                                 <!-- /menu-wrapper -->
-                            </li>
+                            <!-- </li>
                             <li class="submenu">
                                 <a href="javascript:void(0);" class="show-submenu">Extra Pages</a>
                                 <ul>
@@ -103,7 +103,7 @@
                             </li>
                             <li>
                                 <a href="blog.html">Blog</a>
-                            </li>
+                            </li> -->
 
                         </ul>
                     </div>
@@ -164,13 +164,12 @@
                 </div>
                 <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
                     <div class="custom-search-input">
-                        <input type="text" placeholder="Search over 10.000 products">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm">
                         <button type="submit"><i class="header-icon_search_custom"></i></button>
                     </div>
                 </div>
                 <?php
                     $content = Cart::content();
-
                 ?>
                 <div class="col-xl-3 col-lg-2 col-md-3">
                     <ul class="top_tools">
@@ -223,7 +222,7 @@
                             <!-- /dropdown-access-->
                         </li>
                         <li>
-                            <a href="javascript:void(0);" class="btn_search_mob"><span>Search</span></a>
+                            <a href="javascript:void(0);" class="btn_search_mob"><span>Tìm kiếm</span></a>
                         </li>
                         <li>
                             <a href="#menu" class="btn_cat_mob">
@@ -241,12 +240,10 @@
             <!-- /row -->
         </div>
         <div class="search_mob_wp">
-            <input type="text" class="form-control" placeholder="Search over 10.000 products">
-            <input type="submit" class="btn_1 full-width" value="Search">
+            <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm">
+            <input type="submit" class="btn_1 full-width" value="Tìm kiếm">
         </div>
         <!-- /search_mobile -->
     </div>
     <!-- /main_nav -->
 </header>
-
-

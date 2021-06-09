@@ -26,23 +26,23 @@
 
 <div class="container margin_60_35">
     <div class="main_title">
-        <h2>Latest News</h2>
-        <span>Blog</span>
-        <p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
+        <h2>Tin tức</h2>
+        <!-- <span>Blog</span> -->
+        <p>Tin tức mới nhất về sự kiện và cập nhập của apple</p>
     </div>
     <div class="row">
         <div class="col-lg-6">
             <a class="box_news" href="blog.html">
                 <figure>
                     <img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/PageUser/img/blog/thumb/1.png')}}" alt="" width="400" height="266" class="lazy">
-                    <figcaption><strong>28</strong>Dec</figcaption>
+                    <figcaption><strong>10</strong>11</figcaption>
                 </figure>
                 <ul>
-                    <li>by Mark Twain</li>
-                    <li>20.11.2017</li>
+                    <li>Sự kiện MacBook</li>
+                    <li>10.11.2020</li>
                 </ul>
-                <h4>Pri oportere scribentur eu</h4>
-                <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                <h4>Giới thiệu sản phẩm mới</h4>
+                <p>Giới thiệu MacBook Air mới, MacBook Pro 13 inch và Mac mini, tất cả đều có chip Apple M1.</p>
             </a>
         </div>
         <!-- /box_news -->
@@ -50,14 +50,14 @@
             <a class="box_news" href="blog.html">
                 <figure>
                     <img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/PageUser/img/blog/thumb/2.png')}}" alt="" width="400" height="266" class="lazy">
-                    <figcaption><strong>28</strong>Dec</figcaption>
+                    <figcaption><strong>22</strong>06</figcaption>
                 </figure>
                 <ul>
-                    <li>By Jhon Doe</li>
-                    <li>20.11.2017</li>
+                    <li>WWDC</li>
+                    <li>22.6.2020</li>
                 </ul>
-                <h4>Duo eius postea suscipit ad</h4>
-                <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                <h4>Công bố các bản cập</h4>
+                <p>Công bố các bản cập nhật lớn nhất từ ​​trước đến nay của chúng tôi cho iOS, iPadOS, watchOS - và macOS Big Sur hoàn toàn được mô phỏng lại.</p>
             </a>
         </div>
         <!-- /box_news -->
@@ -65,14 +65,14 @@
             <a class="box_news" href="blog.html">
                 <figure>
                     <img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/PageUser/img/blog/thumb/2.png')}}" alt="" width="400" height="266" class="lazy">
-                    <figcaption><strong>28</strong>Dec</figcaption>
+                    <figcaption><strong>13</strong>10</figcaption>
                 </figure>
                 <ul>
-                    <li>By Luca Robinson</li>
-                    <li>20.11.2017</li>
+                    <li>Sự kiện iPhone</li>
+                    <li>13.10.2020</li>
                 </ul>
-                <h4>Elitr mandamus cu has</h4>
-                <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                <h4>Giới thiệu mẫu iPhone mới</h4>
+                <p>Giới thiệu iPhone 12 và iPhone 12 Pro</p>
             </a>
         </div>
         <!-- /box_news -->
@@ -80,14 +80,14 @@
             <a class="box_news" href="blog.html">
                 <figure>
                     <img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/PageUser/img/blog/thumb/3.png')}}" alt="" width="400" height="266" class="lazy">
-                    <figcaption><strong>28</strong>Dec</figcaption>
+                    <figcaption><strong>15</strong>09</figcaption>
                 </figure>
                 <ul>
-                    <li>By Paula Rodrigez</li>
-                    <li>20.11.2017</li>
+                    <li>Sự kiện Apple Watch</li>
+                    <li>15.9.2020</li>
                 </ul>
-                <h4>Id est adhuc ignota delenit</h4>
-                <p>Cu eum alia elit, usu in eius appareat, deleniti sapientem honestatis eos ex. In ius esse ullum vidisse....</p>
+                <h4>Giới thiệu mẫu Apple Watch mới</h4>
+                <p>Giới thiệu Apple Watch Series 6, Apple Watch SE, iPad Air và iPad mới và Apple One - gói dịch vụ hoàn toàn mới của Apple.</p>
             </a>
         </div>
         <!-- /box_news -->

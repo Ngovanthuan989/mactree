@@ -31,9 +31,9 @@
                             <span class="old_price">{{number_format($product_2->price_sale,0,'','.')}}đ</span>
                         </div>
                         <ul>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào mục yêu thích"><i class="ti-heart"></i><span>Thêm vào mục yêu thích</span></a></li>
+                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào để so sánh"><i class="ti-control-shuffle"></i><span>Thêm vào để so sánh</span></a></li>
+                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a></li>
                         </ul>
                     </div>
                     <!-- /grid_item -->
@@ -56,10 +56,10 @@
                         <p>Hiệu năng đỉnh cao trong cái máy mỏng nhẹ</p>
                         <div class="feat_text_block">
                             <div class="price_box">
-                                <span class="new_price">$900.00</span>
-                                <span class="old_price">$1700.00</span>
+                                <span class="new_price">30.000.000đ</span>
+                                <span class="old_price">35.000.000đ</span>
                             </div>
-                            <a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a>
+                            <a class="btn_1" href="listing-grid-1-full.html" role="button">Mua ngay</a>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
             @foreach ($get_product_1 as $product_1)
                 <div class="item">
                     <div class="grid_item">
-                        <span class="ribbon new">New</span>
+                        <span class="ribbon new">Mới</span>
                         <figure>
                             <a href="/home/product-detail/{{$product_1->id}}">
                                 <img class="owl-lazy" src="{{asset('/uploads/images/'.$product_1->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_1->product_img.'')}}" alt="">
@@ -92,9 +92,9 @@
                             <span class="new_price">{{number_format($product_1->unit_price,0,'','.')}}đ</span>
                         </div>
                         <ul>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào mục yêu thích"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="thêm vào để so sánh"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
                         </ul>
                     </div>
                     <!-- /grid_item -->
@@ -109,4 +109,3 @@
 @section('javascript')
     <script src="{{asset('/PageUser/js/carousel-home.min.js')}}"></script>
 @endsection
-
