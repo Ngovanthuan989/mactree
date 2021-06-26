@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Cookie;
 use App\Models\Customers;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
+
 
 
 
@@ -128,12 +130,17 @@ class HomeController extends Controller
 
         if ($login -> id) {
             Session::put('user_id', $login -> id);
-            $subject ="Mã xác thực được gửi từ MacTree";
+            // gửi mail mã xác thực
             $email_to = $request->get('email');
-            $content = '<p><b>Công cty cổ phần MacTree</b></p>
-                        <p><b>Mã xác thực</b>:'.$verification_codes.'</p>
-            ';
-            MailHelper::sendEmail($subject,$email_to,$content);
+            $template = config('apps.email_template_login.template');
+            $template = str_replace('{$MacTreeCode}',$verification_codes, $template);
+            Mail::send([], [], function ($message) use($template,$email_to) {
+                $template = str_replace('{$topImage}', $message->embed('uploads/images/logo_mactree_thaihoang.png'), $template);
+                $template = str_replace('{$bottomImage}', $message->embed('uploads/images/logo_mactree_thaihoang.png'), $template);
+                $message->to($email_to)
+                    ->subject('[MACTREE]THÔNG BÁO MÃ XÁC THỰC')
+                    ->setBody($template, 'text/html') ;// for HTML rich messages
+                 });
 
             $update = Customers::where('id',$login -> id)->update(array(
                 'code_accuracy' => $verification_codes,

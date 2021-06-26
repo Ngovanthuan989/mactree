@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Customers;
+use Illuminate\Support\Facades\Mail;
 use App\Helpers\MailHelper;
 
 
@@ -157,12 +158,19 @@ class UserController extends Controller
 
             if ($customer->wasRecentlyCreated == true) {
 
-                $subject  = "Mật khẩu được gửi từ MacTree";
                 $email_to = $request->get('email');
-                $content  = '<p><b>Công cty cổ phần MacTree</b></p>
-                        <p><b>Mật khẩu của bạn là</b>:'.$password.'</p>';
+                // Gửi email:
+                 $template = config('apps.email_template_acc.template');
+                 $template = str_replace('{$EmailAdminMacTree}', $request -> get('email'), $template);
+                 $template = str_replace('{$PassAdminMacTree}', $password, $template);
 
-                MailHelper::sendEmail($subject,$email_to,$content);
+                 Mail::send([], [], function ($message) use($template,$email_to) {
+                     $template = str_replace('{$topImage}', $message->embed('uploads/images/logo_mactree_thaihoang.png'), $template);
+                     $template = str_replace('{$bottomImage}', $message->embed('uploads/images/logo_mactree_thaihoang.png'), $template);
+                     $message->to($email_to)
+                         ->subject('[MACTREE]THÔNG BÁO THÔNG TIN TÀI KHOẢN PHẦN MỀM QUẢN LÝ')
+                         ->setBody($template, 'text/html') ;// for HTML rich messages
+                 });
 
                 return redirect()->route('dashboard.user.add')->with('success', 'Thêm thành công');
 
