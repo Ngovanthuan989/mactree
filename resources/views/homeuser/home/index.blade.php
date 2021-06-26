@@ -15,7 +15,7 @@
                 <div class="col-6 col-md-4 col-xl-3">
                     <div class="grid_item">
                         <figure>
-                            <span class="ribbon off">-0%</span>
+                            <span class="ribbon off">Hot</span>
                             <a href="/home/product-detail/{{$product_2->id}}">
                                 <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
                                 <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">

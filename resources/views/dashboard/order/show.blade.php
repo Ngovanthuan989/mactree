@@ -76,6 +76,29 @@
                         <!-- /.form-group -->
                         <!-- /.form-group -->
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                        <label>Thời gian tạo đơn</label>
+                            <div class="input-daterange input-group js-datepicker-enabled" data-date-format="mm/dd/yyyy" data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                <input type="text" class="form-control"
+                                        id="daterange-st" name="created_at_from"
+                                        placeholder="Từ ngày"
+                                        data-week-start="1"
+                                        data-autoclose="true"
+                                        data-today-highlight="true"
+                                        value="{{ request('created_at_from') }}"
+                                        autocomplete="off">
+                                 <input type="text" class="form-control"
+                                        id="daterange-nd" name="created_at_to"
+                                        placeholder="Đến ngày" data-week-start="1"
+                                        data-autoclose="true" data-today-highlight="true"
+                                        value="{{ request('created_at_to') }}"
+                                        autocomplete="off">
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
+                        <!-- /.form-group -->
+                    </div>
                     <!-- /.col -->
                     </div>
                     <!-- /.row -->
@@ -252,6 +275,15 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script src="https://devtest.baokim.vn:9408/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js?v=6"></script>
+
+
+<script>
+    $('#daterange-st').datepicker();
+    $('#daterange-nd').datepicker();
+
+</script>
 
 @endsection
 

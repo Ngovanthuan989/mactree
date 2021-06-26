@@ -16,8 +16,20 @@ class OrderController extends Controller
     //
     public function index(Request $request)
     {
+
         $dataSearch=[];
 
+        if($request->get('created_at_from')) {
+            $createdAtFrom = date('Y-m-d', strtotime($request->get('created_at_from')));
+        }
+
+        if($request->get('created_at_to')) {
+            $createdAtTo = date('Y-m-d', strtotime($request->get('created_at_to')));
+        }
+
+        if(strtotime($request->get('created_at_from')) > strtotime($request->get('created_at_to'))){
+            return redirect('/order')->with('error',' Từ ngày Đến ngày không hợp lệ!');
+        }
         if ($request->get('order_code')){
             $dataSearch['order_code'] = $request->get('order_code');
         }
@@ -30,14 +42,33 @@ class OrderController extends Controller
             $dataSearch['status'] = $request->get('status');
         }
 
-        $get_order=Order::with(['ship','customer'])
-        ->where($dataSearch)
-        ->orderBy('id', 'DESC')
-        ->paginate(10);
+        if ($request->get('created_at_from') && $request->get('created_at_to')) {
+            $get_order=Order::with(['ship','customer'])
+            ->where($dataSearch)
+            ->whereBetween('created_at', [$createdAtFrom, $createdAtTo])
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
 
-        return view('dashboard.order.show',
-            ['get_order'=>$get_order]
-        );
+            return view('dashboard.order.show',
+                [
+                    'get_order' =>$get_order,
+                    'created_at_from' => $request->get('created_at_from'),
+                    'created_at_to' =>  $request->get('created_at_to')
+                ]
+            );
+        }else{
+            $get_order=Order::with(['ship','customer'])
+            ->where($dataSearch)
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+
+            return view('dashboard.order.show',
+                ['get_order'=>$get_order]
+            );
+        }
+
+
+
     }
 
     public function export()

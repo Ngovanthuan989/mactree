@@ -5,7 +5,7 @@
             <div class="row small-gutters">
                 <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                     <div id="logo">
-                        <a href="/home"><img src="{{asset('/uploads/images/logo_mactree_thaihoang.svg')}}" alt="" style="width: 50%;"></a>
+                        <a href="/home"><img src="{{asset('/uploads/images/logo_mactree_thaihoang.png')}}" alt="" style="width: 50%;"></a>
                     </div>
                 </div>
                 <nav class="col-xl-6 col-lg-7">
@@ -31,6 +31,28 @@
                                     <li><a href="index-3.html">Vertical Slider</a></li>
                                     <li><a href="index-4.html">GDPR Cookie Bar</a></li>
                                 </ul> -->
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0);" class="show-submenu">Macbook Pro</a>
+                                <ul>
+                                    <li><a href="index.html">Macbook M1</a></li>
+                                    <li><a href="index-2.html">Macbook 2020</a></li>
+                                    <li><a href="index-3.html">Macbook 2019</a></li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0);" class="show-submenu">Macbook Air</a>
+                                <ul>
+                                    <li><a href="index.html">Macbook Air M1</a></li>
+                                    <li><a href="index-2.html">Macbook Air 2020</a></li>
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="javascript:void(0);" class="show-submenu">Iphone</a>
+                                <ul>
+                                    <li><a href="index.html">Iphone 12</a></li>
+                                    <li><a href="index-2.html">Iphone 11</a></li>
+                                </ul>
                             </li>
                             <!-- <li class="megamenu submenu">
                                 <a href="javascript:void(0);" class="show-submenu-mega">Pages</a>
@@ -175,7 +197,7 @@
                     <ul class="top_tools">
                         <li>
                             <div class="dropdown dropdown-cart">
-                                <a href="cart.html" class="cart_bt"><strong>2</strong></a>
+                                <a href="cart.html" class="cart_bt"><strong>{{count($content)}}</strong></a>
                                 <div class="dropdown-menu">
                                     <ul>
                                         @foreach($content as $v_content)

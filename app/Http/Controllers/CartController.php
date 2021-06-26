@@ -117,6 +117,9 @@ class CartController extends Controller
 
 
         $user_id = Session::get('id_user');
+        if (!$user_id) {
+            return response('Bạn chưa đăng nhập',400);
+        }
 
         $get_user = DB::table('user')->where([
             'id' => $user_id
