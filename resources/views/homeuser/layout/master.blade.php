@@ -10,24 +10,24 @@
     <title>MacTree</title>
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="{{asset('/PageUser/img/favicon.ico')}}" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="{{asset('/PageUser/img/apple-touch-icon-57x57-precomposed.png')}}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{asset('/PageUser/img/apple-touch-icon-72x72-precomposed.png')}}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{asset('/PageUser/img/apple-touch-icon-114x114-precomposed.png')}}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{asset('/PageUser/img/apple-touch-icon-144x144-precomposed.png')}}">
+    <link rel="shortcut icon" href="{{asset('/pageuser/img/favicon.ico')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{{asset('/pageuser/img/apple-touch-icon-57x57-precomposed.png')}}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{asset('/pageuser/img/apple-touch-icon-72x72-precomposed.png')}}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{asset('/pageuser/img/apple-touch-icon-114x114-precomposed.png')}}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{asset('/pageuser/img/apple-touch-icon-144x144-precomposed.png')}}">
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="{{asset('/uploads/images/icon.svg')}}" />
     <!-- BASE CSS -->
-    <link href="{{asset('/PageUser/css/bootstrap.custom.min.css')}}" rel="stylesheet">
-    <link href="{{asset('/PageUser/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('/pageuser/css/bootstrap.custom.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/pageuser/css/style.css')}}" rel="stylesheet">
 
 	<!-- SPECIFIC CSS -->
     @yield('link')
 
     <!-- YOUR CUSTOM CSS -->
-    <link href="{{asset('/PageUser/css/custom.css')}}" rel="stylesheet">
+    <link href="{{asset('/pageuser/css/custom.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
@@ -62,8 +62,8 @@
 	<div id="toTop"></div><!-- Back to top button -->
 
 	<!-- COMMON SCRIPTS -->
-    <script src="{{asset('/PageUser/js/common_scripts.min.js')}}"></script>
-    <script src="{{asset('/PageUser/js/main.js')}}"></script>
+    <script src="{{asset('/pageuser/js/common_scripts.min.js')}}"></script>
+    <script src="{{asset('/pageuser/js/main.js')}}"></script>
 
 	<!-- SPECIFIC SCRIPTS -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
