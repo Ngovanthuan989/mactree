@@ -1,6 +1,6 @@
 @extends('homeuser.layout.master')
 @section('link')
-    <link href="{{asset('/PageUser/css/home_1.css')}}" rel="stylesheet">
+    <link href="{{asset('/pageuser/css/home_1.css')}}" rel="stylesheet">
 @endsection
 @section('home')
 @include('homeuser.layout.slide')
@@ -47,7 +47,7 @@
     </div>
     <!-- /container -->
 
-    <div class="featured lazy" data-bg="url({{asset('/PageUser/img/mactree1200x800.png')}})">
+    <div class="featured lazy" data-bg="url({{asset('/pageuser/img/mactree1200x800.png')}})">
         <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
             <div class="container margin_60">
                 <div class="row justify-content-center justify-content-md-start">
@@ -107,5 +107,5 @@
     @include('homeuser.layout.section')
 @endsection
 @section('javascript')
-    <script src="{{asset('/PageUser/js/carousel-home.min.js')}}"></script>
+    <script src="{{asset('/pageuser/js/carousel-home.min.js')}}"></script>
 @endsection

@@ -1,6 +1,6 @@
 @extends('homeuser.layout.master')
 @section('link')
-    <link href="{{asset('/PageUser/css/checkout.css')}}" rel="stylesheet">
+    <link href="{{asset('/pageuser/css/checkout.css')}}" rel="stylesheet">
 
 @endsection
 @section('home')

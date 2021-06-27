@@ -1,6 +1,6 @@
 @extends('homeuser.layout.master')
 @section('link')
-    <link href="{{asset('/PageUser/css/product_page.css')}}" rel="stylesheet">
+    <link href="{{asset('/pageuser/css/product_page.css')}}" rel="stylesheet">
 @endsection
 @section('home')
     <div class="container margin_30">
@@ -277,7 +277,7 @@
     </div>
 @endsection
 @section('javascript')
-    <script src="{{asset('/PageUser/js/carousel_with_thumbs.js')}}"></script>
+    <script src="{{asset('/pageuser/js/carousel_with_thumbs.js')}}"></script>
 
     <script>
         var html  = $('.product_content').text();

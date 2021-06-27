@@ -1,10 +1,10 @@
 @extends('homeuser.layout.master')
 <style>
     .box_account h3.new_client {
-        background: url('{{asset('/PageUser/img/new_user.svg')}}') center left no-repeat;
+        background: url('{{asset('/pageuser/img/new_user.svg')}}') center left no-repeat;
     }
     .box_account h3.client {
-        background: url('{{asset('/PageUser/img/user.svg')}}') center left no-repeat;
+        background: url('{{asset('/pageuser/img/user.svg')}}') center left no-repeat;
     }
 </style>
 @section('home')

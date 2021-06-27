@@ -390,8 +390,8 @@
  </script>
 
  <!--begin::Page Vendors(used by this page)-->
- <script src="{{asset('/Admin/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
+ <script src="{{asset('/admin/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
  <!--end::Page Vendors-->
  <!--begin::Page Scripts(used by this page)-->
- <script src="{{asset('/Admin/assets/js/pages/crud/forms/editors/ckeditor-classic.js')}}"></script>
+ <script src="{{asset('/admin/assets/js/pages/crud/forms/editors/ckeditor-classic.js')}}"></script>
 @endsection

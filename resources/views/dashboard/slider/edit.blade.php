@@ -1,5 +1,5 @@
 @extends('dashboard.layout.master')
-<link href="{{asset('/Admin/assets/css/pages/wizard/wizard-4.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('/admin/assets/css/pages/wizard/wizard-4.css')}}" rel="stylesheet" type="text/css" />
 @section('main')
 <style>
     .error{
@@ -102,7 +102,7 @@
     </div>
 @endsection
 @section('js')
-<script src="{{asset('/Admin/assets/js/pages/custom/user/add-user.js')}}"></script>
+<script src="{{asset('/admin/assets/js/pages/custom/user/add-user.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 
 <script>

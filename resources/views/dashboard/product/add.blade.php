@@ -1,5 +1,5 @@
 @extends('dashboard.layout.master')
-<link href="{{asset('/Admin/assets/css/pages/wizard/wizard-4.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('/admin/assets/css/pages/wizard/wizard-4.css')}}" rel="stylesheet" type="text/css" />
 @section('main')
 <style>
     .error{
@@ -245,7 +245,7 @@
 
 @endsection
 @section('js')
-<script src="{{asset('/Admin/assets/js/pages/custom/user/add-user.js')}}"></script>
+<script src="{{asset('/admin/assets/js/pages/custom/user/add-user.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
 
 <script>
@@ -391,10 +391,10 @@
  </script>
 
  <!--begin::Page Vendors(used by this page)-->
- <script src="{{asset('/Admin/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
+ <script src="{{asset('/admin/assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js')}}"></script>
  <!--end::Page Vendors-->
  <!--begin::Page Scripts(used by this page)-->
- <script src="{{asset('/Admin/assets/js/pages/crud/forms/editors/ckeditor-classic.js')}}"></script>
+ <script src="{{asset('/admin/assets/js/pages/crud/forms/editors/ckeditor-classic.js')}}"></script>
 
 
 @endsection

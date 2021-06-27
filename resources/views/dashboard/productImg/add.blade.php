@@ -1,5 +1,5 @@
 @extends('dashboard.layout.master')
-<link href="{{asset('/Admin/assets/plugins/custom/uppy/uppy.bundle.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{asset('/admin/assets/plugins/custom/uppy/uppy.bundle.css')}}" rel="stylesheet" type="text/css" />
 
 @section('main')
 <style>
@@ -82,8 +82,8 @@
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-<script src="{{asset('/Admin/assets/plugins/custom/uppy/uppy.bundle.js')}}"></script>
-<script src="{{asset('/Admin/assets/js/pages/crud/file-upload/uppy.js')}}"></script>
+<script src="{{asset('/admin/assets/plugins/custom/uppy/uppy.bundle.js')}}"></script>
+<script src="{{asset('/admin/assets/js/pages/crud/file-upload/uppy.js')}}"></script>
 <script>
     $(document).on("click",".add_img",function() {
         let img = [];

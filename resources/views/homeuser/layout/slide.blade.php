@@ -21,7 +21,7 @@
         @endforeach
 
         <!--/owl-slide-->
-        {{-- <div class="owl-slide cover" style="background-image: url({{asset('/PageUser/img/slides/slideTH/2.png')}});">
+        {{-- <div class="owl-slide cover" style="background-image: url({{asset('/pageuser/img/slides/slideTH/2.png')}});">
             <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
                 <div class="container">
                     <div class="row justify-content-center justify-content-md-start">
@@ -39,7 +39,7 @@
             </div>Mua ngay
         </div>
         <!--/owl-slide-->
-        <div class="owl-slide cover" style="background-image: url({{asset('/PageUser/img/slides/slideTH/3.png')}});">
+        <div class="owl-slide cover" style="background-image: url({{asset('/pageuser/img/slides/slideTH/3.png')}});">
             <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(255, 255, 255, 0.5)">
                 <div class="container">
                     <div class="row justify-content-center justify-content-md-start">

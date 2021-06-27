@@ -1,6 +1,6 @@
 @extends('dashboard.layout.master')
 @section('main')
-    <link href="{{asset('/Admin/assets/css/pages/wizard/wizard-4.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/admin/assets/css/pages/wizard/wizard-4.css')}}" rel="stylesheet" type="text/css" />
     <div class="subheader py-2 py-lg-4 subheader-solid" id="kt_subheader">
         <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
             <!--begin::Info-->
@@ -151,7 +151,7 @@
 @endsection
 @section('js')
 
-    <script src="{{asset('/Admin/assets/js/pages/custom/user/add-user.js')}}"></script>
+    <script src="{{asset('/admin/assets/js/pages/custom/user/add-user.js')}}"></script>
 
 
 

@@ -1,6 +1,6 @@
 @extends('homeuser.layout.master')
 @section('link')
-    <link href="{{asset('/PageUser/css/cart.css')}}" rel="stylesheet">
+    <link href="{{asset('/pageuser/css/cart.css')}}" rel="stylesheet">
     <style>
         .table.cart-list td .numbers {
             background-color: #fff;
