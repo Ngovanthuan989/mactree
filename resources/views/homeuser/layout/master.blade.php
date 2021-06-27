@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
-    <title>MacTree</title>
+    <title>MacTreeThoangThoang</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{asset('/pageuser/img/favicon.ico')}}" type="image/x-icon">
