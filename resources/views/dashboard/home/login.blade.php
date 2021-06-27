@@ -155,12 +155,10 @@
                 var email = $('.email').val();
                 var password = $('.password').val();
                 axios({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
                         method: 'post',
                         url: '/postLogin',
                         data: {
+							"_token": "{{ csrf_token() }}",
                             email: email,
                             password:password
                         }
