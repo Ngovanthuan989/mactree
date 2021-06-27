@@ -61,7 +61,7 @@ class OrderController extends Controller
             ->where($dataSearch)
             ->orderBy('id', 'DESC')
             ->paginate(10);
-
+// dd($get_order);
             return view('dashboard.order.show',
                 ['get_order'=>$get_order]
             );

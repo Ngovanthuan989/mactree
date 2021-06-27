@@ -212,6 +212,7 @@
                     </thead>
                     <tbody>
                         @foreach ($get_order as $get_orders)
+                        {{-- @dd($get_orders->customer[0]->full_name); --}}
                         <tr class="odd">
                             <td class="dtr-control sorting_1" tabindex="0">
                                 <div class="d-flex align-items-center">
@@ -225,7 +226,11 @@
                             @else
                                 <td></td>
                             @endif
-                            <td>{{$get_orders->customer[0]->full_name}}</td>
+                            @if (isset($get_orders->customer[0]))
+                                <td>{{$get_orders->customer[0]->full_name}}</td>
+                            @else
+                                <td></td>
+                            @endif
                             <td>{{$get_orders->phone}}</td>
                             <td>{{$get_orders->total_money}}</td>
                             <td></td>
