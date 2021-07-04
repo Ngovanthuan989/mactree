@@ -385,7 +385,6 @@
         var ship_fee = $('.ship_fee').text();
         if (ship_id==1) {
             axios({
-
                 method: 'post',
                 url: '/order/createShip',
                 data: {
