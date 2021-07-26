@@ -160,7 +160,7 @@ Route::group(['prefix' => 'home'], function () {
 
     Route::get('/product-detail/{id}', 'HomePageController@productDetail')->name('homePage.home.productDetail');
 
-
+    Route::get('/account/changePassword', 'HomePageController@changePassword')->name('homePage.home.changePassword');
 
     Route::group(['prefix' => 'cart'], function () {
         Route::post('/save-cart', 'CartController@save')->name('homePage.cart.save');

@@ -50,9 +50,9 @@
                 <th>
                     Ngày đặt hàng
                 </th>
-                <th>
+                {{-- <th>
                     Thao tác
-                </th>
+                </th> --}}
             </tr>
         </thead>
         <tbody>
@@ -81,13 +81,13 @@
                     <td>
                         {{ date('d/m/Y', strtotime($order->created_at)) }}
                     </td>
-                    @if ($order->status == 1 || $order->status == 2)
+                    {{-- @if ($order->status == 1 || $order->status == 2)
                         <td class="options">
                             <a type="button" class="delete_order" data-id="{{$order->id}}"><i class="ti-trash"></i></a>
                         </td>
                     @else
                         <td></td>
-                    @endif
+                    @endif --}}
                 </tr>
             @endforeach
         </tbody>
