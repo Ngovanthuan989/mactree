@@ -84,13 +84,13 @@
                     <li><img src="{{asset('/pageuser/img/cards_all.svg')}}" data-src="{{asset('/pageuser/img/cards_all.svg')}}" alt="" width="198" height="30" class="lazy"></li>
                 </ul>
             </div>
-            <div class="col-lg-6">
+            {{-- <div class="col-lg-6">
                 <ul class="additional_links">
                     <li><a href="#0">Terms and conditions</a></li>
                     <li><a href="#0">Privacy</a></li>
                     <li><span>© 2020 Allaia</span></li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
 </footer>

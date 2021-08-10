@@ -20,7 +20,12 @@ class UserHomeComposer
             'status' => 1
         ])->get();
 
+        $get_product = DB::table('product')->where([
+            'status'     => 1
+        ])->get();
+        // dd($get_category,$get_product);
+
         end:
-        $view->with(['userHome' => $userHome,'get_category' => $get_category]);
+        $view->with(['userHome' => $userHome,'get_category' => $get_category, 'get_product' => $get_product,]);
     }
 }

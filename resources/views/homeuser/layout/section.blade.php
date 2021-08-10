@@ -32,7 +32,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <a class="box_news" href="blog.html">
+            <a class="box_news" href="javascript:void(0);">
                 <figure>
                     <img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/pageuser/img/blog/thumb/1.png')}}" alt="" width="400" height="266" class="lazy">
                     <figcaption><strong>10</strong>11</figcaption>
@@ -47,7 +47,7 @@
         </div>
         <!-- /box_news -->
         <div class="col-lg-6">
-            <a class="box_news" href="blog.html">
+            <a class="box_news" href="javascript:void(0);">
                 <figure>
                     <img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/pageuser/img/blog/thumb/2.png')}}" alt="" width="400" height="266" class="lazy">
                     <figcaption><strong>22</strong>06</figcaption>
@@ -62,7 +62,7 @@
         </div>
         <!-- /box_news -->
         <div class="col-lg-6">
-            <a class="box_news" href="blog.html">
+            <a class="box_news" href="javascript:void(0);">
                 <figure>
                     <img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/pageuser/img/blog/thumb/2.png')}}" alt="" width="400" height="266" class="lazy">
                     <figcaption><strong>13</strong>10</figcaption>
@@ -77,7 +77,7 @@
         </div>
         <!-- /box_news -->
         <div class="col-lg-6">
-            <a class="box_news" href="blog.html">
+            <a class="box_news" href="javascript:void(0);">
                 <figure>
                     <img src="img/blog-thumb-placeholder.jpg" data-src="{{asset('/pageuser/img/blog/thumb/3.png')}}" alt="" width="400" height="266" class="lazy">
                     <figcaption><strong>15</strong>09</figcaption>

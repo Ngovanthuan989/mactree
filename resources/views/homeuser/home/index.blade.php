@@ -20,7 +20,6 @@
                                 <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
                                 <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
                             </a>
-                            <div data-countdown="2021/09/15" class="countdown"></div>
                         </figure>
                         <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                         <a href="/home/product-detail/{{$product_2->id}}">
@@ -59,7 +58,7 @@
                                 <span class="new_price">30.000.000đ</span>
                                 <span class="old_price">35.000.000đ</span>
                             </div>
-                            <a class="btn_1" href="listing-grid-1-full.html" role="button">Mua ngay</a>
+                            {{-- <a class="btn_1" href="listing-grid-1-full.html" role="button">Mua ngay</a> --}}
                         </div>
                     </div>
                 </div>

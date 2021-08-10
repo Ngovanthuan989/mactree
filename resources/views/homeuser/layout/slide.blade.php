@@ -11,7 +11,7 @@
                                     <p class="owl-slide-animated owl-slide-subtitle">
                                         {{$slider->content}}
                                     </p>
-                                    <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Mua ngay</a></div>
+                                    {{-- <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Mua ngay</a></div> --}}
                                 </div>
                             </div>
                         </div>

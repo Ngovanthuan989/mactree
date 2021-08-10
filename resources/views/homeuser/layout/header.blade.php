@@ -32,28 +32,19 @@
                                     <li><a href="index-4.html">GDPR Cookie Bar</a></li>
                                 </ul> -->
                             </li>
+                            @foreach ($get_category as $category)
                             <li class="">
-                                <a href="javascript:void(0);" class="show-submenu">Macbook Pro</a>
+                                <a href="javascript:void(0);" class="show-submenu">{{$category->category_name}}</a>
                                 <ul>
-                                    <li><a href="index.html">Macbook M1</a></li>
-                                    <li><a href="index-2.html">Macbook 2020</a></li>
-                                    <li><a href="index-3.html">Macbook 2019</a></li>
+                                    @foreach ($get_product as $product)
+                                        @if ($category->id == $product->category_id)
+                                            <li><a href="/home/product-detail/{{$product->id}}">{{$product->product_name}}</a></li>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             </li>
-                            <li class="">
-                                <a href="javascript:void(0);" class="show-submenu">Macbook Air</a>
-                                <ul>
-                                    <li><a href="index.html">Macbook Air M1</a></li>
-                                    <li><a href="index-2.html">Macbook Air 2020</a></li>
-                                </ul>
-                            </li>
-                            <li class="">
-                                <a href="javascript:void(0);" class="show-submenu">Iphone</a>
-                                <ul>
-                                    <li><a href="index.html">Iphone 12</a></li>
-                                    <li><a href="index-2.html">Iphone 11</a></li>
-                                </ul>
-                            </li>
+                            @endforeach
+
                             <!-- <li class="megamenu submenu">
                                 <a href="javascript:void(0);" class="show-submenu-mega">Pages</a>
                                 <div class="menu-wrapper">
@@ -158,22 +149,22 @@
                                 </span>
                                 <div id="menu">
                                     <ul>
-                                        <li><span><a>Bộ sưu tập</a></span>
+                                        {{-- <li><span><a>Bộ sưu tập</a></span>
                                             <ul>
                                                 <li><a href="/home/collection/2">Sản phẩm bán chạy</a></li>
                                                 <li><a href="/home/collection/2">Sản phẩm mới</a></li>
 
                                             </ul>
-                                        </li>
+                                        </li> --}}
                                         @foreach ($get_category as $category)
-                                            <li><span><a href="/home/category/{{$category->category_code}}">{{$category->category_name}}</a></span>
-                                                {{-- <ul>
-                                                    <li><a href="listing-grid-6-sidebar-left.html">Macbook Pro 2021</a></li>
-                                                    <li><a href="listing-grid-7-sidebar-right.html">Macbook Pro 2020</a></li>
-                                                    <li><a href="listing-row-1-sidebar-left.html">Macbook Pro 2019</a></li>
-                                                    <li><a href="listing-row-3-sidebar-left.html">Macbook Pro 2018</a></li>
-                                                    <li><a href="listing-row-4-sidebar-extended.html">Macbook Pro 2017</a></li>
-                                                </ul> --}}
+                                            <li><span><a href="javascript:void(0);">{{$category->category_name}}</a></span>
+                                                <ul>
+                                                    @foreach ($get_product as $product)
+                                                        @if ($category->id == $product->category_id)
+                                                            <li><a href="/home/product-detail/{{$product->id}}">{{$product->product_name}}</a></li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
                                             </li>
                                         @endforeach
 
@@ -243,7 +234,7 @@
                             </div>
                             <!-- /dropdown-access-->
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="javascript:void(0);" class="btn_search_mob"><span>Tìm kiếm</span></a>
                         </li>
                         <li>
@@ -255,7 +246,7 @@
                                 </div>
                                 Categories
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
