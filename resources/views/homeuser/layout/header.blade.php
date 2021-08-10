@@ -24,7 +24,7 @@
                         </div>
                         <ul>
                             <li class="">
-                                <a href="javascript:void(0);" class="show-submenu">Trang chủ</a>
+                                <a href="/home" class="show-submenu">Trang chủ</a>
                                 <!-- <ul>
                                     <li><a href="index.html">Slider</a></li>
                                     <li><a href="index-2.html">Video Background</a></li>
