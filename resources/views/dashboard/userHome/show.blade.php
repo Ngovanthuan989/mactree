@@ -20,13 +20,13 @@
                     <!--end::Separator-->
                     <!--begin::Search Form-->
                     <div class="d-flex align-items-center" id="kt_subheader_search">
-                        <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">4   50 Total</span>
+                        {{-- <span class="text-dark-50 font-weight-bold" id="kt_subheader_total">4   50 Total</span> --}}
                         <form class="ml-5">
                             <div class="input-group input-group-sm input-group-solid" style="max-width: 175px">
-                                <input type="text" class="form-control" id="kt_subheader_search_form" placeholder="Search...">
+                                {{-- <input type="text" class="form-control" id="kt_subheader_search_form" placeholder="Search..."> --}}
                                 <div class="input-group-append">
                                     <span class="input-group-text">
-                                        <span class="svg-icon">
+                                        {{-- <span class="svg-icon">
                                             <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                                 <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -36,7 +36,7 @@
                                                 </g>
                                             </svg>
                                             <!--end::Svg Icon-->
-                                        </span>
+                                        </span> --}}
                                         <!--<i class="flaticon2-search-1 icon-sm"></i>-->
                                     </span>
                                 </div>

@@ -250,7 +250,6 @@
                         <i class="ti-gift"></i>
                         <div class="justify-content-center">
                             <h3>Free Shipping</h3>
-                            <p>For all oders over $99</p>
                         </div>
                     </div>
                 </li>
@@ -259,7 +258,6 @@
                         <i class="ti-wallet"></i>
                         <div class="justify-content-center">
                             <h3>Secure Payment</h3>
-                            <p>100% secure payment</p>
                         </div>
                     </div>
                 </li>
@@ -267,8 +265,7 @@
                     <div class="box">
                         <i class="ti-headphone-alt"></i>
                         <div class="justify-content-center">
-                            <h3>24/7 Support</h3>
-                            <p>Online top support</p>
+                            <h3>Hỗ trợ 24/7</h3>
                         </div>
                     </div>
                 </li>
