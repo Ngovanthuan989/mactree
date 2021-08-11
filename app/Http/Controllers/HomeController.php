@@ -9,6 +9,7 @@ use App\Helpers\HttpRequestHelper;
 use App\Helpers\MailHelper;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Customers;
+use App\Models\Order;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
@@ -23,7 +24,27 @@ class HomeController extends Controller
     //
     public function index()
     {
-       return view('dashboard.home.index');
+        $count_user=DB::table('user')->count();
+        $get_order=Order::count();
+
+        $createdAtFrom = date('Y-m-d 00:00:00', strtotime(' -7 days'));
+        $createdAtTo = date('Y-m-d 23:59:59');
+        $count_dt=Order::whereBetween('created_at', [$createdAtFrom, $createdAtTo])
+        ->orderBy('id', 'DESC')
+        ->get();
+        $get_product = DB::table('product')->count();
+
+        $count_total = 0;
+        foreach ($count_dt as $key => $value) {
+            $count_total +=  str_replace(',','',$value->total_money);;
+
+        }
+        return view('dashboard.home.index',[
+            'count_user' => $count_user,
+            'get_order'  => $get_order,
+            'count_total' => $count_total,
+            'get_product' => $get_product
+        ]);
     }
 
     public function login()

@@ -44,9 +44,10 @@
                     </svg>
                     <!--end::Svg Icon-->
                 </span>
-                <a href="#" class="text-warning font-weight-bold font-size-h6">Weekly Sales</a>
+                <a href="/order" class="text-warning font-weight-bold font-size-h6">Doanh Thu 7 ngày gần đây: {{ number_format($count_total) }}đ</a>
             </div>
             <div class="col bg-light-primary px-6 py-8 rounded-xl mb-7">
+
                 <span class="svg-icon svg-icon-3x svg-icon-primary d-block my-2">
                     <!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Communication/Add-user.svg-->
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -58,7 +59,8 @@
                     </svg>
                     <!--end::Svg Icon-->
                 </span>
-                <a href="#" class="text-primary font-weight-bold font-size-h6 mt-2">New Users</a>
+                <a href="/userHome" class="text-primary font-weight-bold font-size-h6 mt-2">Người dùng:  {{$count_user}}</a>
+
             </div>
         </div>
         <!--end::Row-->
@@ -76,7 +78,8 @@
                     </svg>
                     <!--end::Svg Icon-->
                 </span>
-                <a href="#" class="text-danger font-weight-bold font-size-h6 mt-2">Item Orders</a>
+
+                <a href="/order" class="text-danger font-weight-bold font-size-h6 mt-2">Tổng đơn hàng : {{$get_order}}</a>
             </div>
             <div class="col bg-light-success px-6 py-8 rounded-xl">
                 <span class="svg-icon svg-icon-3x svg-icon-success d-block my-2">
@@ -90,7 +93,7 @@
                     </svg>
                     <!--end::Svg Icon-->
                 </span>
-                <a href="#" class="text-success font-weight-bold font-size-h6 mt-2">Bug Reports</a>
+                <a href="/product" class="text-success font-weight-bold font-size-h6 mt-2">Sản phẩm: {{$get_product}}</a>
             </div>
         </div>
         <!--end::Row-->
