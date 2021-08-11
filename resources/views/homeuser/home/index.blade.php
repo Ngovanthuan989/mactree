@@ -29,11 +29,11 @@
                             <span class="new_price">{{number_format($product_2->unit_price,0,'','.')}}đ</span>
                             <span class="old_price">{{number_format($product_2->price_sale,0,'','.')}}đ</span>
                         </div>
-                        <ul>
+                        {{-- <ul>
                             <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào mục yêu thích"><i class="ti-heart"></i><span>Thêm vào mục yêu thích</span></a></li>
                             <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào để so sánh"><i class="ti-control-shuffle"></i><span>Thêm vào để so sánh</span></a></li>
                             <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a></li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     <!-- /grid_item -->
                 </div>
@@ -90,11 +90,11 @@
                         <div class="price_box">
                             <span class="new_price">{{number_format($product_1->unit_price,0,'','.')}}đ</span>
                         </div>
-                        <ul>
+                        {{-- <ul>
                             <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào mục yêu thích"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
                             <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="thêm vào để so sánh"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
                             <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                        </ul>
+                        </ul> --}}
                     </div>
                     <!-- /grid_item -->
                 </div>

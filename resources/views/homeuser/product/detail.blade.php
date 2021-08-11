@@ -42,7 +42,7 @@
                     <!-- /page_header -->
                     <div class="prod_info">
                         <h1>{{$get_product->product_name}}</h1>
-                        <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
+                        {{-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> --}}
                         <p><small>Mã sản phẩm: {{$get_product->product_code}}</small><br>{{$get_product->product_description}}</p>
                         <div class="prod_options">
                             <div class="row">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <!-- /prod_info -->
-                    <div class="product_actions">
+                    {{-- <div class="product_actions">
                         <ul>
                             <li>
                                 <a href="#"><i class="ti-heart"></i><span>Add to Wishlist</span></a>
@@ -97,7 +97,7 @@
                                 <a href="#"><i class="ti-control-shuffle"></i><span>Add to Compare</span></a>
                             </li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <!-- /product_actions -->
                 </div>
             </div>
