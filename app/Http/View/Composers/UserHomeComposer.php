@@ -22,7 +22,9 @@ class UserHomeComposer
 
         $get_product = DB::table('product')->where([
             'status'     => 1
-        ])->get();
+        ])
+        ->limit(4)
+        ->get();
         // dd($get_category,$get_product);
 
         end:
