@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function index()
     {
         //  Lấy danh sách sản phẩm
-        $get_product = DB::table('product')->get();
+        $get_product = DB::table('product')->paginate(10);
 
         return view("dashboard.product.show", [
             'get_product' => $get_product

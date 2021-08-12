@@ -182,6 +182,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$get_product->links()}}
             </div>
         </div>
 
