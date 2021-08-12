@@ -271,15 +271,17 @@
                                     </div>
                                 </div>
                             </div>
-                            @if($user->permission == 1)
+
                                 <div class="form-group row">
                                     <label class="col-xl-3 col-lg-3 col-form-label">Quyền truy cập</label>
                                     <div class="col-lg-9 col-xl-6">
                                         <div class="input-group input-group-lg input-group-solid">
                                             <select name="permission" class="form-control form-control-solid permission">
-                                                <option value="1" @if($user->permission == 1)
-                                                    selected
-                                                    @endif>Quản lý</option>
+                                                @if($user->permission == 1)
+                                                    <option value="1" @if($user->permission == 1)
+                                                        selected
+                                                        @endif>Quản lý</option>
+                                                @endif
                                                 <option value="2" @if($user->permission == 2)
                                                     selected
                                                     @endif>Nhân viên</option>
@@ -287,7 +289,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endif
                         </div>
                         <!--end::Body-->
                     </form>
