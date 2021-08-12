@@ -178,7 +178,11 @@
                 <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
                     <form action="/home" method="get">
                         <div class="custom-search-input">
-                            <input type="text" name="product_name" placeholder="Tìm kiếm sản phẩm" value="{{$product_name}}">
+                            @if (isset($product_name))
+                                <input type="text" name="product_name" placeholder="Tìm kiếm sản phẩm" value="{{$product_name}}">
+                            @else
+                                 <input type="text" name="product_name" placeholder="Tìm kiếm sản phẩm" value="">
+                            @endif
                             <button type="submit"><i class="header-icon_search_custom"></i></button>
                         </div>
                     </form>
