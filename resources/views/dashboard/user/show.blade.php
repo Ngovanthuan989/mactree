@@ -181,6 +181,7 @@
                     @endforeach
 
                 </div>
+                {{$get_user->links()}}
 
 
                 <!--end::Pagination-->

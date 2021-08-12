@@ -16,7 +16,7 @@ class UserHomeController extends Controller
 
     public function index(Request $request)
     {
-        $get_user=DB::table('user')->get();
+        $get_user=DB::table('user')->paginate(6);
         return view('dashboard.userHome.show',[
             'get_user' => $get_user,
         ]);
