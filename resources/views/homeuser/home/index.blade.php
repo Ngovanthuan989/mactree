@@ -11,32 +11,35 @@
             <p><sp>Tốt nhất, rẻ nhất và được nhiều người mua nhất</sp></p>
         </div>
         <div class="row small-gutters">
-            @foreach ($get_product_2 as $product_2)
-                <div class="col-6 col-md-4 col-xl-3">
-                    <div class="grid_item">
-                        <figure>
-                            <span class="ribbon off">Hot</span>
+            @foreach ($get_product as $product_2)
+                @if ($product_2->status == 1 && $product_2->collection==2)
+                    <div class="col-6 col-md-4 col-xl-3">
+                        <div class="grid_item">
+                            <figure>
+                                <span class="ribbon off">Hot</span>
+                                <a href="/home/product-detail/{{$product_2->id}}">
+                                    <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
+                                    <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
+                                </a>
+                            </figure>
+                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                             <a href="/home/product-detail/{{$product_2->id}}">
-                                <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
-                                <img class="img-fluid lazy" src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_2->product_img.'')}}" alt="">
+                                <h3>{{$product_2->product_name}}</h3>
                             </a>
-                        </figure>
-                        <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                        <a href="/home/product-detail/{{$product_2->id}}">
-                            <h3>{{$product_2->product_name}}</h3>
-                        </a>
-                        <div class="price_box">
-                            <span class="new_price">{{number_format($product_2->unit_price,0,'','.')}}đ</span>
-                            <span class="old_price">{{number_format($product_2->price_sale,0,'','.')}}đ</span>
+                            <div class="price_box">
+                                <span class="new_price">{{number_format($product_2->unit_price,0,'','.')}}đ</span>
+                                <span class="old_price">{{number_format($product_2->price_sale,0,'','.')}}đ</span>
+                            </div>
+                            {{-- <ul>
+                                <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào mục yêu thích"><i class="ti-heart"></i><span>Thêm vào mục yêu thích</span></a></li>
+                                <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào để so sánh"><i class="ti-control-shuffle"></i><span>Thêm vào để so sánh</span></a></li>
+                                <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a></li>
+                            </ul> --}}
                         </div>
-                        {{-- <ul>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào mục yêu thích"><i class="ti-heart"></i><span>Thêm vào mục yêu thích</span></a></li>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào để so sánh"><i class="ti-control-shuffle"></i><span>Thêm vào để so sánh</span></a></li>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Thêm vào giỏ hàng</span></a></li>
-                        </ul> --}}
+                        <!-- /grid_item -->
                     </div>
-                    <!-- /grid_item -->
-                </div>
+                @endif
+
             @endforeach
             <!-- /col -->
 
@@ -74,30 +77,32 @@
             <p>Sản phẩm mới nhất</p>
         </div>
         <div class="owl-carousel owl-theme products_carousel">
-            @foreach ($get_product_1 as $product_1)
-                <div class="item">
-                    <div class="grid_item">
-                        <span class="ribbon new">Mới</span>
-                        <figure>
+            @foreach ($get_product as $product_1)
+                @if ($product_1->status == 1 && $product_1->collection==1)
+                    <div class="item">
+                        <div class="grid_item">
+                            <span class="ribbon new">Mới</span>
+                            <figure>
+                                <a href="/home/product-detail/{{$product_1->id}}">
+                                    <img class="owl-lazy" src="{{asset('/uploads/images/'.$product_1->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_1->product_img.'')}}" alt="">
+                                </a>
+                            </figure>
+                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                             <a href="/home/product-detail/{{$product_1->id}}">
-                                <img class="owl-lazy" src="{{asset('/uploads/images/'.$product_1->product_img.'')}}" data-src="{{asset('/uploads/images/'.$product_1->product_img.'')}}" alt="">
+                                <h3>{{$product_1->product_name}}</h3>
                             </a>
-                        </figure>
-                        <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
-                        <a href="/home/product-detail/{{$product_1->id}}">
-                            <h3>{{$product_1->product_name}}</h3>
-                        </a>
-                        <div class="price_box">
-                            <span class="new_price">{{number_format($product_1->unit_price,0,'','.')}}đ</span>
+                            <div class="price_box">
+                                <span class="new_price">{{number_format($product_1->unit_price,0,'','.')}}đ</span>
+                            </div>
+                            {{-- <ul>
+                                <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào mục yêu thích"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                                <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="thêm vào để so sánh"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+                                <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                            </ul> --}}
                         </div>
-                        {{-- <ul>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="Thêm vào mục yêu thích"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="thêm vào để so sánh"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
-                            <li><a href="#0" class="tooltip-1" data-toggle="tooltip" data-placement="left" title="thêm vào giỏ hàng"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
-                        </ul> --}}
+                        <!-- /grid_item -->
                     </div>
-                    <!-- /grid_item -->
-                </div>
+                @endif
             @endforeach
         </div>
         <!-- /products_carousel -->

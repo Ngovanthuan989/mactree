@@ -20,29 +20,11 @@ class HomePageController extends Controller
         //  Lấy danh sách sản phẩm
 
         if ($request->product_name) {
-            $get_product_1 = Product::where([
-                'status'     => 1,
-                'collection' => 1
-            ])
-            ->orWhere('product_name', 'like', '%' . $request->product_name . '%')
+            $get_product = Product::where('product_name', 'like', '%' . $request->product_name . '%')
             ->get();
 
-            $get_product_2 = Product::where([
-                'status'     => 1,
-                'collection' => 2
-            ])
-            ->orWhere('product_name', 'like', '%' . $request->product_name . '%')
-            ->get();
         }else{
-            $get_product_1 = DB::table('product')->where([
-                'status'     => 1,
-                'collection' => 1
-            ])->get();
-
-            $get_product_2 = DB::table('product')->where([
-                'status'     => 1,
-                'collection' => 2
-            ])->get();
+            $get_product = Product::get();
         }
 
 
@@ -53,8 +35,7 @@ class HomePageController extends Controller
 
 
         return view('homeuser.home.index',[
-            'get_product_1' => $get_product_1,
-            'get_product_2' => $get_product_2,
+            'get_product' => $get_product,
             'get_slider'    => $get_slider
         ]);
     }
