@@ -22,9 +22,11 @@ class HomePageController extends Controller
         if ($request->product_name) {
             $get_product = Product::where('product_name', 'like', '%' . $request->product_name . '%')
             ->get();
+            $product_name = $request->product_name;
 
         }else{
             $get_product = Product::get();
+            $product_name = '';
         }
 
 
@@ -35,8 +37,9 @@ class HomePageController extends Controller
 
 
         return view('homeuser.home.index',[
-            'get_product' => $get_product,
-            'get_slider'    => $get_slider
+            'get_product'   => $get_product,
+            'get_slider'    => $get_slider,
+            'product_name'  => $product_name
         ]);
     }
 
