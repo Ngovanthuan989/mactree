@@ -13,6 +13,7 @@
                         <input name="productId_hidden" type="hidden" value="{{$get_product->id}}" />
                         <div class="slider">
                             <div class="owl-carousel owl-theme main">
+                                <div style="background-image: url({{asset('/uploads/images/'.$get_product->product_img.'')}});" class="item-box"></div>
                                 @foreach ($get_product->productImg as $item)
                                     <div style="background-image: url({{$item->image}});" class="item-box"></div>
                                 @endforeach
@@ -22,6 +23,7 @@
                         </div>
                         <div class="slider-two">
                             <div class="owl-carousel owl-theme thumbs">
+                                <div style="background-image: url({{asset('/uploads/images/'.$get_product->product_img.'')}});" class="item active"></div>
                                 @foreach ($get_product->productImg as $item)
                                     <div style="background-image: url({{$item->image}});" class="item active"></div>
                                 @endforeach
