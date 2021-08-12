@@ -68,6 +68,7 @@
                 <!--end::Toolbar-->
             </div>
         </div>
+
         <!--end::Subheader-->
         <!--begin::Entry-->
         <div class="d-flex flex-column-fluid">
@@ -76,107 +77,109 @@
                 <!--begin::Row-->
                 <div class="row">
                     @foreach ($get_user as $get_users)
-                        <!--begin::Col-->
-                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
-                            <!--begin::Card-->
-                            <div class="card card-custom gutter-b card-stretch">
-                                <!--begin::Body-->
-                                <div class="card-body pt-4">
-                                    <!--begin::Toolbar-->
-                                    <div class="d-flex justify-content-end">
-                                        <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left" data-original-title="Thao tác">
-                                            <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="ki ki-bold-more-hor"></i>
-                                            </a>
-                                            <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
-                                                <!--begin::Navigation-->
-                                                <ul class="navi navi-hover">
-                                                    <li class="navi-header font-weight-bold py-4">
-                                                        <span class="font-size-lg">Thao tác:</span>
-                                                        <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="" data-original-title="Click to learn more..."></i>
-                                                    </li>
-                                                    <li class="navi-separator mb-3 opacity-70"></li>
-                                                    <li class="navi-item">
-                                                        <a type="button" class="navi-link delete_user" data-id="{{$get_users->id}}">
-                                                            <span class="navi-text">
-                                                                <span class="label label-xl label-inline label-light-danger" >Xoá tài khoản</span>
-                                                            </span>
-                                                        </a>
-                                                    </li>
+                        @if ($get_users->id != $user->id)
+                            <!--begin::Col-->
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                <!--begin::Card-->
+                                <div class="card card-custom gutter-b card-stretch">
+                                    <!--begin::Body-->
+                                    <div class="card-body pt-4">
+                                        <!--begin::Toolbar-->
+                                        <div class="d-flex justify-content-end">
+                                            <div class="dropdown dropdown-inline" data-toggle="tooltip" title="" data-placement="left" data-original-title="Thao tác">
+                                                <a href="#" class="btn btn-clean btn-hover-light-primary btn-sm btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="ki ki-bold-more-hor"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                                    <!--begin::Navigation-->
+                                                    <ul class="navi navi-hover">
+                                                        <li class="navi-header font-weight-bold py-4">
+                                                            <span class="font-size-lg">Thao tác:</span>
+                                                            <i class="flaticon2-information icon-md text-muted" data-toggle="tooltip" data-placement="right" title="" data-original-title="Click to learn more..."></i>
+                                                        </li>
+                                                        <li class="navi-separator mb-3 opacity-70"></li>
+                                                        <li class="navi-item">
+                                                            <a type="button" class="navi-link delete_user" data-id="{{$get_users->id}}">
+                                                                <span class="navi-text">
+                                                                    <span class="label label-xl label-inline label-light-danger" >Xoá tài khoản</span>
+                                                                </span>
+                                                            </a>
+                                                        </li>
 
-                                                    {{-- <li class="navi-separator mt-3 opacity-70"></li>
-                                                    <li class="navi-footer py-4">
-                                                        <a class="btn btn-clean font-weight-bold btn-sm" href="#">
-                                                        <i class="ki ki-plus icon-sm"></i>Add new</a>
-                                                    </li> --}}
-                                                </ul>
-                                                <!--end::Navigation-->
+                                                        {{-- <li class="navi-separator mt-3 opacity-70"></li>
+                                                        <li class="navi-footer py-4">
+                                                            <a class="btn btn-clean font-weight-bold btn-sm" href="#">
+                                                            <i class="ki ki-plus icon-sm"></i>Add new</a>
+                                                        </li> --}}
+                                                    </ul>
+                                                    <!--end::Navigation-->
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!--end::Toolbar-->
-                                    <!--begin::User-->
-                                    <div class="d-flex align-items-end mb-7">
-                                        <!--begin::Pic-->
-                                        <div class="d-flex align-items-center">
+                                        <!--end::Toolbar-->
+                                        <!--begin::User-->
+                                        <div class="d-flex align-items-end mb-7">
                                             <!--begin::Pic-->
-                                            <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
-                                                <div class="symbol symbol-circle symbol-lg-75">
-                                                    <img src="{{asset('/uploads/images/'.$get_users->avatar.'')}}" alt="image">
+                                            <div class="d-flex align-items-center">
+                                                <!--begin::Pic-->
+                                                <div class="flex-shrink-0 mr-4 mt-lg-0 mt-3">
+                                                    <div class="symbol symbol-circle symbol-lg-75">
+                                                        <img src="{{asset('/uploads/images/'.$get_users->avatar.'')}}" alt="image">
+                                                    </div>
+                                                    <div class="symbol symbol-lg-75 symbol-circle symbol-primary d-none">
+                                                        <span class="font-size-h3 font-weight-boldest">JM</span>
+                                                    </div>
                                                 </div>
-                                                <div class="symbol symbol-lg-75 symbol-circle symbol-primary d-none">
-                                                    <span class="font-size-h3 font-weight-boldest">JM</span>
+                                                <!--end::Pic-->
+                                                <!--begin::Title-->
+                                                <div class="d-flex flex-column">
+                                                    <a href="{{ route('dashboard.user.edit', ['id' => $get_users->id]) }}" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{$get_users->full_name}}</a>
+                                                    {{-- <span class="text-muted font-weight-bold">Ngày đăng kí: {{ date('d/m/Y H:i', strtotime($get_users->updated_at)) }}</span> --}}
                                                 </div>
-                                            </div>
-                                            <!--end::Pic-->
-                                            <!--begin::Title-->
-                                            <div class="d-flex flex-column">
-                                                <a href="{{ route('dashboard.user.edit', ['id' => $get_users->id]) }}" class="text-dark font-weight-bold text-hover-primary font-size-h4 mb-0">{{$get_users->full_name}}</a>
-                                                {{-- <span class="text-muted font-weight-bold">Ngày đăng kí: {{ date('d/m/Y H:i', strtotime($get_users->updated_at)) }}</span> --}}
+                                                <!--end::Title-->
                                             </div>
                                             <!--end::Title-->
                                         </div>
-                                        <!--end::Title-->
+                                        <!--end::User-->
+                                        <!--begin::Desc-->
+                                        {{-- <p class="mb-7">I distinguish three
+                                        <a href="#" class="text-primary pr-1">#XRS-54PQ</a>objectives First objectives and nice cooked rice</p> --}}
+                                        <!--end::Desc-->
+                                        <!--begin::Info-->
+                                        <div class="mb-7">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
+                                                <a type="button" class="text-muted text-hover-primary">{{$get_users->email}}</a>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-cente my-1">
+                                                <span class="text-dark-75 font-weight-bolder mr-2">Số điện thoại:</span>
+                                                <a type="button" class="text-muted text-hover-primary">{{$get_users->phone}}</a>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <span class="text-dark-75 font-weight-bolder mr-2">Quyền truy cập:</span>
+                                                <select name="permission" class="form-control form-control-solid permission" disabled>
+                                                    <option value="1" @if($get_users->permission == 1)
+                                                        selected
+                                                        @endif>Quản lý</option>
+                                                    <option value="2" @if($get_users->permission == 2)
+                                                        selected
+                                                        @endif>Nhân viên</option>
+                                                </select>
+                                            </div>
+                                            <div class="d-flex justify-content-between align-items-center my-1">
+                                                <span class="text-dark-75 font-weight-bolder mr-2">Ngày đăng kí:</span>
+                                                <span class="text-muted font-weight-bold">{{ date('d/m/Y H:i', strtotime($get_users->updated_at)) }}</span>
+                                            </div>
+                                        </div>
+                                        <!--end::Info-->
+                                        <a href="{{ route('dashboard.user.edit', ['id' => $get_users->id]) }}" class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4">Cập nhập</a>
                                     </div>
-                                    <!--end::User-->
-                                    <!--begin::Desc-->
-                                    {{-- <p class="mb-7">I distinguish three
-                                    <a href="#" class="text-primary pr-1">#XRS-54PQ</a>objectives First objectives and nice cooked rice</p> --}}
-                                    <!--end::Desc-->
-                                    <!--begin::Info-->
-                                    <div class="mb-7">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="text-dark-75 font-weight-bolder mr-2">Email:</span>
-                                            <a type="button" class="text-muted text-hover-primary">{{$get_users->email}}</a>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-cente my-1">
-                                            <span class="text-dark-75 font-weight-bolder mr-2">Số điện thoại:</span>
-                                            <a type="button" class="text-muted text-hover-primary">{{$get_users->phone}}</a>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="text-dark-75 font-weight-bolder mr-2">Quyền truy cập:</span>
-                                            <select name="permission" class="form-control form-control-solid permission" disabled>
-                                                <option value="1" @if($get_users->permission == 1)
-                                                    selected
-                                                    @endif>Quản lý</option>
-                                                <option value="2" @if($get_users->permission == 2)
-                                                    selected
-                                                    @endif>Nhân viên</option>
-                                            </select>
-                                        </div>
-                                        <div class="d-flex justify-content-between align-items-center my-1">
-                                            <span class="text-dark-75 font-weight-bolder mr-2">Ngày đăng kí:</span>
-                                            <span class="text-muted font-weight-bold">{{ date('d/m/Y H:i', strtotime($get_users->updated_at)) }}</span>
-                                        </div>
-                                    </div>
-                                    <!--end::Info-->
-                                    <a href="{{ route('dashboard.user.edit', ['id' => $get_users->id]) }}" class="btn btn-block btn-sm btn-light-primary font-weight-bolder text-uppercase py-4">Cập nhập</a>
+                                    <!--end::Body-->
                                 </div>
-                                <!--end::Body-->
+                                <!--end::Card-->
                             </div>
-                            <!--end::Card-->
-                        </div>
-                        <!--end::Col-->
+                            <!--end::Col-->
+                        @endif
                     @endforeach
 
                 </div>

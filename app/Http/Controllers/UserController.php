@@ -172,7 +172,7 @@ class UserController extends Controller
                          ->setBody($template, 'text/html') ;// for HTML rich messages
                  });
 
-                return redirect()->route('dashboard.user.add')->with('success', 'Thêm thành công');
+                return redirect()->route('dashboard.user.show')->with('success', 'Thêm thành công');
 
             }else{
 
