@@ -15,6 +15,7 @@ class UserInfoComposer
     {
         $user = CommonHelper::getUserInfo();
 
+
         end:
         $view->with(['user' => $user]);
     }

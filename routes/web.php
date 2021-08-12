@@ -50,7 +50,7 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/addPost', 'CategoryController@addPost')->name('dashboard.category.addPost');
     });
 
-    Route::group(['prefix' => 'pay'], function () {
+    Route::group(['prefix' => 'pay','middleware' => ['check.permission']], function () {
         Route::get('/add', 'PayController@add')->name('dashboard.pay.add');
         Route::get('/', 'PayController@index')->name('dashboard.pay.show');
         Route::get('/edit/{id}', 'PayController@edit')->name('dashboard.pay.edit');
@@ -77,7 +77,7 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/addPost', 'ContactController@addPost')->name('dashboard.contact.addPost');
     });
 
-    Route::group(['prefix' => 'permission'], function () {
+    Route::group(['prefix' => 'permission','middleware' => ['check.permission']], function () {
         Route::get('/add', 'PermissionController@add')->name('dashboard.permission.add');
         Route::get('/', 'PermissionController@index')->name('dashboard.permission.show');
         Route::get('/edit/{id}', 'PermissionController@edit')->name('dashboard.permission.edit');
@@ -86,7 +86,7 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/addPost', 'PermissionController@addPost')->name('dashboard.permission.addPost');
     });
 
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'user','middleware' => ['check.permission']], function () {
         Route::get('/add', 'UserController@add')->name('dashboard.user.add');
         Route::get('/', 'UserController@index')->name('dashboard.user.show');
         Route::get('/edit/{id}', 'UserController@edit')->name('dashboard.user.edit');
@@ -95,7 +95,7 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/addPost', 'UserController@addPost')->name('dashboard.user.addPost');
     });
 
-    Route::group(['prefix' => 'userHome'], function () {
+    Route::group(['prefix' => 'userHome','middleware' => ['check.permission']], function () {
         Route::get('/add', 'UserHomeController@add')->name('dashboard.userHome.add');
         Route::get('/', 'UserHomeController@index')->name('dashboard.userHome.show');
         Route::get('/edit/{id}', 'UserHomeController@edit')->name('dashboard.userHome.edit');
@@ -120,7 +120,7 @@ Route::group(['middleware' => ['check.logout']], function () {
         Route::post('/editPost', 'ProductController@editPost')->name('dashboard.product.editPost');
     });
 
-    Route::group(['prefix' => 'ship'], function () {
+    Route::group(['prefix' => 'ship','middleware' => ['check.permission']], function () {
         Route::get('/add', 'ShipController@add')->name('dashboard.ship.add');
         Route::get('/', 'ShipController@index')->name('dashboard.ship.show');
         Route::get('/edit/{id}', 'ShipController@edit')->name('dashboard.ship.edit');

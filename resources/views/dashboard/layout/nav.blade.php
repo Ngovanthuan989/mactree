@@ -132,8 +132,7 @@
 
             </li>
 
-
-
+        @if ($user->permission == 1)
             <li class="menu-section">
                 <h4 class="menu-text">Account</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -184,7 +183,7 @@
                 </div>
 
             </li>
-            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+            {{-- <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <span class="svg-icon menu-icon">
                         <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -228,7 +227,8 @@
 
                     </ul>
                 </div>
-            </li>
+            </li> --}}
+
 
             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
@@ -277,6 +277,7 @@
 
             </li>
 
+        @endif
 
             <li class="menu-section">
                 <h4 class="menu-text">Product</h4>
@@ -423,7 +424,7 @@
             </li>
 
 
-
+            @if ($user->permission == 1)
             <li class="menu-section">
                 <h4 class="menu-text">Payment</h4>
                 <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -563,6 +564,7 @@
                     </ul>
                 </div>
             </li>
+            @endif
 
 
 

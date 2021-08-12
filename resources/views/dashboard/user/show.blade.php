@@ -156,13 +156,12 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="text-dark-75 font-weight-bolder mr-2">Quyền truy cập:</span>
                                             <select name="permission" class="form-control form-control-solid permission" disabled>
-                                                @foreach($get_permission as $permission)
-                                                    <option value="{{$permission->id}}"
-                                                        @if($get_users->permission == $permission->id)
-                                                        selected
-                                                        @endif>{{$permission->permission_name}}
-                                                    </option>
-                                                @endforeach
+                                                <option value="1" @if($get_users->permission == 1)
+                                                    selected
+                                                    @endif>Quản lý</option>
+                                                <option value="2" @if($get_users->permission == 2)
+                                                    selected
+                                                    @endif>Nhân viên</option>
                                             </select>
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center my-1">

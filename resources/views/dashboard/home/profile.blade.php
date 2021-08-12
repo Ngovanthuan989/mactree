@@ -136,13 +136,12 @@
                             <div class="d-flex align-items-center justify-content-between">
                                 <span class="font-weight-bold mr-2">Quyền truy cập:</span>
                                 <select style="width: 50%" name="permission" class="form-control form-control-solid permission" disabled>
-                                    @foreach($get_permission as $permission)
-                                        <option value="{{$permission->id}}"
-                                            @if($user->permission == $permission->id)
-                                            selected
-                                            @endif>{{$permission->permission_name}}
-                                        </option>
-                                    @endforeach
+                                    <option value="1" @if($user->permission == 1)
+                                        selected
+                                        @endif>Quản lý</option>
+                                    <option value="2" @if($user->permission == 2)
+                                        selected
+                                        @endif>Nhân viên</option>
                                 </select>
                             </div>
                         </div>
@@ -272,22 +271,23 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-xl-3 col-lg-3 col-form-label">Quyền truy cập</label>
-                                <div class="col-lg-9 col-xl-6">
-                                    <div class="input-group input-group-lg input-group-solid">
-                                        <select name="permission" class="form-control form-control-solid permission">
-                                            @foreach($get_permission as $permission)
-                                                <option value="{{$permission->id}}"
-                                                    @if($user->permission == $permission->id)
+                            @if($user->permission == 1)
+                                <div class="form-group row">
+                                    <label class="col-xl-3 col-lg-3 col-form-label">Quyền truy cập</label>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <div class="input-group input-group-lg input-group-solid">
+                                            <select name="permission" class="form-control form-control-solid permission">
+                                                <option value="1" @if($user->permission == 1)
                                                     selected
-                                                    @endif>{{$permission->permission_name}}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                                    @endif>Quản lý</option>
+                                                <option value="2" @if($user->permission == 2)
+                                                    selected
+                                                    @endif>Nhân viên</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                         <!--end::Body-->
                     </form>

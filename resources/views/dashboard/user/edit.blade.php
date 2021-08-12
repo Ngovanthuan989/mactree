@@ -103,13 +103,12 @@
                                                         <div class="col-lg-9 col-xl-9">
                                                             <div class="input-group input-group-solid input-group-lg">
                                                                 <select name="permission" class="form-control form-control-solid permission">
-                                                                    @foreach($get_permission as $permission)
-                                                                        <option value="{{$permission->id}}"
-                                                                            @if($user->permission == $permission->id)
+                                                                        <option value="1" @if($user->permission == 1)
                                                                             selected
-                                                                            @endif>{{$permission->permission_name}}
-                                                                        </option>
-                                                                    @endforeach
+                                                                            @endif>Quản lý</option>
+                                                                        <option value="2" @if($user->permission == 2)
+                                                                            selected
+                                                                            @endif>Nhân viên</option>
 																</select>
                                                             </div>
                                                         <div class="fv-plugins-message-container"></div></div>

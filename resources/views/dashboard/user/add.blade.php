@@ -111,9 +111,8 @@
                                                         <div class="col-lg-9 col-xl-9">
                                                             <div class="input-group input-group-solid input-group-lg">
                                                                 <select name="permission" class="form-control form-control-solid">
-                                                                    @foreach($get_permission as $permission)
-                                                                        <option value="{{$permission->id}}">{{$permission->permission_name}}</option>
-                                                                    @endforeach
+                                                                    <option value="1">Quản lý</option>
+                                                                    <option value="2">Nhân viên</option>
 																</select>
                                                             </div>
                                                         <div class="fv-plugins-message-container"></div></div>
