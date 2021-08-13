@@ -20,7 +20,7 @@ class ShowOrderHomeController extends Controller
         ->orderBy('id', 'DESC')
         ->get();
 
-        return view('homeUser.order.show',[
+        return view('homeuser.order.show',[
                 'get_order'=>$get_order
             ]
         );
