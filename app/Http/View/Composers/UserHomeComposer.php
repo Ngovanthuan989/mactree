@@ -25,9 +25,8 @@ class UserHomeComposer
         ])
         ->limit(4)
         ->get();
-        // dd($get_category,$get_product);
 
         end:
-        $view->with(['userHome' => $userHome,'get_category' => $get_category, 'get_product' => $get_product,]);
+        $view->with(['userHome' => $userHome,'get_category' => $get_category, 'get_product' => $get_product]);
     }
 }

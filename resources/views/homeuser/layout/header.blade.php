@@ -156,14 +156,17 @@
 
                                             </ul>
                                         </li> --}}
+
                                         @foreach ($get_category as $category)
                                             <li><span><a href="javascript:void(0);">{{$category->category_name}}</a></span>
                                                 <ul>
+
                                                     @foreach ($get_product as $product)
                                                         @if ($category->id == $product->category_id)
                                                             <li><a href="/home/product-detail/{{$product->id}}">{{$product->product_name}}</a></li>
                                                         @endif
                                                     @endforeach
+
                                                 </ul>
                                             </li>
                                         @endforeach
