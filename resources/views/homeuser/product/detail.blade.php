@@ -2,6 +2,16 @@
 @section('link')
     <link href="{{asset('/pageuser/css/product_page.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://devtest.baokim.vn:9403/css/bk.css">
+    <style>
+        header .main_header {
+            position: relative;
+            z-index: 0 !important;
+        }
+        header .main_nav {
+            position: relative;
+            z-index: 0 !important;
+        }
+    </style>
 @endsection
  <!-- BK MODAL -->
  <div id='bk-modal'></div>
