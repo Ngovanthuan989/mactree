@@ -28,7 +28,7 @@
                         <div class="slider">
                             <div class="owl-carousel owl-theme main">
                                 <div style="background-image: url({{asset('/uploads/images/'.$get_product->product_img.'')}});" class="item-box"></div>
-                                <img class="bk-product-image" src="{{asset('/uploads/images/'.$get_product->product_img.'')}}" alt="">
+
                                 @foreach ($get_product->productImg as $item)
                                     <div style="background-image: url({{$item->image}});" class="item-box"></div>
                                 @endforeach
@@ -61,6 +61,7 @@
                         <h1 class="bk-product-name">{{$get_product->product_name}}</h1>
                         {{-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> --}}
                         <p><small>Mã sản phẩm: {{$get_product->product_code}}</small><br>{{$get_product->product_description}}</p>
+                        <img class="bk-product-image d-none" src="{{asset('/uploads/images/'.$get_product->product_img.'')}}" alt="">
                         <div class="prod_options">
                             <div class="row">
                                 {{-- <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>
