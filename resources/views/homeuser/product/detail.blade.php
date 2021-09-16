@@ -95,6 +95,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input class="bk-product-property" type="hidden" value="{{$get_product->product_code}}" />
                         <div class="row">
                             <div class="col-lg-5 col-md-6">
                                 <div class="price_main"><span class="new_price bk-product-price">{{ number_format($get_product->price_sale) }}đ</span><span class="percentage">Giảm giá</span> <span class="old_price">{{ number_format($get_product->unit_price) }}đ</span></div>
