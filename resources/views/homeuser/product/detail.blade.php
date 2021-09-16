@@ -1,6 +1,7 @@
 @extends('homeuser.layout.master')
 @section('link')
     <link href="{{asset('/pageuser/css/product_page.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://devtest.baokim.vn:9403/css/bk.css">
 @endsection
 @section('home')
     <div class="container margin_30">
@@ -14,6 +15,7 @@
                         <div class="slider">
                             <div class="owl-carousel owl-theme main">
                                 <div style="background-image: url({{asset('/uploads/images/'.$get_product->product_img.'')}});" class="item-box"></div>
+                                <img class="bk-product-image" src="{{asset('/uploads/images/'.$get_product->product_img.'')}}" alt="">
                                 @foreach ($get_product->productImg as $item)
                                     <div style="background-image: url({{$item->image}});" class="item-box"></div>
                                 @endforeach
@@ -43,7 +45,7 @@
                     </div>
                     <!-- /page_header -->
                     <div class="prod_info">
-                        <h1>{{$get_product->product_name}}</h1>
+                        <h1 class="bk-product-name">{{$get_product->product_name}}</h1>
                         {{-- <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span> --}}
                         <p><small>Mã sản phẩm: {{$get_product->product_code}}</small><br>{{$get_product->product_description}}</p>
                         <div class="prod_options">
@@ -75,18 +77,22 @@
                                 <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số lượng</strong></label>
                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                     <div class="numbers-row">
-                                        <input type="text" value="1" id="quantity_1" class="qty2" name="qty">
+                                        <input type="text" value="1" class="bk-product-qty" id="quantity_1" class="qty2" name="qty">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-5 col-md-6">
-                                <div class="price_main"><span class="new_price">{{ number_format($get_product->price_sale) }}đ</span><span class="percentage">Giảm giá</span> <span class="old_price">{{ number_format($get_product->unit_price) }}đ</span></div>
+                                <div class="price_main"><span class="new_price bk-product-price">{{ number_format($get_product->price_sale) }}đ</span><span class="percentage">Giảm giá</span> <span class="old_price">{{ number_format($get_product->unit_price) }}đ</span></div>
                             </div>
                             <div class="col-lg-4 col-md-6">
                                 <div class=""><button type="submit" class="btn_1">Thêm giỏ hàng</button></div>
                             </div>
+                            <!-- BK BUTTON -->
+                            <div class='bk-btn'></div>
+                            <!-- END BK BUTTON -->
+
                         </div>
                     </div>
                     <!-- /prod_info -->
@@ -274,8 +280,13 @@
             </ul>
         </div>
     </div>
+    <!-- BK MODAL -->
+    <div id='bk-modal'></div>
+    <!-- END BK MODAL -->
 @endsection
 @section('javascript')
+    <!-- BK JS -->
+    <script src="https://devtest.baokim.vn:9403/js/bk_plus.popup.js"></script>    <!-- END BK JS -->
     <script src="{{asset('/pageuser/js/carousel_with_thumbs.js')}}"></script>
 
     <script>
