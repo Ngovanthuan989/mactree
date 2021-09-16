@@ -3,6 +3,9 @@
     <link href="{{asset('/pageuser/css/product_page.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://devtest.baokim.vn:9403/css/bk.css">
 @endsection
+ <!-- BK MODAL -->
+ <div id='bk-modal'></div>
+ <!-- END BK MODAL -->
 @section('home')
     <div class="container margin_30">
 
@@ -280,9 +283,7 @@
             </ul>
         </div>
     </div>
-    <!-- BK MODAL -->
-    <div id='bk-modal'></div>
-    <!-- END BK MODAL -->
+
 @endsection
 @section('javascript')
     <!-- BK JS -->
