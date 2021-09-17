@@ -301,7 +301,10 @@
     <!-- BK JS -->
     <script src="https://devtest.baokim.vn:9403/js/bk_plus.popup.js"></script>    <!-- END BK JS -->
     <script src="{{asset('/pageuser/js/carousel_with_thumbs.js')}}"></script>
-
+    <script>
+        var id = '{{$get_product->product_code}}';
+        var meta = {"product": {"id": id}};
+    </script>
     <script>
         var html  = $('.product_content').text();
         html.outerHTML;
