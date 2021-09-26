@@ -299,7 +299,8 @@
 @endsection
 @section('javascript')
     <!-- BK JS -->
-    <script src="https://devtest.baokim.vn:9403/js/bk_plus.popup.js"></script>    <!-- END BK JS -->
+    <script src="https://pc.baokim.vn/js/bk_plus_v2.popup.js"></script>
+    <!-- END BK JS -->
     <script src="{{asset('/pageuser/js/carousel_with_thumbs.js')}}"></script>
     <script>
         var id = '{{$get_product->product_code}}';
