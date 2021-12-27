@@ -105,7 +105,7 @@
 		<div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
 			<!--begin::Logo-->
 			<a href="/">
-				<img style="width: 50%;" alt="Logo" src="{{asset('/uploads/images/logo_mactree_thaihoang.png')}}" />
+				<img style="width: 50%;" alt="Logo" src="{{asset('/uploads/images/cactrang.png')}}" />
 			</a>
 			<!--end::Logo-->
 			<!--begin::Toolbar-->
@@ -148,7 +148,7 @@
 					<div class="brand flex-column-auto" id="kt_brand">
 						<!--begin::Logo-->
 						<a href="/" class="brand-logo">
-							<img alt="Logo" style="width: 60%;" src="{{asset('/uploads/images/logo_mactree_thaihoang.png')}}" />
+							<img alt="Logo" style="width: 60%;" src="{{asset('/uploads/images/cactrang.png')}}" />
 						</a>
 						<!--end::Logo-->
 						<!--begin::Toggle-->

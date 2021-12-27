@@ -42,7 +42,7 @@
 						<!--begin::Login Header-->
 						<div class="d-flex flex-center mb-15">
 							<a href="/">
-								<img src="{{asset('/uploads/images/logo_mactree_thaihoang.png')}}" class="max-h-75px" alt="" />
+								<img src="{{asset('/uploads/images/cactrang.png')}}" class="max-h-75px" alt="" />
 							</a>
 						</div>
 						<!--end::Login Header-->
