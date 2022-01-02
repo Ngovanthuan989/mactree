@@ -5,7 +5,7 @@
             <div class="row small-gutters">
                 <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                     <div id="logo">
-                        <a href="/home"><img src="{{asset('/uploads/images/logo_mactree_thaihoang.png')}}" alt="" style="width: 50%;"></a>
+                        <a href="/home"><img src="{{asset('/uploads/images/cacParis.png')}}" alt="" style="width: 50%;"></a>
                     </div>
                 </div>
                 <nav class="col-xl-6 col-lg-7">
@@ -19,7 +19,7 @@
                     <!-- Mobile menu button -->
                     <div class="main-menu">
                         <div id="header_menu">
-                            <a href="index.html"><img src="img/logo_black.svg" alt="" width="100" height="35"></a>
+                            <a href="/home"><img src="{{asset('/uploads/images/cacParis.png')}}" alt="" style="width: 50%;"></a>
                             <a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
                         </div>
                         <ul>

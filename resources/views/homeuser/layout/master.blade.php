@@ -30,7 +30,17 @@
     <link href="{{asset('/pageuser/css/custom.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-
+    <style>
+        header.version_1 .main_header {
+            background-color: #ffffff;
+        }
+        header.version_1 .main-menu > ul > li > a {
+            color: #000000;
+        }
+        header.version_1 .main_header a.phone_top {
+            color: #000000;
+        }
+    </style>
 </head>
 
 <body>
