@@ -20,7 +20,7 @@
                     <div class="main-menu">
                         <div id="header_menu">
                             <a href="/home"><img src="{{asset('/uploads/images/cacParis.png')}}" alt="" style="width: 50%;"></a>
-                            <a href="#" class="open_close" id="close_in"><i class="ti-close"></i></a>
+                            <a href="/home" class="open_close" id="close_in"><i class="ti-close"></i></a>
                         </div>
                         <ul>
                             <li class="">
